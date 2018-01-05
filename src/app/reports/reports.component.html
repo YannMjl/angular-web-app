@@ -1,0 +1,40 @@
+<body>
+
+  <div class="container">
+
+    <h2>December 20 Report</h2>
+
+    <div id="first">
+      <ul class="list-org">
+        <li *ngFor="let report of reports" [class.selected]="report === selectedReport" (click)="onSelect(report)">
+          {{report.name}}
+        </li>
+      </ul>
+    </div>
+
+    <div id="second">
+
+      <table>
+        <tr>
+          <th>Organization Name</th>
+          <th>Memory space used (in bit)</th>
+        </tr>
+
+        <tr *ngFor="let report of reports">
+          <td>{{ report.name }}</td>
+          <td>{{ report.size }}</td>
+        </tr>
+      </table>
+
+      <div *ngIf="selectedReport">
+        <h2>{{ selectedReport.name | uppercase }} Details</h2>
+        <div>
+          <span>Size of bits used: </span><b>{{selectedReport.size}}</b>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
