@@ -1,9 +1,11 @@
 export class Report {
-  name: string;
+  organization: string;
   size: number;
+  date: Date;
 
-  constructor( name: string, size: number) {
-    this.name = name;
+  constructor( name: string, size: number, date: Date) {
+    this.organization = name;
     this.size = size;
+    this.date = date;
   }
 }

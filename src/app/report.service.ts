@@ -20,6 +20,7 @@ export class ReportService {
     const apiUrl = 'http://localhost:3000';
 
     return this.http.get<Report[]>(apiUrl);
+
   }
 
   getMockReports(): Observable<Report[]> {
