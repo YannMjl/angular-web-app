@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Report } from '../report';
-import { REPORT20Dec } from '../mock-report';
 import { ReportService } from '../report.service';
 
 @Component({
@@ -10,25 +9,32 @@ import { ReportService } from '../report.service';
 })
 export class ReportsComponent implements OnInit {
 
-  /*get the report vector from the mock-report file and set its val */
-  reportsM = REPORT20Dec;
-
   /* set variable selectedReport to class Report from report.ts file */
-  selectedReport: Report;
+  selectedreport: Report;
+  selecteddate: Report;
 
   reports: Report[];
-  reportsMock: Report[];
+  reportDate: Report[];
+  reportsByName: Report[];
+  reportsByDate: Report[];
 
   constructor(private reportService: ReportService) { }
 
   ngOnInit() {
     console.log('in');
     this.getReports();
-    this.getMockReports();
+    this.getDateInReport();
+    this.getreportByName(this.onSelect.name);
   }
 
-  onSelect(report: Report): void {
-    this.selectedReport = report;
+  onSelect(report: Report, name: string): void {
+    this.selectedreport = report;
+    name = this.selectedreport.organization;
+  }
+
+  onSelectDate(report: Report, date: Date): void {
+    this.selecteddate = report;
+    date = this.selecteddate.date;
   }
 
   getReports(): void {
@@ -37,9 +43,21 @@ export class ReportsComponent implements OnInit {
     .subscribe(reports => this.reports = reports);
   }
 
-  getMockReports(): void {
-    this.reportService.getMockReports()
-      .subscribe(reportsMock => this.reportsMock = reportsMock);
+  getDateInReport(): void {
+    this.reportService.getDateInReport()
+    .subscribe(reports => this.reportDate = reports);
+  }
+
+  getreportByName(name: string): void {
+    console.log('in report name');
+    this.reportService.getReportByName(name)
+    .subscribe(reports => this.reportsByName = reports);
+  }
+
+  getreportBydate(date: Date): void {
+    console.log('in report date');
+    this.reportService.getReportByDate(date)
+    .subscribe(reports => this.reportsByDate = reports);
   }
 
 }
