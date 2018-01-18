@@ -1,4 +1,4 @@
-import { ReportsComponent } from './../reports/reports.component';
+import { ReportsComponent  } from './../reports/reports.component';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Report } from '../report';
 import { ReportService } from '../report.service';
@@ -13,37 +13,37 @@ import 'rxjs/add/operator/switchMap';
   styleUrls: ['./report-detail.component.css']
 })
 export class ReportDetailComponent implements OnInit {
-
-  @Input() selectedname: string;
-
   reportByNames: Report[];
+  orgName: string;
+
+  order: string;
+  reverse: boolean;
 
   constructor(
     private reportService: ReportService,
     private route: ActivatedRoute,
     private location: Location
-  ) {}
-
-  ngOnInit() {
-    /*
-    this.route.params
-      .switchMap((params: Params) =>
-        this.reportService.getReportByName(params['organization'])
-      )
-      .subscribe(report => (this.reports = report)); */
-
-    this.getReportByName(this.selectedname);
+  ) {
+    this.orgName = route.snapshot.params['id'];
   }
 
-  getReportByName(organization: string): void {
-    console.log('in report');
-    organization = this.selectedname;
+  ngOnInit() {
     this.reportService
-      .getReportByName(organization)
-      .subscribe(reports => (this.reportByNames = reports));
+      .getReportByName(this.orgName)
+      .subscribe(report => (this.reportByNames = report));
+
+    this.order = 'report.organization';
+    this.reverse = false;
   }
 
   goBack(): void {
     this.location.back();
+  }
+
+  setOrder(value: string) {
+    if (this.order === value) {
+      this.reverse = !this.reverse;
+    }
+    this.order = value;
   }
 }

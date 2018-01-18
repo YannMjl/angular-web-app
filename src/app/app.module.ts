@@ -9,6 +9,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReportDetailComponent } from './report-detail/report-detail.component';
 import { RoutingModule } from './routing.module';
 import { FileSizePipe } from './file-size.pipe';
+import { DisplayByDateComponent } from './display-by-date/display-by-date.component';
+
+import { OrderModule } from 'ngx-order-pipe';
 
 
 @NgModule({
@@ -16,12 +19,14 @@ import { FileSizePipe } from './file-size.pipe';
     AppComponent,
     ReportsComponent,
     ReportDetailComponent,
-    FileSizePipe
+    FileSizePipe,
+    DisplayByDateComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    RoutingModule
+    RoutingModule,
+    OrderModule
   ],
   providers: [ReportService],
   bootstrap: [AppComponent]

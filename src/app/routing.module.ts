@@ -3,11 +3,13 @@ import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ReportsComponent } from './reports/reports.component';
+import { DisplayByDateComponent } from './display-by-date/display-by-date.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/app', pathMatch: 'full' },
-  { path: 'report', component: ReportsComponent },
-  { path: 'detail/:orgnanization', component: ReportDetailComponent }
+  { path: 'detail/:id', component: ReportDetailComponent, data : [{ isProd: true }]},
+  { path: 'detail-date/:id', component: DisplayByDateComponent, data : [{ isProd: true }]},
+  { path: 'report', component: ReportsComponent }
 ];
 
 @NgModule({

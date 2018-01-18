@@ -1,41 +1,41 @@
-<body>
+<div id="container">
 
-  <div class="container">
+  <div ng-if="selectedreport" ng-controller="datCtrl">
 
-    <div id="first">
-      <!--
-      <div *ngIf="selectedReport">
-        <h2>{{ selectedReport.organization | uppercase }} Report Details</h2>
-        <div>
-          <span>Size of bits used: </span>
-          <b>{{selectedReport.size}}</b>
-        </div>
-      </div>
-    -->
-    </div>
+    <h2> {{ orgName | uppercase }} report </h2>
 
-    <div id="second">
+    <table id="repotable" align="center">
 
-      <table>
+      <thead>
+
         <tr>
-          <th>Organization</th>
-          <th>Memory space used (in bit)</th>
-          <th>Date</th>
+          <th [class.active]="order === 'report.size'" (click)="setOrder('report.size')" class="mdl-data-table__cell--non-numeric">
+            Size
+            <span [hidden]="reverse">▼</span>
+            <span [hidden]="!reverse">▲</span>
+          </th>
+
+          <th [class.active]="order === 'report.date'" (click)="setOrder('report.date')">
+            Date
+            <span [hidden]="reverse">▼</span>
+            <span [hidden]="!reverse">▲</span>
+          </th>
+
         </tr>
 
-        <tr *ngFor="let report of reportByNames">
-          <td>{{ report.organization }}</td>
-          <td>{{ report.size} }</td>
-          <td>{{ report.date }}</td>
-        </tr>
-      </table>
+      </thead>
 
-    </div>
-
-    <div>
-      <button (click)="goBack()">Back</button>
-    </div>
+      <tr *ngFor="let report of reportByNames | orderBy: order:reverse:'caseInsensitive'">
+        <td>{{ report.size | fileSize }}</td>
+        <td>{{ report.date | date : "MMMM d, y" }}</td>
+      </tr>
+    </table>
 
   </div>
 
-</body>
+  <div>
+    <button (click)="goBack()">Back</button>
+  </div>
+
+</div>
+

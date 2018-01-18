@@ -24,7 +24,6 @@ export class ReportsComponent implements OnInit {
     console.log('in');
     this.getReports();
     this.getDateInReport();
-    this.getreportByName(this.onSelect.name);
   }
 
   onSelect(report: Report, name: string): void {

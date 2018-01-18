@@ -1,0 +1,41 @@
+<div id="container">
+
+  <div ng-if="selecteddate" ng-controller="datCtrl">
+
+    <h2> Report for {{ date | date : "MMMM d, y" }} </h2>
+
+    <table id="repotable" align="center">
+
+      <thead>
+
+        <tr>
+          <th [class.active]="order === 'report.organization'" (click)="setOrder('report.rganization')" class="mdl-data-table__cell--non-numeric">
+            Organization
+            <span [hidden]="reverse">▼</span>
+            <span [hidden]="!reverse">▲</span>
+          </th>
+
+          <th [class.active]="order === 'report.size'" (click)="setOrder('report.size')">
+            Size
+            <span [hidden]="reverse">▼</span>
+            <span [hidden]="!reverse">▲</span>
+          </th>
+
+        </tr>
+
+      </thead>
+
+
+      <tr *ngFor="let report of reportByDate | orderBy: order:reverse:'caseInsensitive'">
+        <td>{{ report.organization }}</td>
+        <td>{{ report.size | fileSize }}</td>
+      </tr>
+    </table>
+
+  </div>
+
+  <div>
+    <button (click)="goBack()">Back</button>
+  </div>
+
+</div>

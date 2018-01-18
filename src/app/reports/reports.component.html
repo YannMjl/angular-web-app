@@ -1,7 +1,3 @@
-<script>
-  var app = angular.module("my", ["ngFilesizeFilter"]);
-</script>
-
 <body>
 
   <div class="container">
@@ -12,7 +8,7 @@
 
       <div id="first">
         <ul class="list-org">
-          <li *ngFor="let report of reports" [class.selected]="report === selectedreport" (click)="onSelect(report, getreportByName(report.organization))">
+          <li *ngFor="let report of reports" [class.selected]="report === selectedreport" (click)="onSelect(report, getreportByName(report.organization))" [routerLink]="['/detail', report.organization]">
             {{ report.organization }}
           </li>
         </ul>
@@ -20,66 +16,10 @@
 
       <div id="second" ng-controller="datCtrl">
         <ul class="list-org">
-          <li *ngFor="let report of reportDate" [class.selected]="report === selecteddate" (click)="onSelectDate(report, getreportBydate(report.date))">
-            {{ report.date | date : "MM-dd-y" }}
+          <li *ngFor="let report of reportDate" [class.selected]="report === selecteddate" (click)="onSelectDate(report, getreportBydate(report.date))" [routerLink]="['/detail-date', report.date]">
+            {{ report.date | date : "MMMM d, y" }}
           </li>
         </ul>
-      </div>
-
-    </div>
-
-
-
-    <div id="right">
-
-      <h2> View report by organizarion or date</h2>
-
-      <div id="third">
-
-        <h2>View by organizarion</h2>
-
-        <div ng-if="selectedreport" ng-controller="datCtrl">
-
-          <table>
-            <tr>
-              <th>Organization</th>
-              <th ng-click="orderByMe ('size')">Memory used (in bit)</th>
-              <th ng-click="orderByMe ('date')">Date</th>
-            </tr>
-
-            <tr *ngFor="let report of reportsByName">
-              <td>{{ report.organization }}</td>
-              <td>{{ report.size | fileSize }}</td>
-              <td>{{ report.date | date : "MM-dd-y" }}</td>
-            </tr>
-          </table>
-
-        </div>
-
-      </div>
-
-      <div id="forth">
-
-        <h2>View by date </h2>
-
-        <div ng-if="selecteddate" ng-controller="datCtrl">
-
-          <table>
-            <tr>
-              <th>Organization</th>
-              <th>Memory used</th>
-              <th>Date</th>
-            </tr>
-
-            <tr *ngFor="let report of reportsByDate">
-              <td>{{ report.organization }}</td>
-              <td>{{ report.size | fileSize }}</td>
-              <td>{{ report.date | date : "MM/dd/y" }}</td>
-            </tr>
-          </table>
-
-        </div>
-
       </div>
 
     </div>
