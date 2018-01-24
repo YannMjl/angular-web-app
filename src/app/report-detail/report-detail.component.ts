@@ -29,8 +29,8 @@ export class ReportDetailComponent implements OnInit {
 
   ngOnInit() {
     this.reportService
-      .getReportByName(this.orgName)
-      .subscribe(report => (this.reportByNames = report));
+        .getReportByName(this.orgName)
+        .subscribe(report => (this.reportByNames = report));
 
     this.order = 'report.organization';
     this.reverse = false;

@@ -28,7 +28,7 @@ export class DisplayByDateComponent implements OnInit {
 
   ngOnInit() {
     this.reposervice.getReportByDate(this.date)
-    .subscribe(report => this.reportByDate = report);
+        .subscribe(report => this.reportByDate = report);
 
     this.order = 'report.organization';
     this.reverse = false;

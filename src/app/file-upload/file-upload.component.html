@@ -1,0 +1,79 @@
+<body>
+
+  <div class="container">
+
+    <div id="left">
+
+      <div id="first">
+
+        <div class="form-style-5">
+          <form #myform="ngForm" novalidate>
+            <fieldset>
+              <legend>
+                <span class="number">1</span> Select Report Date </legend>
+              <label for="date">'Date must be selected from the calender'</label>
+              <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model" required></my-date-picker>
+            </fieldset>
+
+            <fieldset>
+              <legend>
+                <span class="number">2</span> Select File Report</legend>
+              <label for="file">'file report must be CSV format'</label>
+              <!-- File input for upload without using the plugin. -->
+              <input id="photo" type="file" />
+            </fieldset>
+
+            <!-- button to trigger the file upload when submitted -->
+            <button type="button" class="btn btn-success btn-s" (click)="upload()">
+              Upload file Report
+            </button>
+            <button type="button" (click)="getReportByDate(reportDate)" [routerLink]="['/detail-date', reportDate]">
+              View Uploaded Report
+            </button>
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+
+
+<!--***********************************************************************************************************************************
+<!-- File input for the file-upload plugin, with special ng2-file-upload directive called ng2FileSelect
+<input type="file" ng2FileSelect [uploader]="uploader" />
+-->
+<!--button to trigger the file upload when submitted
+<button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+  Upload
+</button>
+-->
+
+<!--
+<form #myform="ngForm" novalidate>
+  <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model" required></my-date-picker>
+  <!-- File input for upload without using the plugin.
+  <input id="photo" type="file" />
+  <!-- button to trigger the file upload when submitted
+  <button type="button" class="btn btn-success btn-s" (click)="upload()">
+    Upload with method 2
+  </button>
+</form>
+*************************************************************************************************************************************-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+

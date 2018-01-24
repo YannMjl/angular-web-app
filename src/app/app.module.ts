@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-
 import { AppComponent } from './app.component';
 import { ReportsComponent } from './reports/reports.component';
 import { ReportService } from './report.service';
@@ -12,6 +11,12 @@ import { FileSizePipe } from './file-size.pipe';
 import { DisplayByDateComponent } from './display-by-date/display-by-date.component';
 
 import { OrderModule } from 'ngx-order-pipe';
+import { FileUploadComponent } from './file-upload/file-upload.component';
+import { MyDatePickerModule } from 'mydatepicker';
+
+// import the ng2-file-upload directive so we can add it to our declaration
+import { FileSelectDirective } from 'ng2-file-upload';
+import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
 
 
 @NgModule({
@@ -20,13 +25,18 @@ import { OrderModule } from 'ngx-order-pipe';
     ReportsComponent,
     ReportDetailComponent,
     FileSizePipe,
-    DisplayByDateComponent
+    DisplayByDateComponent,
+    FileUploadComponent,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     RoutingModule,
-    OrderModule
+    OrderModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MyDatePickerModule,
   ],
   providers: [ReportService],
   bootstrap: [AppComponent]

@@ -25,7 +25,6 @@
 
       </thead>
 
-
       <tr *ngFor="let report of reportByDate | orderBy: order:reverse:'caseInsensitive'">
         <td>{{ report.organization }}</td>
         <td>{{ report.size | fileSize }}</td>

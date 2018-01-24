@@ -9,7 +9,6 @@ import { ReportService } from '../report.service';
 })
 export class ReportsComponent implements OnInit {
 
-  /* set variable selectedReport to class Report from report.ts file */
   selectedreport: Report;
   selecteddate: Report;
 
