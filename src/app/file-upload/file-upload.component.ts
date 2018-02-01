@@ -10,7 +10,7 @@ import 'rxjs/add/operator/do';
 import { Report } from '../report';
 
 // define the constant url we would be uploading to
-const apiUrl = 'http://localhost:5000/file';
+const apiUrl = 'https://clojure-web-server.herokuapp.com/file';
 
 @Component({
   selector: 'app-file-upload',

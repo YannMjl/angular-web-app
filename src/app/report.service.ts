@@ -15,25 +15,25 @@ export class ReportService {
   constructor(private http: HttpClient) {}
 
   getReports(): Observable<Report[]> {
-    const apiUrl = 'http://localhost:5000';
+    const apiUrl = 'https://clojure-web-server.herokuapp.com/report';
 
     return this.http.get<Report[]>(apiUrl);
   }
 
   getDateInReport(): Observable<Report[]> {
-    const apiUrl = 'http://localhost:5000/date';
+    const apiUrl = 'https://clojure-web-server.herokuapp.com/date';
 
     return this.http.get<Report[]>(apiUrl);
   }
 
   getReportByName(name: string): Observable<Report[]> {
-    const apiUrl = 'http://localhost:5000/' + name;
+    const apiUrl = 'https://clojure-web-server.herokuapp.com/' + name;
 
     return this.http.get<Report[]>(apiUrl);
   }
 
   getReportByDate(date: Date): Observable<Report[]> {
-    const apiUrl = 'http://localhost:5000/date/' + date;
+    const apiUrl = 'https://clojure-web-server.herokuapp.com/date/' + date;
 
     return this.http.get<Report[]>(apiUrl);
   }

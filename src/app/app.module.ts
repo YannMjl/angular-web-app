@@ -15,8 +15,8 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { MyDatePickerModule } from 'mydatepicker';
 
 // import the ng2-file-upload directive so we can add it to our declaration
-import { FileSelectDirective } from 'ng2-file-upload';
 import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
+import { FileUploadModule } from 'ng2-file-upload/file-upload/file-upload.module';
 
 
 @NgModule({
@@ -26,8 +26,7 @@ import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
     ReportDetailComponent,
     FileSizePipe,
     DisplayByDateComponent,
-    FileUploadComponent,
-    FileSelectDirective
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +36,7 @@ import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     MyDatePickerModule,
+    FileUploadModule
   ],
   providers: [ReportService],
   bootstrap: [AppComponent]
