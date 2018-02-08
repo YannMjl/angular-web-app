@@ -2,7 +2,7 @@
 
   <div ng-if="selectedreport" ng-controller="datCtrl">
 
-    <h2> {{ orgName | uppercase }} report </h2>
+    <h2> {{ orgName | uppercase }} Report </h2>
 
     <table id="repotable" align="center">
 
@@ -35,6 +35,9 @@
 
   <div>
     <button (click)="goBack()">Back</button>
+    <button type="button" class="btn btn-success btn-s" (click)="deleteReport()">
+      Delete {{ orgName }} Report
+    </button>
   </div>
 
 </div>

@@ -35,6 +35,9 @@
 
   <div>
     <button (click)="goBack()">Back</button>
+    <button type="button" class="btn btn-success btn-s" (click)="deleteReport()">
+      Delete {{ date | date : "MMMM d, y" }} Report
+    </button>
   </div>
 
 </div>

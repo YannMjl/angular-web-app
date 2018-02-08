@@ -8,7 +8,6 @@ import { ReportService } from '../report.service';
   styleUrls: ['./reports.component.css']
 })
 export class ReportsComponent implements OnInit {
-
   selectedreport: Report;
   selecteddate: Report;
 
@@ -17,7 +16,7 @@ export class ReportsComponent implements OnInit {
   reportsByName: Report[];
   reportsByDate: Report[];
 
-  constructor(private reportService: ReportService) { }
+  constructor(private reportService: ReportService) {}
 
   ngOnInit() {
     console.log('in');
@@ -37,25 +36,38 @@ export class ReportsComponent implements OnInit {
 
   getReports(): void {
     console.log('in report');
-    this.reportService.getReports()
-    .subscribe(reports => this.reports = reports);
+    this.reportService
+      .getReports()
+      .subscribe(reports => (this.reports = reports));
   }
 
   getDateInReport(): void {
-    this.reportService.getDateInReport()
-    .subscribe(reports => this.reportDate = reports);
+    this.reportService
+      .getDateInReport()
+      .subscribe(reports => (this.reportDate = reports));
   }
 
   getreportByName(name: string): void {
     console.log('in report name');
-    this.reportService.getReportByName(name)
-    .subscribe(reports => this.reportsByName = reports);
+    this.reportService
+      .getReportByName(name)
+      .subscribe(reports => (this.reportsByName = reports));
   }
 
   getreportBydate(date: Date): void {
     console.log('in report date');
-    this.reportService.getReportByDate(date)
-    .subscribe(reports => this.reportsByDate = reports);
+    this.reportService
+      .getReportByDate(date)
+      .subscribe(reports => (this.reportsByDate = reports));
   }
 
+  deleteAllReport() {
+    if (confirm('Are you sure you want to delete this record?')) {
+      console.log('delete report');
+
+      this.reportService
+          .deleteReport()
+          .subscribe(report => (this.reports = report));
+    }
+  }
 }

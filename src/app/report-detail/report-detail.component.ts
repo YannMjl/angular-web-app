@@ -6,6 +6,10 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import 'rxjs/add/operator/switchMap';
+import { HttpClient } from '@angular/common/http';
+
+// define the constant url we would be uploading to
+const deleteUrl = 'https://web-server-reports.herokuapp.com/delete-name/';
 
 @Component({
   selector: 'app-report-detail',
@@ -22,7 +26,8 @@ export class ReportDetailComponent implements OnInit {
   constructor(
     private reportService: ReportService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private http: HttpClient
   ) {
     this.orgName = route.snapshot.params['id'];
   }
@@ -38,6 +43,19 @@ export class ReportDetailComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  deleteReport() {
+    if (confirm('Are you sure you want to delete this record?')) {
+
+      console.log('delete report');
+
+      this.reportService.deleteReportByName(this.orgName)
+          .subscribe(report => (this.reportByNames = report));
+
+      this.location.back();
+
+    }
   }
 
   setOrder(value: string) {
