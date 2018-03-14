@@ -72,7 +72,7 @@ button {
     border-radius: 12px;
     text-decoration: none;
     display: inline-block;
-    background-color: #369;
+    background-color: #b30000;
     transition-duration: 0.4s;
     -webkit-transition-duration: 0.4s; /* Safari */
 }

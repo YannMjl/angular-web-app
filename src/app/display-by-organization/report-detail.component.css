@@ -72,10 +72,13 @@ button {
     border-radius: 12px;
     text-decoration: none;
     display: inline-block;
-    background-color: #369;
     transition-duration: 0.4s;
     -webkit-transition-duration: 0.4s; /* Safari */
 }
+
+.btnBack { background-color: #369; }
+
+.btnDelete { background-color: #b30000; }
 
 button:hover {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
