@@ -1,8 +1,8 @@
-import { ReportService } from '../shared/report.service';
 import { Report } from '../shared/report';
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Data } from '@angular/router/src/config';
-import { Location } from '@angular/common';
+import { ReportService } from '../shared/report.service';
 import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
@@ -11,31 +11,43 @@ import { ActivatedRoute, Params } from '@angular/router';
   styleUrls: ['./display-by-date.component.css']
 })
 export class DisplayByDateComponent implements OnInit {
-  reportByDate: Report[];
-  date: Date;
 
+  date: Date;
   order: string;
   reverse: boolean;
+  reportByDate: Report[];
 
   constructor(
-    private reposervice: ReportService,
+    private location: Location,
     private route: ActivatedRoute,
-    private location: Location
+    private reposervice: ReportService
   ) {
     this.date = this.route.snapshot.params['id'];
   }
 
   ngOnInit() {
+
     this.reposervice
-      .getReportByDate(this.date)
-      .subscribe(report => (this.reportByDate = report));
+        .getReportByDate(this.date)
+        .subscribe(report => {
+          this.reverse = false;
+          this.reportByDate = report;
+        }
+      );
 
     this.order = 'report.organization';
-    this.reverse = false;
   }
 
   goBack(): void {
     this.location.back();
+  }
+
+  setOrder(value: string) {
+    if (this.order === value) {
+      this.reverse = !this.reverse;
+    }
+
+    this.order = value;
   }
 
   deleteReport() {
@@ -50,11 +62,4 @@ export class DisplayByDateComponent implements OnInit {
     }
   }
 
-  setOrder(value: string) {
-    if (this.order === value) {
-      this.reverse = !this.reverse;
-    }
-
-    this.order = value;
-  }
 }

@@ -1,15 +1,10 @@
-import { ReportsComponent  } from './../reports/reports.component';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Report } from '../shared/report';
+import { Location } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { ReportService } from '../shared/report.service';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Location } from '@angular/common';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import 'rxjs/add/operator/switchMap';
-import { HttpClient } from '@angular/common/http';
-
-// define the constant url we would be uploading to
-const deleteUrl = 'https://web-server-reports.herokuapp.com/delete-name/';
+import { ReportsComponent } from '../reports/reports.component';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-report-detail',
@@ -17,17 +12,17 @@ const deleteUrl = 'https://web-server-reports.herokuapp.com/delete-name/';
   styleUrls: ['./report-detail.component.css']
 })
 export class ReportDetailComponent implements OnInit {
-  reportByNames: Report[];
-  orgName: string;
 
   order: string;
+  orgName: string;
   reverse: boolean;
+  reportByNames: Report[];
 
   constructor(
-    private reportService: ReportService,
-    private route: ActivatedRoute,
+    private http: HttpClient,
     private location: Location,
-    private http: HttpClient
+    private route: ActivatedRoute,
+    private reportService: ReportService
   ) {
     this.orgName = route.snapshot.params['id'];
   }
@@ -35,14 +30,24 @@ export class ReportDetailComponent implements OnInit {
   ngOnInit() {
     this.reportService
         .getReportByName(this.orgName)
-        .subscribe(report => (this.reportByNames = report));
+        .subscribe(report => {
+          this.reverse = false;
+          this.reportByNames = report;
+        }
+      );
 
     this.order = 'report.organization';
-    this.reverse = false;
   }
 
   goBack(): void {
     this.location.back();
+  }
+
+  setOrder(value: string) {
+    if (this.order === value) {
+      this.reverse = !this.reverse;
+    }
+    this.order = value;
   }
 
   deleteReport() {
@@ -58,10 +63,4 @@ export class ReportDetailComponent implements OnInit {
     }
   }
 
-  setOrder(value: string) {
-    if (this.order === value) {
-      this.reverse = !this.reverse;
-    }
-    this.order = value;
-  }
 }

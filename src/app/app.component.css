@@ -1,6 +1,5 @@
 /********************************************************************************************/
-
-/* main app page css */
+/* main app page css                                                                        */
 /********************************************************************************************/
 body {
   width: 60%;
@@ -8,15 +7,13 @@ body {
   padding: 10px;
 }
 
+*{ text-align: center; }
+
 h1 {
   color: #369;
   font-size: 200%;
   font-style: italic;
   font-family: sans-serif;
-}
-
-*{
-  text-align: center;
 }
 
 nav a {
@@ -27,37 +24,12 @@ nav a {
   text-decoration: none;
   background-color: #eee;
 }
-nav a:visited, a:link {
-  color: #607D8B;
-}
+
 nav a:hover {
   color: #039be5;
   background-color: #CFD8DC;
 }
-nav a.active {
-  color: #039be5;
-}
-/********************************************************************************************/
+nav a.active { color: #039be5; }
 
-/* loader spinner css */
-/********************************************************************************************/
-.loader {
-    top: 50%;
-    left: 50%;
-    width: 120px;
-    height: 120px;
-    position: fixed;
-    margin-top: -9em;                         /* set to a negative number 1/2 of the height */
-    margin-left: -15em;                        /* set to a negative number 1/2 of the width */
-    border-radius: 50%;
-    border: 16px solid #f3f3f3;
-    border-top: 16px solid #3498db;
-    animation: spin 2s linear infinite;
-
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
+nav a:visited, a:link { color: #607D8B; }
 /********************************************************************************************/

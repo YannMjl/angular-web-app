@@ -1,4 +1,4 @@
-import { ReportDetailComponent } from './report-detail/report-detail.component';
+import { ReportDetailComponent } from './display-by-organization/report-detail.component';
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 

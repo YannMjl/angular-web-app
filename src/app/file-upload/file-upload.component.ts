@@ -1,13 +1,13 @@
-import { ReportService } from '../shared/report.service';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/map';
+import { Response } from '@angular/http';
+import { Report } from '../shared/report';
+import { IMyDpOptions } from 'mydatepicker';
+import { FileUploader } from 'ng2-file-upload';
 import { HttpClient } from '@angular/common/http';
+import { ReportService } from '../shared/report.service';
 import { Component, OnInit, ElementRef, Input, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { FileUploader } from 'ng2-file-upload';
-import { IMyDpOptions } from 'mydatepicker';
-import { Response } from '@angular/http';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/do';
-import { Report } from '../shared/report';
 
 // define the constant url we would be uploading to
 const apiUrl = 'https://web-server-reports.herokuapp.com/file';
@@ -19,20 +19,16 @@ const apiUrl = 'https://web-server-reports.herokuapp.com/file';
 })
 export class FileUploadComponent implements OnInit {
 
-  public uploader: FileUploader = new FileUploader({ url: apiUrl });
-
-  public myform: FormGroup;
   loading = false;
-
-  // set report variable
   reportBydate: Report[];
   public reportDate: Date;
+  public myform: FormGroup;
 
   public myDatePickerOptions: IMyDpOptions = {
-    dateFormat: 'yyyy-mm-dd',
+    inline: false,
     height: '40px',
     width: '210px',
-    inline: false
+    dateFormat: 'yyyy-mm-dd'
   };
 
   public model: any = {date: { year: 2018, month: 1, day: 1 }};
@@ -40,29 +36,22 @@ export class FileUploadComponent implements OnInit {
   @ViewChild('fileInput') fileInput: ElementRef;
 
   constructor(
-    private http: HttpClient,
-    private FB: FormBuilder,
     private el: ElementRef,
+    private FB: FormBuilder,
+    private http: HttpClient,
     private repoService: ReportService
   ) {}
 
   ngOnInit() {
 
-    this.uploader.onAfterAddingFile = file => {
-      file.withCredentials = false;
-    };
-
-    this.uploader.onCompleteItem = (
-      item: any,
-      response: any,
-      status: any,
-      headers: any
-    ) => {
-      console.log('ImageUpload:uploaded:', item, status, response);
-    };
-
     this.getReportByDate(this.reportDate);
 
+  }
+
+  getReportByDate(date: Date): void {
+    console.log('get report after upload');
+    this.repoService.getReportByDate(date)
+      .subscribe(report => this.reportBydate = report);
   }
 
   upload() {
@@ -94,11 +83,7 @@ export class FileUploadComponent implements OnInit {
             error => alert(error)
           );
     }
+
   }
 
-  getReportByDate(date: Date): void {
-    console.log('get report after upload');
-    this.repoService.getReportByDate(date)
-    .subscribe(report => this.reportBydate = report);
-  }
 }

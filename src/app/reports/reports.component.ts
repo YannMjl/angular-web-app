@@ -1,7 +1,6 @@
 import { Report } from '../shared/report';
 import { Component, OnInit } from '@angular/core';
 import { ReportService } from '../shared/report.service';
-import { LoaderService } from '../shared/loader.service';
 
 @Component({
   selector: 'app-reports',
@@ -9,20 +8,18 @@ import { LoaderService } from '../shared/loader.service';
   styleUrls: ['./reports.component.css']
 })
 export class ReportsComponent implements OnInit {
-  selectedreport: Report;
-  selecteddate: Report;
 
   reports: Report[];
   reportDate: Report[];
+  selecteddate: Report;
+  selectedreport: Report;
   reportsByName: Report[];
   reportsByDate: Report[];
 
-  constructor(private reportService: ReportService,
-              private loaderService: LoaderService) {}
+  constructor(private reportService: ReportService) {}
 
   ngOnInit() {
-    console.log('in');
-    this.loaderService.display(true); // loader on
+    console.log('initialize get report');
     this.getReports();
     this.getDateInReport();
   }
@@ -37,34 +34,33 @@ export class ReportsComponent implements OnInit {
     date = this.selecteddate.date;
   }
 
-  getReports(): void {
-    console.log('in report');
-    this.reportService
-      .getReports()
-      .subscribe(reports => {
-        this.reports = reports;
-        this.loaderService.display(false);
-      });
-  }
-
   getDateInReport(): void {
+    console.log('get dates of reports');
     this.reportService
       .getDateInReport()
       .subscribe(reports => {
         this.reportDate = reports;
-        this.loaderService.display(false);
+      });
+  }
+
+  getReports(): void {
+    console.log('get name of organization in the report');
+    this.reportService
+      .getReports()
+      .subscribe(reports => {
+        this.reports = reports;
       });
   }
 
   getreportByName(name: string): void {
-    console.log('in report name');
+    console.log('get report by org name');
     this.reportService
       .getReportByName(name)
       .subscribe(reports => (this.reportsByName = reports));
   }
 
   getreportBydate(date: Date): void {
-    console.log('in report date');
+    console.log('get report by date');
     this.reportService
       .getReportByDate(date)
       .subscribe(reports => (this.reportsByDate = reports));
