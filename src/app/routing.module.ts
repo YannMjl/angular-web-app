@@ -7,7 +7,7 @@ import { DisplayByDateComponent } from './display-by-date/display-by-date.compon
 import { FileUploadComponent } from './file-upload/file-upload.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/app', pathMatch: 'full' },
+  { path: '', redirectTo: 'root', pathMatch: 'full' },
   { path: 'detail/:id', component: ReportDetailComponent, data : [{ isProd: true }]},
   { path: 'detail-date/:id', component: DisplayByDateComponent, data : [{ isProd: true }]},
   { path: 'report', component: ReportsComponent },
