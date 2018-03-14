@@ -1,4 +1,4 @@
-import { ReportService } from '../report.service';
+import { ReportService } from '../shared/report.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ElementRef, Input, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
@@ -7,7 +7,7 @@ import { IMyDpOptions } from 'mydatepicker';
 import { Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
-import { Report } from '../report';
+import { Report } from '../shared/report';
 
 // define the constant url we would be uploading to
 const apiUrl = 'https://web-server-reports.herokuapp.com/file';

@@ -1,4 +1,4 @@
-import { ReportsComponent } from './reports/reports.component';
+import { ReportsComponent } from '../reports/reports.component';
 import { Injectable, Inject } from '@angular/core';
 
 import { Observable } from 'rxjs/Observable';

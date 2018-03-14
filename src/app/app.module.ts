@@ -1,44 +1,52 @@
-import { BrowserModule } from '@angular/platform-browser';
+// import modules
 import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
-import { ReportsComponent } from './reports/reports.component';
-import { ReportService } from './report.service';
-import { HttpClientModule } from '@angular/common/http';
-import { ReportDetailComponent } from './report-detail/report-detail.component';
-import { RoutingModule } from './routing.module';
-import { FileSizePipe } from './file-size.pipe';
-import { DisplayByDateComponent } from './display-by-date/display-by-date.component';
-
+import { BrowserXhr } from '@angular/http';
 import { OrderModule } from 'ngx-order-pipe';
-import { FileUploadComponent } from './file-upload/file-upload.component';
+import { RoutingModule } from './routing.module';
 import { MyDatePickerModule } from 'mydatepicker';
-
-// import the ng2-file-upload directive so we can add it to our declaration
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
+import { NgProgressModule, NgProgressBrowserXhr } from 'ngx-progressbar';
 import { FileUploadModule } from 'ng2-file-upload/file-upload/file-upload.module';
 
+// import app components
+import { AppComponent } from './app.component';
+import { ReportsComponent } from './reports/reports.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
+import { ReportDetailComponent } from './report-detail/report-detail.component';
+import { DisplayByDateComponent } from './display-by-date/display-by-date.component';
+
+// import services and pipe
+import { FileSizePipe } from './shared/file-size.pipe';
+import { ReportService } from './shared/report.service';
+import { LoaderService } from './shared/loader.service';
 
 @NgModule({
   declarations: [
+    FileSizePipe,
     AppComponent,
     ReportsComponent,
+    FileUploadComponent,
     ReportDetailComponent,
-    FileSizePipe,
-    DisplayByDateComponent,
-    FileUploadComponent
+    DisplayByDateComponent
   ],
   imports: [
-    BrowserModule,
-    HttpClientModule,
-    RoutingModule,
     OrderModule,
     FormsModule,
-    ReactiveFormsModule,
+    BrowserModule,
+    RoutingModule,
+    NgProgressModule,
+    HttpClientModule,
+    FileUploadModule,
     MyDatePickerModule,
-    FileUploadModule
+    ReactiveFormsModule
   ],
-  providers: [ReportService],
+  providers: [
+    ReportService,
+    LoaderService,
+    { provide: BrowserXhr, useClass: NgProgressBrowserXhr }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

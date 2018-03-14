@@ -1,7 +1,7 @@
 import { ReportsComponent  } from './../reports/reports.component';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Report } from '../report';
-import { ReportService } from '../report.service';
+import { Report } from '../shared/report';
+import { ReportService } from '../shared/report.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';

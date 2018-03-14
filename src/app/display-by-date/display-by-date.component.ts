@@ -1,5 +1,5 @@
-import { ReportService } from './../report.service';
-import { Report } from './../report';
+import { ReportService } from '../shared/report.service';
+import { Report } from '../shared/report';
 import { Component, OnInit } from '@angular/core';
 import { Data } from '@angular/router/src/config';
 import { Location } from '@angular/common';

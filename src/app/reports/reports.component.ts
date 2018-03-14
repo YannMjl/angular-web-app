@@ -1,6 +1,7 @@
+import { Report } from '../shared/report';
 import { Component, OnInit } from '@angular/core';
-import { Report } from '../report';
-import { ReportService } from '../report.service';
+import { ReportService } from '../shared/report.service';
+import { LoaderService } from '../shared/loader.service';
 
 @Component({
   selector: 'app-reports',
@@ -16,10 +17,12 @@ export class ReportsComponent implements OnInit {
   reportsByName: Report[];
   reportsByDate: Report[];
 
-  constructor(private reportService: ReportService) {}
+  constructor(private reportService: ReportService,
+              private loaderService: LoaderService) {}
 
   ngOnInit() {
     console.log('in');
+    this.loaderService.display(true); // loader on
     this.getReports();
     this.getDateInReport();
   }
@@ -38,13 +41,19 @@ export class ReportsComponent implements OnInit {
     console.log('in report');
     this.reportService
       .getReports()
-      .subscribe(reports => (this.reports = reports));
+      .subscribe(reports => {
+        this.reports = reports;
+        this.loaderService.display(false);
+      });
   }
 
   getDateInReport(): void {
     this.reportService
       .getDateInReport()
-      .subscribe(reports => (this.reportDate = reports));
+      .subscribe(reports => {
+        this.reportDate = reports;
+        this.loaderService.display(false);
+      });
   }
 
   getreportByName(name: string): void {

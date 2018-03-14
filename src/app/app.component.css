@@ -1,14 +1,18 @@
+/********************************************************************************************/
+
+/* main app page css */
+/********************************************************************************************/
 body {
-  margin: auto;
   width: 60%;
+  margin: auto;
   padding: 10px;
 }
 
 h1 {
   color: #369;
-  font-family: sans-serif;
-  font-style: italic;
   font-size: 200%;
+  font-style: italic;
+  font-family: sans-serif;
 }
 
 *{
@@ -16,12 +20,12 @@ h1 {
 }
 
 nav a {
-  padding: 5px 10px;
-  text-decoration: none;
   margin-top: 10px;
-  display: inline-block;
-  background-color: #eee;
+  padding: 5px 10px;
   border-radius: 4px;
+  display: inline-block;
+  text-decoration: none;
+  background-color: #eee;
 }
 nav a:visited, a:link {
   color: #607D8B;
@@ -33,3 +37,27 @@ nav a:hover {
 nav a.active {
   color: #039be5;
 }
+/********************************************************************************************/
+
+/* loader spinner css */
+/********************************************************************************************/
+.loader {
+    top: 50%;
+    left: 50%;
+    width: 120px;
+    height: 120px;
+    position: fixed;
+    margin-top: -9em;                         /* set to a negative number 1/2 of the height */
+    margin-left: -15em;                        /* set to a negative number 1/2 of the width */
+    border-radius: 50%;
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #3498db;
+    animation: spin 2s linear infinite;
+
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+/********************************************************************************************/
