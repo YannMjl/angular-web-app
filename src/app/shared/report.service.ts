@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 
 import { Report } from './report';
+import { ReportChartData } from './report-chart-data';
 
 import { HttpClient } from '@angular/common/http';
 
@@ -24,16 +25,16 @@ export class ReportService {
     return this.http.get<Report[]>(apiUrl);
   }
 
-  getReportByName(name: string): Observable<Report[]> {
-    const apiUrl = 'https://web-server-reports.herokuapp.com/name/' + name;
+  getReportByName(name: string): Observable<ReportChartData[]> {
+    const apiUrl = 'https://web-server-reports.herokuapp.com/name';
 
-    return this.http.get<Report[]>(apiUrl);
+    return this.http.get<ReportChartData[]>(`${apiUrl}/${name}`);
   }
 
   getReportByDate(date: Date): Observable<Report[]> {
-    const apiUrl = 'https://web-server-reports.herokuapp.com/date/' + date;
+    const apiUrl = 'https://web-server-reports.herokuapp.com/date';
 
-    return this.http.get<Report[]>(apiUrl);
+    return this.http.get<Report[]>(`${apiUrl}/${date}`);
   }
 
   deleteReport(): Observable<Report[]> {

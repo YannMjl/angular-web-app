@@ -7,10 +7,12 @@ import { NgModule } from '@angular/core';
 import { OrderModule } from 'ngx-order-pipe';
 import { RoutingModule } from './routing.module';
 import { MyDatePickerModule } from 'mydatepicker';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
 import { NgProgressModule, NgProgressInterceptor } from 'ngx-progressbar';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FileUploadModule } from 'ng2-file-upload/file-upload/file-upload.module';
 
 // import app components
@@ -34,11 +36,13 @@ import { ReportDetailComponent } from './display-by-organization/report-detail.c
     FormsModule,
     BrowserModule,
     RoutingModule,
+    NgxChartsModule,
     NgProgressModule,
     HttpClientModule,
     FileUploadModule,
     MyDatePickerModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
   providers: [
     ReportService,

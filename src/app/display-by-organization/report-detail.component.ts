@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { ReportService } from '../shared/report.service';
 import { ActivatedRoute, Params } from '@angular/router';
+import { ReportChartData } from '../shared/report-chart-data';
 import { ReportsComponent } from '../reports/reports.component';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
@@ -16,7 +17,25 @@ export class ReportDetailComponent implements OnInit {
   order: string;
   orgName: string;
   reverse: boolean;
-  reportByNames: Report[];
+  reportByNames: ReportChartData[];
+  ReportChart: ReportChartData[] = [];
+
+  single: any[];
+
+  view: any[] = [700, 400];
+  // options
+  showXAxis = true;
+  showYAxis = true;
+  gradient = false;
+  showLegend = true;
+  showXAxisLabel = true;
+  xAxisLabel = 'Dates';
+  showYAxisLabel = true;
+  yAxisLabel = 'Size';
+
+  colorScheme = {
+    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+  };
 
   constructor(
     private http: HttpClient,
@@ -25,6 +44,8 @@ export class ReportDetailComponent implements OnInit {
     private reportService: ReportService
   ) {
     this.orgName = route.snapshot.params['id'];
+
+    Object.assign(this, this.single);
   }
 
   ngOnInit() {
@@ -33,14 +54,28 @@ export class ReportDetailComponent implements OnInit {
         .subscribe(report => {
           this.reverse = false;
           this.reportByNames = report;
+          this.ReportChart = report;
         }
       );
+
+    this.reportService.getReportByName(this.orgName)
+      .subscribe(data => data.forEach((item, i, reportByNames) => {
+        this.single.push({
+          size: (item.size), date: (item.date)
+        });
+      }
+      ));
+    this.single.map(data => console.log(data));
 
     this.order = 'report.organization';
   }
 
   goBack(): void {
     this.location.back();
+  }
+
+  onSelect(event) {
+    console.log(event);
   }
 
   setOrder(value: string) {

@@ -1,5 +1,6 @@
 import { Report } from '../shared/report';
 import { Component, OnInit } from '@angular/core';
+import { ReportChartData } from '../shared/report-chart-data';
 import { ReportService } from '../shared/report.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class ReportsComponent implements OnInit {
   reportDate: Report[];
   selecteddate: Report;
   selectedreport: Report;
-  reportsByName: Report[];
+  reportsByName: ReportChartData[];
   reportsByDate: Report[];
 
   constructor(private reportService: ReportService) {}
