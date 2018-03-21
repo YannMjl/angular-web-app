@@ -44,6 +44,7 @@ body { text-align: center; }
     width: auto;
     float: left;
     height: auto;
+    padding-top: 10px;
 }
 
 #third {
@@ -88,7 +89,7 @@ button:hover {
 /********************************************************************************************/
 #repotable th {
     color: white;
-    text-align: left;
+    text-align: center;
     padding-top: 12px;
     padding-bottom: 12px;
     background-color: #369;

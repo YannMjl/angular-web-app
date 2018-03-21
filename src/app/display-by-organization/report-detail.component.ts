@@ -1,6 +1,6 @@
 import { Report } from '../shared/report';
-import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { Location, DatePipe } from '@angular/common';
 import { ReportService } from '../shared/report.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ReportChartData } from '../shared/chart-data-by-org';
@@ -8,30 +8,28 @@ import { ReportsComponent } from '../reports/reports.component';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
+  providers: [DatePipe],
   selector: 'app-report-detail',
   templateUrl: './report-detail.component.html',
   styleUrls: ['./report-detail.component.css']
 })
 export class ReportDetailComponent implements OnInit {
 
-  order: string;
   orgName: string;
-  reverse: boolean;
   reportByNames: Report[];
-
-  ReportChart: ReportChartData[] = [];
-  ReportChartData: ReportChartData[] = [];
+  ReportByNamesChart: ReportChartData[] = [];
 
   // chart specs
-  id = 'chart1';
+  dataSource;
   width = 600;
   height = 400;
+  id = 'chart1';
   type = 'column2d';
   dataFormat = 'json';
-  dataSource;
 
   constructor(
     private http: HttpClient,
+    private datePipe: DatePipe,
     private location: Location,
     private route: ActivatedRoute,
     private reportService: ReportService
@@ -42,24 +40,24 @@ export class ReportDetailComponent implements OnInit {
   ngOnInit() {
     this.reportService.getReportByName(this.orgName)
         .subscribe(report => {
-          this.reverse = false;
           this.reportByNames = report;
         });
-
 
     this.reportService
         .getReportByNameChart(this.orgName)
         .subscribe(report => {
-          this.ReportChart = report;
-          console.log(this.ReportChart);
+          this.ReportByNamesChart = report;
+          console.log(this.ReportByNamesChart);
 
           this.dataSource = {
 
             'chart': {
               'theme': 'fint',
               // data value config
-              'valueFontBold': '1',
               'rotateValues': '0',
+              'valueFontBold': '1',
+              'placeValuesInside': '0',
+              'valueFontColor': '#000099',
               // data labels config
               'slantLabel': '1',
               'labelFont': 'Arial',
@@ -67,9 +65,6 @@ export class ReportDetailComponent implements OnInit {
               'lableFontItalic': '1',
               'labelFontAlpha': '70',
               'labelDisplay': 'rotate',
-              // number format
-              'numberScaleValue': '1024,1024,1024',
-              'numberScaleUnit': ' KB, MB, GB',
               // y Axis name config
               'yAxisNameFont': 'Arial',
               'yAxisNameFontBold': '1',
@@ -86,50 +81,23 @@ export class ReportDetailComponent implements OnInit {
               'xAxisNameFontColor': '#993300',
               // add gradient effect to data plots
               'usePlotGradientColor': '1',
-              'plotGradientColor': '#ffffff'
+              'plotGradientColor': '#ffffff',
+              // number format
+              'numberScaleUnit': ' KB, MB, GB',
+              'numberScaleValue': '1024,1024,1024'
             },
-            'data': this.ReportChart.map(item => {
+            'data': this.ReportByNamesChart.map(item => {
               return {
-                'label': item.date,
+                'label': this.datePipe.transform(item.date, 'MMMM d, y'),
                 'value': item.size,
                 // generate new color for each data display
                 'color': '#336699' + Math.floor(Math.random() * 16777215).toString(16)
                 };
             })
-            /*
-            'data': [
-              {
-                'label': 'Bakersfield Central',
-                'value': '880000'
-              },
-              {
-                'label': 'Garden Groove harbour',
-                'value': '730000'
-              },
-              {
-                'label': 'Los Angeles Topanga',
-                'value': '590000'
-              },
-              {
-                'label': 'Compton-Rancho Dom',
-                'value': '520000'
-              },
-              {
-                'label': 'Daly City Serramonte',
-                'value': '330000'
-              }
-            ]*/
           };
-
-
-
-          /*this.reportByNames.map(item => {
-           return {'label': item.size, 'value': item.date};
-          });*/
           console.log(this.dataSource);
         });
 
-    this.order = 'report.organization';
   }
 
   goBack(): void {
@@ -138,13 +106,6 @@ export class ReportDetailComponent implements OnInit {
 
   onSelect(event) {
     console.log(event);
-  }
-
-  setOrder(value: string) {
-    if (this.order === value) {
-      this.reverse = !this.reverse;
-    }
-    this.order = value;
   }
 
   deleteReport() {

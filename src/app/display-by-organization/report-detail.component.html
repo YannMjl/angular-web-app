@@ -1,55 +1,52 @@
-<div id="container">
+<body>
 
-  <div ng-if="selectedreport" ng-controller="datCtrl">
+  <div class="container">
 
-    <h2> {{ orgName | uppercase }} Report </h2>
+    <h2> {{ orgName | uppercase }} Report</h2>
 
-    <table id="repotable" align="center">
+    <div id="left">
 
-      <thead>
+      <div ng-if="selecteddate" ng-controller="datCtrl">
 
-        <tr>
-          <th [class.active]="order === 'report.size'" (click)="setOrder('report.size')" class="mdl-data-table__cell--non-numeric">
-            Size
-            <span [hidden]="reverse">▼</span>
-            <span [hidden]="!reverse">▲</span>
-          </th>
+        <div id="first">
 
-          <th [class.active]="order === 'report.date'" (click)="setOrder('report.date')">
-            Date
-            <span [hidden]="reverse">▼</span>
-            <span [hidden]="!reverse">▲</span>
-          </th>
+          <fusioncharts [id]="id" [width]="width" [height]="height" [type]="type" [dataFormat]="dataFormat" [dataSource]="dataSource"></fusioncharts>
 
-        </tr>
+          <div>
+            <button type="button" class="btnBack" (click)="goBack()">Back</button>
+            <button type="button" class="btnDelete" (click)="deleteReport()">
+               Delete {{ orgName }} Report
+            </button>
+          </div>
 
-      </thead>
+        </div>
 
-      <tr *ngFor="let report of reportByNames | orderBy: order:reverse:'caseInsensitive'">
-        <td>{{ report.size | fileSize }}</td>
-        <td>{{ report.date | date : "MMMM d, y" }}</td>
-      </tr>
-    </table>
+        <div id="second">
+
+          <table id="repotable" align="center">
+
+            <thead>
+              <tr>
+                <th>Organization</th>
+                <th>Size</th>
+              </tr>
+            </thead>
+
+            <tr *ngFor="let report of reportByNames">
+              <td>{{ report.size | fileSize }}</td>
+              <td>{{ report.date | date : "MMMM d, y" }}</td>
+            </tr>
+          </table>
+
+        </div>
+
+      </div>
+
+    </div>
 
   </div>
 
-  <fusioncharts
-    [id]="id"
-    [width]="width"
-    [height]="height"
-    [type]="type"
-    [dataFormat]="dataFormat"
-    [dataSource]="dataSource"
-  ></fusioncharts>
-
-  <div>
-    <button type="button" class="btnBack" (click)="goBack()">Back</button>
-    <button type="button" class="btnDelete" (click)="deleteReport()">
-      Delete {{ orgName }} Report
-    </button>
-  </div>
-
-</div>
+</body>
 
 
 
