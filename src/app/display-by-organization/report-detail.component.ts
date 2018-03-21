@@ -17,25 +17,19 @@ export class ReportDetailComponent implements OnInit {
   order: string;
   orgName: string;
   reverse: boolean;
-  reportByNames: ReportChartData[];
+  reportByNames: Report[];
+
   ReportChart: ReportChartData[] = [];
+  ReportChartData: ReportChartData[] = [];
 
-  single: any[];
-
-  view: any[] = [700, 400];
-  // options
-  showXAxis = true;
-  showYAxis = true;
-  gradient = false;
-  showLegend = true;
-  showXAxisLabel = true;
-  xAxisLabel = 'Dates';
-  showYAxisLabel = true;
-  yAxisLabel = 'Size';
-
-  colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
-  };
+  // chart specs
+  id = 'chart1';
+  width = 800;
+  height = 600;
+  type = 'column2d';
+  dataFormat = 'json';
+  dataSource;
+  title = 'Angular4 FusionCharts Sample';
 
   constructor(
     private http: HttpClient,
@@ -44,28 +38,69 @@ export class ReportDetailComponent implements OnInit {
     private reportService: ReportService
   ) {
     this.orgName = route.snapshot.params['id'];
-
-    Object.assign(this, this.single);
   }
 
   ngOnInit() {
-    this.reportService
-        .getReportByName(this.orgName)
+    this.reportService.getReportByName(this.orgName)
         .subscribe(report => {
           this.reverse = false;
           this.reportByNames = report;
-          this.ReportChart = report;
-        }
-      );
-
-    this.reportService.getReportByName(this.orgName)
-      .subscribe(data => data.forEach((item, i, reportByNames) => {
-        this.single.push({
-          size: (item.size), date: (item.date)
         });
-      }
-      ));
-    this.single.map(data => console.log(data));
+
+
+    this.reportService
+        .getReportByNameChart(this.orgName)
+        .subscribe(report => {
+          this.ReportChart = report;
+          console.log(this.ReportChart);
+
+          this.dataSource = {
+            // tslint:disable-next-line:quotemark
+            "chart": {
+              // tslint:disable-next-line:quotemark
+              "caption": "Report Chart",
+              // tslint:disable-next-line:quotemark
+              "subCaption": "Memory Space Used",
+              // tslint:disable-next-line:quotemark
+              // "numberprefix": "$",
+              // tslint:disable-next-line:quotemark
+              "theme": "fint"
+            },
+            'data': this.ReportChart.map(item => {
+              return { 'label': item.size, 'value': item.date };
+            })
+            /*
+            'data': [
+              {
+                'label': 'Bakersfield Central',
+                'value': '880000'
+              },
+              {
+                'label': 'Garden Groove harbour',
+                'value': '730000'
+              },
+              {
+                'label': 'Los Angeles Topanga',
+                'value': '590000'
+              },
+              {
+                'label': 'Compton-Rancho Dom',
+                'value': '520000'
+              },
+              {
+                'label': 'Daly City Serramonte',
+                'value': '330000'
+              }
+            ]*/
+          };
+
+
+
+          /*this.reportByNames.map(item => {
+           return {'label': item.size, 'value': item.date};
+          });*/
+          console.log(this.dataSource);
+        });
 
     this.order = 'report.organization';
   }

@@ -40,10 +40,19 @@
     </button>
   </div>
 
-  <ngx-charts-bar-vertical [view]="view" [scheme]="colorScheme" [results]="ReportChart" [gradient]="gradient" [xAxis]="showXAxis"
-    [yAxis]="showYAxis" [legend]="showLegend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
-    [yAxisLabel]="yAxisLabel" (select)="onSelect($event)">
-  </ngx-charts-bar-vertical>
+<h1>
+  {{title}}
+</h1>
+<fusioncharts
+    [id]="id"
+    [width]="width"
+    [height]="height"
+    [type]="type"
+    [dataFormat]="dataFormat"
+    [dataSource]="dataSource"
+></fusioncharts>
 
 </div>
+
+
 

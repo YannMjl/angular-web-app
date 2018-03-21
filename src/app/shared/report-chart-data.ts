@@ -1,4 +1,10 @@
 // Chart -angular-report
 export class ReportChartData {
-    constructor(public size?: number, public date?: Date) { }
+    size: number;
+    date: Date;
+
+    constructor(size: number, date: Date) {
+        this.size = size;
+        this.date = date;
+    }
 }

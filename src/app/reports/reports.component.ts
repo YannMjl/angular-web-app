@@ -14,7 +14,7 @@ export class ReportsComponent implements OnInit {
   reportDate: Report[];
   selecteddate: Report;
   selectedreport: Report;
-  reportsByName: ReportChartData[];
+  reportsByName: Report[];
   reportsByDate: Report[];
 
   constructor(private reportService: ReportService) {}

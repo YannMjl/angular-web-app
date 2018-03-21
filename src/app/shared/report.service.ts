@@ -1,13 +1,13 @@
-import { ReportsComponent } from '../reports/reports.component';
-import { Injectable, Inject } from '@angular/core';
-
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
-
 import { Report } from './report';
+import 'rxjs/add/observable/throw';
+import { of } from 'rxjs/observable/of';
+import { Observable } from 'rxjs/Observable';
+import { Injectable, Inject } from '@angular/core';
+import { catchError, retry } from 'rxjs/operators';
 import { ReportChartData } from './report-chart-data';
-
-import { HttpClient } from '@angular/common/http';
+import { ReportsComponent } from '../reports/reports.component';
+import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
+import { HttpClient, HttpErrorResponse} from '@angular/common/http';
 
 @Injectable()
 export class ReportService {
@@ -16,44 +16,72 @@ export class ReportService {
   getReports(): Observable<Report[]> {
     const apiUrl = 'https://web-server-reports.herokuapp.com/report';
 
-    return this.http.get<Report[]>(apiUrl);
+    return this.http.get<Report[]>(apiUrl)
+               .pipe( catchError(this.handleError));
   }
 
   getDateInReport(): Observable<Report[]> {
     const apiUrl = 'https://web-server-reports.herokuapp.com/date';
 
-    return this.http.get<Report[]>(apiUrl);
+    return this.http.get<Report[]>(apiUrl)
+               .pipe(catchError(this.handleError));
   }
 
-  getReportByName(name: string): Observable<ReportChartData[]> {
+  getReportByNameChart(name: string): Observable<ReportChartData[]> {
+    const apiUrl = 'https://web-server-reports.herokuapp.com/org';
+
+    return this.http.get<ReportChartData[]>(`${apiUrl}/${name}`)
+               .pipe(catchError(this.handleError));
+  }
+
+  getReportByName(name: string): Observable<Report[]> {
     const apiUrl = 'https://web-server-reports.herokuapp.com/name';
 
-    return this.http.get<ReportChartData[]>(`${apiUrl}/${name}`);
+    return this.http.get<Report[]>(`${apiUrl}/${name}`)
+      .pipe(catchError(this.handleError));
   }
 
   getReportByDate(date: Date): Observable<Report[]> {
     const apiUrl = 'https://web-server-reports.herokuapp.com/date';
 
-    return this.http.get<Report[]>(`${apiUrl}/${date}`);
+    return this.http.get<Report[]>(`${apiUrl}/${date}`)
+               .pipe(catchError(this.handleError));
+  }
+
+  deleteReportByName(name: string): Observable<Report[]> {
+    const apiUrl = 'https://web-server-reports.herokuapp.com/delete-name';
+
+    return this.http.get<Report[]>(`${apiUrl}/${name}`)
+               .pipe(catchError(this.handleError));
+  }
+
+  deleteReportByDate(date: Date): Observable<Report[]> {
+    const apiUrl = 'https://web-server-reports.herokuapp.com/delete-date';
+
+    return this.http.get<Report[]>(`${apiUrl}/${date}`)
+               .pipe(catchError(this.handleError));
   }
 
   deleteReport(): Observable<Report[]> {
     const apiUrl = 'https://web-server-reports.herokuapp.com/delete-all-record';
 
-    return this.http.get<Report[]>(apiUrl);
+    return this.http.get<Report[]>(apiUrl)
+      .pipe(catchError(this.handleError));
   }
 
-  deleteReportByName(name: string): Observable<Report[]> {
-    const apiUrl =
-      'https://web-server-reports.herokuapp.com/delete-name/' + name;
-
-    return this.http.get<Report[]>(apiUrl);
-  }
-
-  deleteReportByDate(date: Date): Observable<Report[]> {
-    const apiUrl =
-      'https://web-server-reports.herokuapp.com/delete-date/' + date;
-
-    return this.http.get<Report[]>(apiUrl);
+  private handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error.message);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      console.error(
+        `Backend returned code ${error.status}, ` +
+        `body was: ${error.error}`);
+    }
+    // return an ErrorObservable with a user-facing error message
+    return new ErrorObservable(
+      'Something bad happened; please try again later.');
   }
 }
