@@ -33,24 +33,21 @@
 
   </div>
 
-  <div>
-    <button type="button" class="btnBack" (click)="goBack()">Back</button>
-    <button type="button" class="btnDelete" (click)="deleteReport()">
-      Delete {{ orgName }} Report
-    </button>
-  </div>
-
-<h1>
-  {{title}}
-</h1>
-<fusioncharts
+  <fusioncharts
     [id]="id"
     [width]="width"
     [height]="height"
     [type]="type"
     [dataFormat]="dataFormat"
     [dataSource]="dataSource"
-></fusioncharts>
+  ></fusioncharts>
+
+  <div>
+    <button type="button" class="btnBack" (click)="goBack()">Back</button>
+    <button type="button" class="btnDelete" (click)="deleteReport()">
+      Delete {{ orgName }} Report
+    </button>
+  </div>
 
 </div>
 

@@ -22,10 +22,11 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { DisplayByDateComponent } from './display-by-date/display-by-date.component';
 import { ReportDetailComponent } from './display-by-organization/report-detail.component';
 
+// chart module and others
 import * as FusionCharts from 'fusioncharts';
 import * as Charts from 'fusioncharts/fusioncharts.charts';
-import * as FintTheme from 'fusioncharts/themes/fusioncharts.theme.fint';
 import { FusionChartsModule } from 'angular4-fusioncharts';
+import * as FintTheme from 'fusioncharts/themes/fusioncharts.theme.fint';
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FintTheme);
 

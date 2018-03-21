@@ -1,6 +1,6 @@
 import { Report } from '../shared/report';
 import { Component, OnInit } from '@angular/core';
-import { ReportChartData } from '../shared/report-chart-data';
+import { ReportChartData } from '../shared/chart-data-by-org';
 import { ReportService } from '../shared/report.service';
 
 @Component({

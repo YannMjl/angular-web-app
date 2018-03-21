@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { ReportService } from '../shared/report.service';
 import { ActivatedRoute, Params } from '@angular/router';
-import { ReportChartData } from '../shared/report-chart-data';
+import { ReportChartData } from '../shared/chart-data-by-org';
 import { ReportsComponent } from '../reports/reports.component';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
@@ -24,12 +24,11 @@ export class ReportDetailComponent implements OnInit {
 
   // chart specs
   id = 'chart1';
-  width = 800;
-  height = 600;
+  width = 600;
+  height = 400;
   type = 'column2d';
   dataFormat = 'json';
   dataSource;
-  title = 'Angular4 FusionCharts Sample';
 
   constructor(
     private http: HttpClient,
@@ -55,19 +54,47 @@ export class ReportDetailComponent implements OnInit {
           console.log(this.ReportChart);
 
           this.dataSource = {
-            // tslint:disable-next-line:quotemark
-            "chart": {
-              // tslint:disable-next-line:quotemark
-              "caption": "Report Chart",
-              // tslint:disable-next-line:quotemark
-              "subCaption": "Memory Space Used",
-              // tslint:disable-next-line:quotemark
-              // "numberprefix": "$",
-              // tslint:disable-next-line:quotemark
-              "theme": "fint"
+
+            'chart': {
+              'theme': 'fint',
+              // data value config
+              'valueFontBold': '1',
+              'rotateValues': '0',
+              // data labels config
+              'slantLabel': '1',
+              'labelFont': 'Arial',
+              'labelFontBold': '1',
+              'lableFontItalic': '1',
+              'labelFontAlpha': '70',
+              'labelDisplay': 'rotate',
+              // number format
+              'numberScaleValue': '1024,1024,1024',
+              'numberScaleUnit': ' KB, MB, GB',
+              // y Axis name config
+              'yAxisNameFont': 'Arial',
+              'yAxisNameFontBold': '1',
+              'yAxisNameFontSize': '15',
+              'yAxisNameFontItalic': '1',
+              'yAxisNameFontColor': '#993300',
+              'yAxisName': 'Size (memory used)',
+              // x Axis config
+              'xAxisName': 'Date',
+              'xAxisNameFont': 'Arial',
+              'xAxisNameFontBold': '1',
+              'xAxisNameFontSize': '15',
+              'xAxisNameFontItalic': '1',
+              'xAxisNameFontColor': '#993300',
+              // add gradient effect to data plots
+              'usePlotGradientColor': '1',
+              'plotGradientColor': '#ffffff'
             },
             'data': this.ReportChart.map(item => {
-              return { 'label': item.size, 'value': item.date };
+              return {
+                'label': item.date,
+                'value': item.size,
+                // generate new color for each data display
+                'color': '#336699' + Math.floor(Math.random() * 16777215).toString(16)
+                };
             })
             /*
             'data': [

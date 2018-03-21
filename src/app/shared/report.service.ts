@@ -4,7 +4,8 @@ import { of } from 'rxjs/observable/of';
 import { Observable } from 'rxjs/Observable';
 import { Injectable, Inject } from '@angular/core';
 import { catchError, retry } from 'rxjs/operators';
-import { ReportChartData } from './report-chart-data';
+import { ChartDateData } from './chart-data-by-date';
+import { ReportChartData } from './chart-data-by-org';
 import { ReportsComponent } from '../reports/reports.component';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { HttpClient, HttpErrorResponse} from '@angular/common/http';
@@ -38,6 +39,13 @@ export class ReportService {
     const apiUrl = 'https://web-server-reports.herokuapp.com/name';
 
     return this.http.get<Report[]>(`${apiUrl}/${name}`)
+      .pipe(catchError(this.handleError));
+  }
+
+  getReportByDateChart(date: Date): Observable<ChartDateData[]> {
+    const apiUrl = 'https://web-server-reports.herokuapp.com/date';
+
+    return this.http.get<CharacterData[]>(`${apiUrl}/${date}`)
       .pipe(catchError(this.handleError));
   }
 
