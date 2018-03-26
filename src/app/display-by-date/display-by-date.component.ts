@@ -2,11 +2,13 @@ import { Report } from '../shared/report';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Data } from '@angular/router/src/config';
+import { OrderByPipe } from '../shared/order-by.pipe';
 import { ReportService } from '../shared/report.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ChartDateData } from '../shared/chart-data-by-date';
 
 @Component({
+  providers: [OrderByPipe],
   selector: 'app-display-by-date',
   templateUrl: './display-by-date.component.html',
   styleUrls: ['./display-by-date.component.css']
@@ -21,8 +23,8 @@ export class DisplayByDateComponent implements OnInit {
 
   // chart specs
   dataSource;
-  width = 600;
-  height = 400;
+  width = '700';
+  height = '400';
   id = 'chart1';
   type = 'column2d';
   dataFormat = 'json';
@@ -30,6 +32,7 @@ export class DisplayByDateComponent implements OnInit {
   constructor(
     private location: Location,
     private route: ActivatedRoute,
+    private orderByPipe: OrderByPipe,
     private reposervice: ReportService
   ) {
     this.date = this.route.snapshot.params['id'];
@@ -40,23 +43,28 @@ export class DisplayByDateComponent implements OnInit {
     this.reposervice
         .getReportByDate(this.date)
         .subscribe(report => {
-          this.reverse = false;
           this.reportByDate = report;
+          console.log('in report By date' + this.reportByDate);
+          this.reverse = false;
         }
       );
+
+    this.order = '-size';
 
     this.reposervice
         .getReportByDateChart(this.date)
         .subscribe(report => {
 
-          this.reportByDateChart = report;
-          // check content of reportByDateChart
+          // sort organization in the report by Ascending order
+          this.reportByDateChart = this.orderByPipe.transform(report, 'organization');
+
+          // check array content for order by result
           console.log(this.reportByDateChart);
 
           this.dataSource = {
-
             'chart': {
               'theme': 'fint',
+              'canvasPadding': '15',
               // data value config
               'showValues': '0',
               // data labels config
@@ -110,9 +118,15 @@ export class DisplayByDateComponent implements OnInit {
   setOrder(value: string) {
     if (this.order === value) {
       this.reverse = !this.reverse;
+      if (this.reverse === true) {
+        value = '-' + value;
+      }
     }
-
     this.order = value;
+
+    console.log('in setOrder' + this.reverse);
+
+    console.log('in setOrder ' + this.order);
   }
 
   deleteReport() {

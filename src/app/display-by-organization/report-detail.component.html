@@ -10,7 +10,14 @@
 
         <div id="first">
 
-          <fusioncharts [id]="id" [width]="width" [height]="height" [type]="type" [dataFormat]="dataFormat" [dataSource]="dataSource"></fusioncharts>
+          <fusioncharts 
+            [id]="id" 
+            [width]="width" 
+            [height]="height" 
+            [type]="type" 
+            [dataFormat]="dataFormat" 
+            [dataSource]="dataSource">
+          </fusioncharts>
 
           <div>
             <button type="button" class="btnBack" (click)="goBack()">Back</button>
@@ -27,12 +34,21 @@
 
             <thead>
               <tr>
-                <th>Organization</th>
-                <th>Size</th>
+                <th [class.active]="order === 'size'" (click)="setOrder('size')" class="mdl-data-table__cell--non-numeric">
+                  Size
+                  <span [hidden]="reverse">▼</span>
+                  <span [hidden]="!reverse">▲</span>
+                </th>
+                
+                <th [class.active]="order === 'date'" (click)="setOrder('date')">
+                  Date
+                  <span [hidden]="reverse">▼</span>
+                  <span [hidden]="!reverse">▲</span>
+                </th>
               </tr>
             </thead>
 
-            <tr *ngFor="let report of reportByNames">
+            <tr *ngFor="let report of reportByNames | orderBy : order : reverse">
               <td>{{ report.size | fileSize }}</td>
               <td>{{ report.date | date : "MMMM d, y" }}</td>
             </tr>

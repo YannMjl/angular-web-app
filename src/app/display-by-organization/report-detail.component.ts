@@ -5,7 +5,8 @@ import { ReportService } from '../shared/report.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ReportChartData } from '../shared/chart-data-by-org';
 import { ReportsComponent } from '../reports/reports.component';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { MatTableDataSource, MatSort } from '@angular/material';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild  } from '@angular/core';
 
 @Component({
   providers: [DatePipe],
@@ -15,13 +16,15 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class ReportDetailComponent implements OnInit {
 
+  order: string;
+  reverse: boolean;
   orgName: string;
   reportByNames: Report[];
   ReportByNamesChart: ReportChartData[] = [];
 
   // chart specs
   dataSource;
-  width = 600;
+  width = 700;
   height = 400;
   id = 'chart1';
   type = 'column2d';
@@ -41,18 +44,23 @@ export class ReportDetailComponent implements OnInit {
     this.reportService.getReportByName(this.orgName)
         .subscribe(report => {
           this.reportByNames = report;
+          this.reverse = false;
+          console.log('init reverse' + this.reverse);
         });
+
+    this.order = '-size';
 
     this.reportService
         .getReportByNameChart(this.orgName)
         .subscribe(report => {
           this.ReportByNamesChart = report;
-          console.log(this.ReportByNamesChart);
+          console.log('In report by Names chart data' + this.ReportByNamesChart);
 
           this.dataSource = {
 
             'chart': {
               'theme': 'fint',
+              'canvasPadding': '15',
               // data value config
               'rotateValues': '0',
               'valueFontBold': '1',
@@ -95,9 +103,10 @@ export class ReportDetailComponent implements OnInit {
                 };
             })
           };
-          console.log(this.dataSource);
-        });
 
+          console.log(this.dataSource);
+
+        });
   }
 
   goBack(): void {
@@ -106,6 +115,20 @@ export class ReportDetailComponent implements OnInit {
 
   onSelect(event) {
     console.log(event);
+  }
+
+  setOrder(value: string) {
+    if (value !== null && this.order === value) {
+      this.reverse = !this.reverse;
+      if (this.reverse === true) {
+        value = '-' + value;
+      }
+    }
+    this.order = value;
+
+    console.log('in setOrder' + this.reverse);
+
+    console.log('in setOrder ' + this.order);
   }
 
   deleteReport() {

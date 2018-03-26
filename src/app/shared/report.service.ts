@@ -18,63 +18,63 @@ export class ReportService {
     const apiUrl = 'https://web-server-reports.herokuapp.com/report';
 
     return this.http.get<Report[]>(apiUrl)
-               .pipe( catchError(this.handleError));
+                    .pipe( catchError(this.handleError));
   }
 
   getDateInReport(): Observable<Report[]> {
     const apiUrl = 'https://web-server-reports.herokuapp.com/date';
 
     return this.http.get<Report[]>(apiUrl)
-               .pipe(catchError(this.handleError));
+                    .pipe(catchError(this.handleError));
   }
 
   getReportByNameChart(name: string): Observable<ReportChartData[]> {
     const apiUrl = 'https://web-server-reports.herokuapp.com/org';
 
     return this.http.get<ReportChartData[]>(`${apiUrl}/${name}`)
-               .pipe(catchError(this.handleError));
+                    .pipe(catchError(this.handleError));
   }
 
   getReportByName(name: string): Observable<Report[]> {
     const apiUrl = 'https://web-server-reports.herokuapp.com/name';
 
     return this.http.get<Report[]>(`${apiUrl}/${name}`)
-      .pipe(catchError(this.handleError));
+                    .pipe(catchError(this.handleError));
   }
 
   getReportByDateChart(date: Date): Observable<ChartDateData[]> {
-    const apiUrl = 'https://web-server-reports.herokuapp.com/date';
+    const apiUrl = 'https://web-server-reports.herokuapp.com/date-chart';
 
     return this.http.get<CharacterData[]>(`${apiUrl}/${date}`)
-      .pipe(catchError(this.handleError));
+                    .pipe(catchError(this.handleError));
   }
 
   getReportByDate(date: Date): Observable<Report[]> {
     const apiUrl = 'https://web-server-reports.herokuapp.com/date';
 
     return this.http.get<Report[]>(`${apiUrl}/${date}`)
-               .pipe(catchError(this.handleError));
+                    .pipe(catchError(this.handleError));
   }
 
   deleteReportByName(name: string): Observable<Report[]> {
     const apiUrl = 'https://web-server-reports.herokuapp.com/delete-name';
 
     return this.http.get<Report[]>(`${apiUrl}/${name}`)
-               .pipe(catchError(this.handleError));
+                    .pipe(catchError(this.handleError));
   }
 
   deleteReportByDate(date: Date): Observable<Report[]> {
     const apiUrl = 'https://web-server-reports.herokuapp.com/delete-date';
 
     return this.http.get<Report[]>(`${apiUrl}/${date}`)
-               .pipe(catchError(this.handleError));
+                    .pipe(catchError(this.handleError));
   }
 
   deleteReport(): Observable<Report[]> {
     const apiUrl = 'https://web-server-reports.herokuapp.com/delete-all-record';
 
     return this.http.get<Report[]>(apiUrl)
-      .pipe(catchError(this.handleError));
+                    .pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {

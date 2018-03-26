@@ -1,4 +1,5 @@
 // import services and pipe
+import { OrderByPipe } from './shared/order-by.pipe';
 import { FileSizePipe } from './shared/file-size.pipe';
 import { ReportService } from './shared/report.service';
 
@@ -32,6 +33,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FintTheme);
 
 @NgModule({
   declarations: [
+    OrderByPipe,
     FileSizePipe,
     AppComponent,
     ReportsComponent,
