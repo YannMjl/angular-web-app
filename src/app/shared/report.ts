@@ -3,8 +3,8 @@ export class Report {
   size: number;
   date: Date;
 
-  constructor( name: string, size: number, date: Date) {
-    this.organization = name;
+  constructor( organization: string, size: number, date: Date) {
+    this.organization = organization;
     this.size = size;
     this.date = date;
   }

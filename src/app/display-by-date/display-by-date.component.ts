@@ -45,11 +45,10 @@ export class DisplayByDateComponent implements OnInit {
         .subscribe(report => {
           this.reportByDate = report;
           console.log('in report By date' + this.reportByDate);
+          this.order = '-size';
           this.reverse = false;
         }
       );
-
-    this.order = '-size';
 
     this.reposervice
         .getReportByDateChart(this.date)
