@@ -4,8 +4,9 @@
 /* main app page css                                                                        */
 /********************************************************************************************/
 body {
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 100%;
+  margin: 0;
 	font-family: Poppins-Regular, sans-serif;
   -webkit-font-smoothing: antialiased;
   /*background-image: url("assets/bg.jpg");*/

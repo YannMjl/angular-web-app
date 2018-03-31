@@ -13,6 +13,9 @@ mat-card {
 
 /*//////////////////////////////////////////////////////////////////
 [ login ]*/
+body {
+  height: 100%;
+}
 .limiter {
   width: auto;
   margin: 0 auto;
@@ -20,7 +23,7 @@ mat-card {
 
 .container-login100 {
   width: auto;  
-  min-height: auto;
+  height: 100%;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -30,7 +33,7 @@ mat-card {
   justify-content: center;
   align-items: center;
   padding: 15px;
-  background: url(/assets/bg-01.jpg) no-repeat center;
+  background: url(/assets/bg-01.jpg);
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -38,6 +41,7 @@ mat-card {
 
 .wrap-login100 {
   width: auto;
+  height: 100%;
   background: #fff;
   border-radius: 10px;
   overflow: hidden;

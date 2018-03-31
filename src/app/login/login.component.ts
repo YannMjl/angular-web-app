@@ -11,6 +11,7 @@ export class LoginComponent implements OnInit {
 
   myForm: FormGroup;
   formSubmitAttempt: boolean;
+  title = 'CloudRepo Clients Report';
 
   constructor(private fb: FormBuilder,
               private authService: AuthService) { }

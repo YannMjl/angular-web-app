@@ -8,6 +8,8 @@ import { AuthService } from '../auth/auth.service';
 })
 export class HeaderComponent implements OnInit {
 
+  title = 'CloudRepo Clients Report';
+
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
