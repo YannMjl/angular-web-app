@@ -38,8 +38,12 @@ import { FusionChartsModule } from 'angular4-fusioncharts';
 import * as FintTheme from 'fusioncharts/themes/fusioncharts.theme.fint';
 import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/auth.guard';
+import { HeaderComponent } from './header/header.component';
 
-// import './rxjs-operators';
+import { HomeLayoutComponent } from './layouts/home-layout.component';
+import { LoginLayoutComponent } from './layouts/login-layout.component';
+
+import './shared/rxjs-operators';
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FintTheme);
 
@@ -50,8 +54,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FintTheme);
     MatCardModule,
     MatInputModule,
     MatButtonModule
-  ],
-  providers: [AuthService, AuthGuard]
+  ]
 })
 export class AppMaterialModule { }
 
@@ -61,8 +64,11 @@ export class AppMaterialModule { }
     FileSizePipe,
     AppComponent,
     LoginComponent,
+    HeaderComponent,
     ReportsComponent,
+    HomeLayoutComponent,
     FileUploadComponent,
+    LoginLayoutComponent,
     ReportDetailComponent,
     DisplayByDateComponent,
   ],
@@ -83,6 +89,8 @@ export class AppMaterialModule { }
   ],
   providers: [
     ReportService,
+    AuthService,
+    AuthGuard,
     { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
