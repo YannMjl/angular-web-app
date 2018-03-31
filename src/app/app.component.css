@@ -4,16 +4,18 @@
 /* main app page css                                                                        */
 /********************************************************************************************/
 body {
-  width: 60%;
-  margin: auto;
-  padding: 10px;
-
-  font-family: Century;
+  width: auto;
+  height: auto;
+	font-family: Poppins-Regular, sans-serif;
   -webkit-font-smoothing: antialiased;
   /*background-image: url("assets/bg.jpg");*/
 }
 
-*{ text-align: center; }
+*{ 
+  text-align: center; 
+  margin: 0%; 
+	padding: 0%; 
+}
 
 h1 {
   color: #369;

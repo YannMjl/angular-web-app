@@ -1,11 +1,18 @@
 <ng-progress></ng-progress>
+<body>
 
-<h1>{{ title }}</h1>
+  <h1>{{ title }}</h1>
+  <br>
+  
+  <!--
+  <nav>
+    <a routerLink="/login" routerLinkActive="active">LogIn</a>
+    <a routerLink="/report" routerLinkActive="active">View full Report</a>
+    <a routerLink="/upload-file" routerLinkActive="active">Upload a file Report</a>
+  </nav>
+  -->
+  
+  <router-outlet></router-outlet>
 
-<nav>
-  <a routerLink="/login" routerLinkActive="active">LogIn</a>
-  <a routerLink="/report" routerLinkActive="active">View full Report</a>
-  <a routerLink="/upload-file" routerLinkActive="active">Upload a file Report</a>
-</nav>
+</body>
 
-<router-outlet></router-outlet>

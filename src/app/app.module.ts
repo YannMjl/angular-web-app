@@ -36,6 +36,8 @@ import * as FusionCharts from 'fusioncharts';
 import * as Charts from 'fusioncharts/fusioncharts.charts';
 import { FusionChartsModule } from 'angular4-fusioncharts';
 import * as FintTheme from 'fusioncharts/themes/fusioncharts.theme.fint';
+import { AuthService } from './auth/auth.service';
+import { AuthGuard } from './auth/auth.guard';
 
 // import './rxjs-operators';
 
@@ -48,7 +50,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FintTheme);
     MatCardModule,
     MatInputModule,
     MatButtonModule
-  ]
+  ],
+  providers: [AuthService, AuthGuard]
 })
 export class AppMaterialModule { }
 
