@@ -1,4 +1,5 @@
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 /********************************************************************************************/
 /* main app page css                                                                        */
 /********************************************************************************************/
@@ -6,6 +7,10 @@ body {
   width: 60%;
   margin: auto;
   padding: 10px;
+
+  font-family: Century;
+  -webkit-font-smoothing: antialiased;
+  /*background-image: url("assets/bg.jpg");*/
 }
 
 *{ text-align: center; }

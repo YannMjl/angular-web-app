@@ -6,6 +6,7 @@ import { ReportService } from './shared/report.service';
 // import modules
 import { NgModule } from '@angular/core';
 import { OrderModule } from 'ngx-order-pipe';
+import { CommonModule } from '@angular/common';
 import { RoutingModule } from './routing.module';
 import { MyDatePickerModule } from 'mydatepicker';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
@@ -15,9 +16,16 @@ import { NgProgressModule, NgProgressInterceptor } from 'ngx-progressbar';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FileUploadModule } from 'ng2-file-upload/file-upload/file-upload.module';
+import {
+  MatToolbarModule,
+  MatCardModule,
+  MatInputModule,
+  MatButtonModule} from '@angular/material';
+
 
 // import app components
 import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
 import { ReportsComponent } from './reports/reports.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { DisplayByDateComponent } from './display-by-date/display-by-date.component';
@@ -29,17 +37,31 @@ import * as Charts from 'fusioncharts/fusioncharts.charts';
 import { FusionChartsModule } from 'angular4-fusioncharts';
 import * as FintTheme from 'fusioncharts/themes/fusioncharts.theme.fint';
 
+// import './rxjs-operators';
+
 FusionChartsModule.fcRoot(FusionCharts, Charts, FintTheme);
+
+@NgModule({
+  imports: [CommonModule],
+  exports: [
+    MatToolbarModule,
+    MatCardModule,
+    MatInputModule,
+    MatButtonModule
+  ]
+})
+export class AppMaterialModule { }
 
 @NgModule({
   declarations: [
     OrderByPipe,
     FileSizePipe,
     AppComponent,
+    LoginComponent,
     ReportsComponent,
     FileUploadComponent,
     ReportDetailComponent,
-    DisplayByDateComponent
+    DisplayByDateComponent,
   ],
   imports: [
     OrderModule,
@@ -53,7 +75,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FintTheme);
     MyDatePickerModule,
     FusionChartsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AppMaterialModule,
   ],
   providers: [
     ReportService,

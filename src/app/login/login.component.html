@@ -1,0 +1,39 @@
+<div class="container-login100">
+
+  <div class="signin-content">
+    <mat-card>
+      <mat-card-content>
+        <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+          <p>Please login to continue</p>
+          <mat-input-container class="full-width-input">
+            <input matInput placeholder="User" formControlName="userName" required>
+            <mat-error *ngIf="isFieldInvalid('userName')">
+              Please enter your user name
+            </mat-error>
+          </mat-input-container>
+          <br>
+          <br>
+          <mat-input-container class="full-width-input">
+            <input matInput type="password" placeholder="Password" formControlName="password" required>
+            <mat-error *ngIf="isFieldInvalid('userName')">
+              Please enter your password
+            </mat-error>
+          </mat-input-container>
+          <br>
+          <br>
+          
+          <div class="container-login100-form-btn">
+            <div class="wrap-login100-form-btn">
+              <div class="login100-form-bgbtn"></div>
+              <button class="login100-form-btn">
+                Login
+              </button>
+            </div>
+          </div>
+
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+</div>
