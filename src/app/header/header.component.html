@@ -1,10 +1,9 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" *ngIf="isLoggedIn$ | async as isLoggedIn">
   <span>
     <h1>{{ title }}</h1>
   </span>
   <span class="fill-remaining-space"></span>
-  <button mat-button routerLink="/upload-file">Upload Report</button>
-  <button mat-button>Menu Option 02</button>
-  <button mat-button routerLink="/login">Login</button>
-  <button mat-button (click)="onLogout()">Logout</button>
+  <button mat-button routerLink="/upload-file"><b>Upload Report</b></button>
+  <button mat-button routerLink="/report"><b>View Report</b></button>
+  <button mat-button (click)="onLogout()" *ngIf="isLoggedIn"><b>Logout</b></button>
 </mat-toolbar>

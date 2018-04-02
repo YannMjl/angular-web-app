@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
     if (this.myForm.valid) {
       this.authService.login(this.myForm.value);
 
+      /*
       this.http
         .post(apiUrl, this.myForm)
         .map((res: Response) => res.json())
@@ -49,6 +50,7 @@ export class LoginComponent implements OnInit {
 
           error => alert(error)
         );
+      */
     }
     this.formSubmitAttempt = true;
     console.log('on submit action' );

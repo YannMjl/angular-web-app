@@ -22,7 +22,6 @@ import {
   MatInputModule,
   MatButtonModule} from '@angular/material';
 
-
 // import app components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -71,7 +70,9 @@ export class AppMaterialModule { }
     LoginLayoutComponent,
     ReportDetailComponent,
     DisplayByDateComponent,
+
   ],
+
   imports: [
     OrderModule,
     FormsModule,
@@ -81,12 +82,14 @@ export class AppMaterialModule { }
     NgProgressModule,
     HttpClientModule,
     FileUploadModule,
+    AppMaterialModule,
     MyDatePickerModule,
     FusionChartsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    AppMaterialModule,
+
   ],
+
   providers: [
     ReportService,
     AuthService,

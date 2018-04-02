@@ -25,6 +25,7 @@ h1 {
 [ login ]*/
 body {
   height: 100%;
+  text-align: center;
 }
 .limiter {
   width: auto;
