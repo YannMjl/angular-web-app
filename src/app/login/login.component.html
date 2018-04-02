@@ -1,9 +1,11 @@
 <body>
 
+  <h1>{{ title }}</h1>
+
   <div class="container-login100">
   
     <div class="signin-content">
-      <h1>{{ title }}</h1>
+      
       <mat-card>
         <mat-card-content>
           <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
@@ -28,9 +30,7 @@
             <div class="container-login100-form-btn">
               <div class="wrap-login100-form-btn">
                 <div class="login100-form-bgbtn"></div>
-                <button class="login100-form-btn">
-                  <b>Log In</b>
-                </button>
+                <button class="login100-form-btn" mat-raised-button type="submit"><b>Log In</b></button>
               </div>
             </div>
             <br>

@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
-  ): Observable<boolean> {
+    ): Observable<boolean> {
     return this.authService.isLoggedIn
       .take(1)
       .map((isLoggedIn: boolean) => {
@@ -31,4 +31,5 @@ export class AuthGuard implements CanActivate {
         return true;
       });
   }
+
 }

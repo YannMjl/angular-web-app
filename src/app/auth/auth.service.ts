@@ -16,9 +16,10 @@ export class AuthService {
   ) { }
 
   login(user: User) {
-    if (user.userName !== '' && user.password !== '') { // {3}
+    if (user.userName === 'yann' && user.password === 'pass') { // {3}
       this.loggedIn.next(true);
-      this.router.navigate(['/']);
+      this.router.navigate(['/home-layout']);
+      console.log('login value in athservice is ' + this.loggedIn);
     }
   }
 

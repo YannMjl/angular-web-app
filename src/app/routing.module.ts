@@ -12,24 +12,13 @@ import { HomeLayoutComponent } from './layouts/home-layout.component';
 import { LoginLayoutComponent } from './layouts/login-layout.component';
 
 const routes: Routes = [
-  {
-    path: '', component: HomeLayoutComponent, canActivate: [AuthGuard],
-    children: [
-      { path: 'report', component: ReportsComponent },
-      { path: 'upload-file', component: FileUploadComponent },
-      { path: 'detail/:id', component: ReportDetailComponent, data: [{ isProd: true }] },
-      { path: 'detail-date/:id', component: DisplayByDateComponent, data: [{ isProd: true }] },
-    ] },
+  { path: '', redirectTo: 'root', pathMatch: 'full', canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent },
+  { path: 'report', component: ReportsComponent },
+  { path: 'upload-file', component: FileUploadComponent },
+  { path: 'detail/:id', component: ReportDetailComponent, data: [{ isProd: true }] },
+  { path: 'detail-date/:id', component: DisplayByDateComponent, data: [{ isProd: true }] },
 
-  {
-    path: '',
-    component: LoginLayoutComponent,
-    children: [
-      { path: 'login', component: LoginComponent }
-    ]
-  },
-
-  { path: '**', redirectTo: '', pathMatch: 'full'}
 ];
 
 @NgModule({
