@@ -1,5 +1,9 @@
 <body>
 
+  <popup (confirmClick)="ConfirmEventDelete()">
+    <b>Are you sure you want to delete all the reports permanently?</b>
+  </popup>
+
   <div class="container">
 
     <div id="left">
@@ -25,7 +29,7 @@
     </div>
 
     <div>
-      <button type="button" class="btn btn-success btn-s" (click)="deleteAllReport()" [routerLink]="['/upload-file']">
+      <button type="button" class="btn btn-success btn-s" (click)="deleteAllReport()">
         Delete All Reports
       </button>
     </div>

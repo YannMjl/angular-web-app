@@ -1,3 +1,4 @@
+
 <mat-toolbar color="primary" *ngIf="isLoggedIn$ | async as isLoggedIn">
   <span>
     <h1>{{ title }}</h1>
@@ -5,5 +6,9 @@
   <span class="fill-remaining-space"></span>
   <button mat-button routerLink="/upload-file"><b>Upload Report</b></button>
   <button mat-button routerLink="/report"><b>View Report</b></button>
-  <button mat-button (click)="onLogout()" *ngIf="isLoggedIn"><b>Logout</b></button>
+  <button mat-button color="warn-dark" (click)="onLogout()" *ngIf="isLoggedIn"><b>Logout</b></button>
+
+  <popup #popup1 (confirmClick)="ConfirmEventLogOff()">
+    <b>Are you sure you want to log out now?</b>
+  </popup>
 </mat-toolbar>

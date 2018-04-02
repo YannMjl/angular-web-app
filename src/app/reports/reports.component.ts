@@ -1,3 +1,5 @@
+import { Popup } from 'ng2-opd-popup';
+import { Router } from '@angular/router';
 import { Report } from '../shared/report';
 import { Component, OnInit } from '@angular/core';
 import { ReportChartData } from '../shared/chart-data-by-org';
@@ -17,7 +19,11 @@ export class ReportsComponent implements OnInit {
   reportsByName: Report[];
   reportsByDate: Report[];
 
-  constructor(private reportService: ReportService) {}
+  constructor(
+    private popup: Popup,
+    private router: Router,
+    private reportService: ReportService
+  ) {}
 
   ngOnInit() {
     console.log('initialize get report');
@@ -68,12 +74,27 @@ export class ReportsComponent implements OnInit {
   }
 
   deleteAllReport() {
-    if (confirm('Are you sure you want to delete this record?')) {
-      console.log('delete report');
+    this.popup.options = {
+      header: 'Delete all reports',
+      color: 'red',
+      animationDuration: 1, // in seconds, 0 = no animation
+      showButtons: true, // You can hide this in case you want to use custom buttons
+      confirmBtnContent: 'Delete', // The text on your confirm button
+      cancleBtnContent: 'Cancel', // the text on your cancel button
+      animation: 'fadeInDown' // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown'
+    };
 
-      this.reportService
-          .deleteReport()
-          .subscribe(report => (this.reports = report));
-    }
+    this.popup.show(this.popup.options);
+
   }
+
+  ConfirmEventDelete() {
+
+    this.reportService
+      .deleteReport()
+      .subscribe(report => (this.reports = report));
+
+    this.router.navigate(['/upload-file']);
+  }
+
 }

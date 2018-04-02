@@ -77,7 +77,7 @@ button {
     -webkit-transition-duration: 0.4s; 
 }
 
-.btnBack { background-color: #369; }
+.btnBack { background-color: #2952a3; }
 
 .btnDelete { background-color: #b30000; }
 
@@ -92,7 +92,7 @@ button:hover {
     text-align: center;
     padding-top: 12px;
     padding-bottom: 12px;
-    background-color: #369;
+    background-color: #2952a3;
 }
 
 #repotable td, #repotable th {
