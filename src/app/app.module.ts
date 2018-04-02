@@ -42,6 +42,8 @@ import { HeaderComponent } from './header/header.component';
 import { HomeLayoutComponent } from './layouts/home-layout.component';
 import { LoginLayoutComponent } from './layouts/login-layout.component';
 
+import { PopupModule } from 'ng2-opd-popup';
+
 import './shared/rxjs-operators';
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FintTheme);
@@ -87,7 +89,7 @@ export class AppMaterialModule { }
     FusionChartsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-
+    PopupModule.forRoot()
   ],
 
   providers: [

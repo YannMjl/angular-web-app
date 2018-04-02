@@ -2,7 +2,6 @@ import { ReportDetailComponent } from './display-by-organization/report-detail.c
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
-// import { PopupModule } from 'ng2-opd-popup';
 
 import { LoginComponent } from './login/login.component';
 import { ReportsComponent } from './reports/reports.component';
@@ -27,7 +26,6 @@ const routes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(routes),
-    // PopupModule.forRoot(),
   ],
   exports: [RouterModule]
 })

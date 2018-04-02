@@ -1,6 +1,7 @@
+import { Popup } from 'ng2-opd-popup';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
-import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 // define the constant url we would be post user creds details
@@ -15,11 +16,15 @@ export class LoginComponent implements OnInit {
 
   myForm: FormGroup;
   formSubmitAttempt: boolean;
+  successLog: boolean;
   title = 'CloudRepo Clients Report';
 
-  constructor(private fb: FormBuilder,
-              private http: HttpClient,
-              private authService: AuthService) { }
+  constructor(
+    private popup: Popup,
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
     this.myForm = this.fb.group({
@@ -33,6 +38,19 @@ export class LoginComponent implements OnInit {
       (!this.myForm.get(field).valid && this.myForm.get(field).touched) ||
       (this.myForm.get(field).untouched && this.formSubmitAttempt)
     );
+  }
+
+  isAuthenticated() {
+
+    if (this.authService.isLoggedIn) {
+
+      this.myForm = this.fb.group({
+        userName: ['', Validators.required],
+        password: ['', Validators.required]
+      });
+      this.popup.show();
+    }
+    console.log('display successful or unsuccessful log in');
   }
 
   onSubmit() {
@@ -54,6 +72,7 @@ export class LoginComponent implements OnInit {
     }
     this.formSubmitAttempt = true;
     console.log('on submit action' );
+
   }
 
 }

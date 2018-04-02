@@ -2,6 +2,8 @@
 
   <h1>{{ title }}</h1>
 
+  <popup>Wrong password or username. Please try again!</popup>
+
   <div class="container-login100">
   
     <div class="signin-content">
@@ -30,7 +32,7 @@
             <div class="container-login100-form-btn">
               <div class="wrap-login100-form-btn">
                 <div class="login100-form-bgbtn"></div>
-                <button class="login100-form-btn" mat-raised-button type="submit"><b>Log In</b></button>
+                <button class="login100-form-btn" mat-raised-button type="submit" (click)="isAuthenticated()"><b>Log In</b></button>
               </div>
             </div>
             <br>
