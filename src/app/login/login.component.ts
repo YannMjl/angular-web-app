@@ -1,7 +1,7 @@
 import { Popup } from 'ng2-opd-popup';
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 // define the constant url we would be post user creds details
@@ -17,6 +17,8 @@ export class LoginComponent implements OnInit {
   myForm: FormGroup;
   formSubmitAttempt: boolean;
   title = 'CloudRepo Clients Report';
+
+  @ViewChild('popupLogIn') popupLogin: Popup;
 
   constructor(
     private popup: Popup,
@@ -40,7 +42,7 @@ export class LoginComponent implements OnInit {
   }
 
   isAuthenticated() {
-    this.popup.options = {
+    this.popupLogin.options = {
       header: 'Access Denied',
       color: '#9f80ff', // red, blue....
       // widthProsentage: 30, // The with of the popou measured by browser width
@@ -55,7 +57,7 @@ export class LoginComponent implements OnInit {
 
 
     if (this.authService.isLoggedIn) {
-      this.popup.show();
+      this.popupLogin.show(this.popupLogin.options);
     }
     console.log('display successful or unsuccessful log in');
   }
@@ -83,8 +85,7 @@ export class LoginComponent implements OnInit {
   }
 
   logInEvent() {
-    this.popup.hide();
-
+    this.popupLogin.hide();
     this.myForm = this.fb.group({
       userName: ['', Validators.required],
       password: ['', Validators.required]

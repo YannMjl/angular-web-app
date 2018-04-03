@@ -1,6 +1,6 @@
 <body>
 
-  <popup (confirmClick)="ConfirmDeleteEvent()" (cancelClick)="CancelDeleteEvent()">
+  <popup #popupViewByDate (confirmClick)="ConfirmDeleteEvent()" (cancelClick)="CancelDeleteEvent()">
     <b>Are you sure you want to delete {{ date | date : "MMMM d, y" }} report permanently?</b>
   </popup>
 

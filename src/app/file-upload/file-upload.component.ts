@@ -1,5 +1,7 @@
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
+import { Popup } from 'ng2-opd-popup';
+import { Router } from '@angular/router';
 import { Response } from '@angular/http';
 import { Report } from '../shared/report';
 import { IMyDpOptions } from 'mydatepicker';
@@ -19,7 +21,6 @@ const apiUrl = 'https://web-server-reports.herokuapp.com/file';
 })
 export class FileUploadComponent implements OnInit {
 
-  loading = false;
   reportBydate: Report[];
   public reportDate: Date;
   public myform: FormGroup;
@@ -31,22 +32,22 @@ export class FileUploadComponent implements OnInit {
     dateFormat: 'yyyy-mm-dd'
   };
 
-  public model: any = {date: { year: 2018, month: 1, day: 1 }};
+  public model: any = { date: { year: 2018, month: 1, day: 1 } };
 
+  @ViewChild('popup1') popup1: Popup;
+  @ViewChild('popup2') popup2: Popup;
+  @ViewChild('myFileInput') myFile: any;
   @ViewChild('fileInput') fileInput: ElementRef;
 
   constructor(
+    private router: Router,
     private el: ElementRef,
     private FB: FormBuilder,
     private http: HttpClient,
     private repoService: ReportService
-  ) {}
+  ) { }
 
-  ngOnInit() {
-
-    this.getReportByDate(this.reportDate);
-
-  }
+  ngOnInit() { this.getReportByDate(this.reportDate); }
 
   getReportByDate(date: Date): void {
     console.log('get report after upload');
@@ -56,34 +57,76 @@ export class FileUploadComponent implements OnInit {
 
   upload() {
 
-    // tslint:disable-next-line:prefer-const
-    let inputEl: HTMLInputElement = this.el.nativeElement.querySelector(
-      '#photo'
-    );
+    if (this.model !== null && this.myFile.nativeElement.value !== '') {
 
-    const fileCount: number = inputEl.files.length;
+      // tslint:disable-next-line:prefer-const
+      let inputEl: HTMLInputElement = this.el.nativeElement.querySelector(
+        '#photo'
+      );
 
-    const formData = new FormData();
+      const fileCount: number = inputEl.files.length;
 
-    this.reportDate = this.model.jsdate.toISOString();
+      const formData = new FormData();
 
-    if (fileCount > 0) {
+      this.reportDate = this.model.jsdate.toISOString();
 
-      formData.append('file', inputEl.files.item(0));
-      formData.append('date', this.model.jsdate.toISOString());
+      if (fileCount > 0) {
 
-      this.http
+        this.popup2.options = {
+          color: '#2a4d6f',
+          showButtons: true,
+          animationDuration: 1,
+          header: 'File Uploaded',
+          cancleBtnContent: 'close',
+          confirmBtnContent: 'View Uploaded Report',
+          animation: 'fadeInUp' // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown'
+        };
+
+        this.popup1.options = {
+          color: '#2a4d6f',
+          showButtons: true,
+          animationDuration: 1,
+          header: 'Error',
+          cancleBtnContent: 'Go Back to report',
+          confirmBtnContent: 'Try Agin',
+          animation: 'fadeInUp' // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown'
+        };
+
+        formData.append('file', inputEl.files.item(0));
+        formData.append('date', this.model.jsdate.toISOString());
+
+        this.http
           .post(apiUrl, formData)
-          .map((res: Response) => res.json())
-          .subscribe(
-            success => {
-              alert('file uploaded succeful');
-            },
-
-            error => alert(error)
+          .subscribe(success => {
+            this.popup2.show(this.popup2.options);
+          },
+            error => { alert(error); }
           );
+
+      }
+
+    } else {
+      this.popup1.show(this.popup1.options);
     }
 
+  }
+
+  CloseEvent() { this.popup1.hide(); }
+
+  GoBackEvent() {
+    this.popup1.hide();
+    this.router.navigate(['/report']);
+  }
+
+  CloseUploadEvent() {
+    this.model = null;
+    this.myFile.nativeElement.value = '';
+    this.popup2.hide();
+  }
+
+  ViewUploadEvent() {
+    this.popup2.hide();
+    this.router.navigate(['/detail-date', this.reportDate]);
   }
 
 }

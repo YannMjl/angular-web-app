@@ -2,12 +2,12 @@ import { Popup } from 'ng2-opd-popup';
 import { Router } from '@angular/router';
 import { Report } from '../shared/report';
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
 import { Data } from '@angular/router/src/config';
 import { OrderByPipe } from '../shared/order-by.pipe';
 import { ReportService } from '../shared/report.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ChartDateData } from '../shared/chart-data-by-date';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   providers: [OrderByPipe],
@@ -31,6 +31,8 @@ export class DisplayByDateComponent implements OnInit {
   type = 'column2d';
   dataFormat = 'json';
 
+  @ViewChild('popupViewByDate') popupByDate: Popup;
+
   constructor(
     private popup: Popup,
     private router: Router,
@@ -48,7 +50,6 @@ export class DisplayByDateComponent implements OnInit {
         .getReportByDate(this.date)
         .subscribe(report => {
           this.reportByDate = report;
-          console.log('in report By date' + this.reportByDate);
           this.order = '-size';
           this.reverse = false;
         }
@@ -133,7 +134,7 @@ export class DisplayByDateComponent implements OnInit {
   }
 
   deleteReport() {
-    this.popup.options = {
+    this.popupByDate.options = {
       header: 'Delete Report',
       color: '#b30000',
       animationDuration: 1, // in seconds, 0 = no animation
@@ -143,7 +144,7 @@ export class DisplayByDateComponent implements OnInit {
       animation: 'fadeInUp' // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown'
     };
 
-    this.popup.show(this.popup.options);
+    this.popupByDate.show(this.popupByDate.options);
 
   }
 
@@ -157,7 +158,7 @@ export class DisplayByDateComponent implements OnInit {
   }
 
   CancelDeleteEvent() {
-    this.popup.hide();
+    this.popupByDate.hide();
   }
 
 }

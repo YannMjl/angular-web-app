@@ -32,6 +32,8 @@ export class ReportDetailComponent implements OnInit {
   type = 'column2d';
   dataFormat = 'json';
 
+  @ViewChild('popupViewByOrg') popupOrg: Popup;
+
   constructor(
     private popup: Popup,
     private router: Router,
@@ -136,7 +138,7 @@ export class ReportDetailComponent implements OnInit {
   }
 
   deleteReport() {
-    this.popup.options = {
+    this.popupOrg.options = {
       header: 'Delete Report',
       color: '#b30000',
       animationDuration: 1, // in seconds, 0 = no animation
@@ -146,7 +148,7 @@ export class ReportDetailComponent implements OnInit {
       animation: 'fadeInUp' // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown'
     };
 
-    this.popup.show(this.popup.options);
+    this.popupOrg.show(this.popupOrg.options);
 
   }
 
@@ -159,7 +161,7 @@ export class ReportDetailComponent implements OnInit {
   }
 
   CancelDeleteEvent() {
-    this.popup.hide();
+    this.popupOrg.hide();
   }
 
 }

@@ -1,46 +1,39 @@
 <body>
 
+  <popup #popup1 (confirmClick)="CloseEvent()" (cancelClick)="GoBackEvent()">
+    <b>No date or file was selcted! You must select date and file to upload</b> 
+  </popup>
+  
+  <popup #popup2 (confirmClick)="ViewUploadEvent()" (cancelClick)="CloseUploadEvent()">
+    <b>File was uploaded successfully!</b>
+  </popup>
+
   <div class="container">
-
-    <div id="left">
-
-      <div id="first">
-
-        <div class="form-style-5">
-          <form #myform="ngForm" novalidate>
-            <br>
-            <fieldset>
-              <legend>
-                <span class="number">1</span> Select Report Date </legend>
-              <label for="date">'Date must be selected from the calender'</label>
-              <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model" required></my-date-picker>
-            </fieldset>
-
-            <br><br>
-
-            <fieldset>
-              <legend>
-                <span class="number">2</span> Select File Report</legend>
-              <label for="file">'file report must be CSV format'</label>
-              <!-- File input for upload without using the plugin. -->
-              <input id="file" type="file" />
-            </fieldset>
-
-            <!-- button to trigger the file upload when submitted -->
-            <button type="button" class="btn btn-success btn-s" (click)="upload()">
-              Upload file Report
-            </button>
-            <button type="button" (click)="getReportByDate(reportDate)" [routerLink]="['/detail-date', reportDate]">
-              View Uploaded Report
-            </button>
-            <br>
-          </form>
-        </div>
-
-      </div>
-
+        
+    <div class="form-style-5">
+      <form #myform="ngForm" novalidate>
+        <fieldset>
+          <legend>
+            <span class="number">1</span> Select Report Date 
+          </legend>
+          <label for="date">'Date must be selected from the calender'</label>
+          <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model" required></my-date-picker>
+        </fieldset>
+        
+        <fieldset>
+          <legend>
+            <span class="number">2</span> Select File Report
+          </legend>
+          <label for="file">'file report must be CSV format'</label>
+          <!-- File input for upload without using the plugin. -->
+          <input #myFileInput id="photo" type="file" />
+        </fieldset>
+        
+        <!-- button to trigger the file upload when submitted -->
+        <button type="button" class="btn btn-success btn-s" (click)="upload()">Upload file Report</button>
+      </form>
     </div>
-
+  
   </div>
 
 </body>

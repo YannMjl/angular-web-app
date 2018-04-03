@@ -1,6 +1,6 @@
 <body>
 
-  <popup (confirmClick)="ConfirmDeleteEvent()" (cancelClick)="CancelDeleteEvent()">
+  <popup #popupViewByOrg (confirmClick)="ConfirmDeleteEvent()" (cancelClick)="CancelDeleteEvent()">
     <b>Are you sure you want to delete {{ orgName }} report permanently?</b>
   </popup>
 

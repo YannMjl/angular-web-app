@@ -2,7 +2,7 @@
 
   <h1>{{ title }}</h1>
 
-  <popup (confirmClick)="logInEvent()">Wrong password or username. Please try again!</popup>
+  <popup #popupLogIn (confirmClick)="logInEvent()">Wrong password or username. Please try again!</popup>
 
   <div class="container-login100">
   

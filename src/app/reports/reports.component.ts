@@ -1,9 +1,9 @@
 import { Popup } from 'ng2-opd-popup';
 import { Router } from '@angular/router';
 import { Report } from '../shared/report';
-import { Component, OnInit } from '@angular/core';
-import { ReportChartData } from '../shared/chart-data-by-org';
 import { ReportService } from '../shared/report.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ReportChartData } from '../shared/chart-data-by-org';
 
 @Component({
   selector: 'app-reports',
@@ -18,6 +18,8 @@ export class ReportsComponent implements OnInit {
   selectedreport: Report;
   reportsByName: Report[];
   reportsByDate: Report[];
+
+  @ViewChild('popupReport') popupreport: Popup;
 
   constructor(
     private popup: Popup,
@@ -74,17 +76,17 @@ export class ReportsComponent implements OnInit {
   }
 
   deleteAllReport() {
-    this.popup.options = {
+    this.popupreport.options = {
       header: 'Delete all reports',
       color: '#b30000',
       animationDuration: 1, // in seconds, 0 = no animation
       showButtons: true, // You can hide this in case you want to use custom buttons
       confirmBtnContent: 'Delete', // The text on your confirm button
       cancleBtnContent: 'Cancel', // the text on your cancel button
-      animation: 'fadeInDown' // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown'
+      animation: 'fadeInUp' // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown'
     };
 
-    this.popup.show(this.popup.options);
+    this.popupreport.show(this.popupreport.options);
 
   }
 
@@ -98,7 +100,7 @@ export class ReportsComponent implements OnInit {
   }
 
   CancelDeleteEvent() {
-    this.popup.hide();
+    this.popupreport.hide();
   }
 
 }
