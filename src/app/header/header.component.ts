@@ -13,8 +13,6 @@ export class HeaderComponent implements OnInit {
   title = 'CloudRepo Clients Report';
   isLoggedIn$: Observable<boolean>;
 
-  @ViewChild('popup1') popup1: Popup;
-
   constructor(
     private popup: Popup,
     private authService: AuthService
@@ -26,10 +24,9 @@ export class HeaderComponent implements OnInit {
 
   onLogout() {
 
-    this.popup1.options = {
+    this.popup.options = {
       header: 'Log Out',
-      color: '#bfff00', // red, blue....
-      // widthProsentage: 30, // The with of the popou measured by browser width
+      color: '#512fb6',
       animationDuration: 1, // in seconds, 0 = no animation
       showButtons: true, // You can hide this in case you want to use custom buttons
       confirmBtnContent: 'Log Out', // The text on your confirm button
@@ -39,13 +36,16 @@ export class HeaderComponent implements OnInit {
       animation: 'fadeInDown' // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown'
     };
 
-    this.popup1.show(this.popup1.options);
+    this.popup.show();
 
   }
 
   ConfirmEventLogOff() {
     this.authService.logout();
-    alert('loging out');
+  }
+
+  CancelEventLogOff() {
+    this.popup.hide();
   }
 
 

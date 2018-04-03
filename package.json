@@ -40,7 +40,7 @@
     "ngx-order-pipe": "^1.2.1",
     "ngx-progressbar": "^2.1.1",
     "rxjs": "^5.5.8",
-    "zone.js": "^0.8.23"
+    "zone.js": "^0.8.24"
   },
   "devDependencies": {
     "@angular/cli": "^1.7.3",

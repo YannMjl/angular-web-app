@@ -88,13 +88,17 @@ export class ReportsComponent implements OnInit {
 
   }
 
-  ConfirmEventDelete() {
+  ConfirmDeleteEvent() {
 
     this.reportService
       .deleteReport()
       .subscribe(report => (this.reports = report));
 
     this.router.navigate(['/upload-file']);
+  }
+
+  CancelDeleteEvent() {
+    this.popup.hide();
   }
 
 }

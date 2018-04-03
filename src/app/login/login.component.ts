@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
       // widthProsentage: 30, // The with of the popou measured by browser width
       animationDuration: 1, // in seconds, 0 = no animation
       showButtons: true, // You can hide this in case you want to use custom buttons
-      // confirmBtnContent: 'OK', // The text on your confirm button
+      confirmBtnContent: 'Try Agin', // The text on your confirm button
       cancleBtnContent: 'close', // the text on your cancel button
       // confirmBtnClass: 'btn btn-default', // your class for styling the confirm button
       // cancleBtnClass: 'btn btn-default', // you class for styling the cancel button
@@ -80,6 +80,15 @@ export class LoginComponent implements OnInit {
     this.formSubmitAttempt = true;
     console.log('on submit action' );
 
+  }
+
+  logInEvent() {
+    this.popup.hide();
+
+    this.myForm = this.fb.group({
+      userName: ['', Validators.required],
+      password: ['', Validators.required]
+    });
   }
 
 }
