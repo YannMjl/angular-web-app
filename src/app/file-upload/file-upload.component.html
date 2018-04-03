@@ -8,6 +8,7 @@
 
         <div class="form-style-5">
           <form #myform="ngForm" novalidate>
+            <br>
             <fieldset>
               <legend>
                 <span class="number">1</span> Select Report Date </legend>
@@ -15,12 +16,14 @@
               <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model" required></my-date-picker>
             </fieldset>
 
+            <br><br>
+
             <fieldset>
               <legend>
                 <span class="number">2</span> Select File Report</legend>
               <label for="file">'file report must be CSV format'</label>
               <!-- File input for upload without using the plugin. -->
-              <input id="photo" type="file" />
+              <input id="file" type="file" />
             </fieldset>
 
             <!-- button to trigger the file upload when submitted -->
@@ -30,6 +33,7 @@
             <button type="button" (click)="getReportByDate(reportDate)" [routerLink]="['/detail-date', reportDate]">
               View Uploaded Report
             </button>
+            <br>
           </form>
         </div>
 

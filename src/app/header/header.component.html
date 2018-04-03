@@ -2,10 +2,6 @@
 
  <div *ngIf="isLoggedIn$ | async as isLoggedIn">
 
-  <popup (confirmClick)="ConfirmEventLogOff()" (cancelClick)="CancelEventLogOff()">
-    <b>Are you sure you want to log out now?</b>
-  </popup>
-
   <mat-toolbar color="primary">
     <span>
       <h1>{{ title }}</h1>
@@ -17,8 +13,8 @@
     <button mat-button routerLink="/report">
       <b>View Report</b>
     </button>
-    <button mat-button color="warn-dark" (click)="onLogout()" *ngIf="isLoggedIn">
-      <b>Logout</b>
+    <button mat-button color="accent" (click)="onLogout()" *ngIf="isLoggedIn">
+      <b>Log Out</b>
     </button>
   </mat-toolbar>
 

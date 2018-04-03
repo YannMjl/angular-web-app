@@ -1,3 +1,5 @@
+import { Popup } from 'ng2-opd-popup';
+import { Router } from '@angular/router';
 import { Report } from '../shared/report';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
@@ -30,6 +32,8 @@ export class DisplayByDateComponent implements OnInit {
   dataFormat = 'json';
 
   constructor(
+    private popup: Popup,
+    private router: Router,
     private location: Location,
     private route: ActivatedRoute,
     private orderByPipe: OrderByPipe,
@@ -129,15 +133,31 @@ export class DisplayByDateComponent implements OnInit {
   }
 
   deleteReport() {
-    if (confirm('Are you sure you want to delete this record?')) {
-      console.log('delete report');
+    this.popup.options = {
+      header: 'Delete Report',
+      color: '#b30000',
+      animationDuration: 1, // in seconds, 0 = no animation
+      showButtons: true, // You can hide this in case you want to use custom buttons
+      confirmBtnContent: 'Delete', // The text on your confirm button
+      cancleBtnContent: 'Cancel', // the text on your cancel button
+      animation: 'fadeInUp' // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown'
+    };
 
-      this.reposervice
-          .deleteReportByDate(this.date)
-          .subscribe(report => (this.reportByDate = report));
+    this.popup.show(this.popup.options);
 
-      this.location.back();
-    }
+  }
+
+  ConfirmDeleteEvent() {
+
+    this.reposervice
+        .deleteReportByDate(this.date)
+        .subscribe(report => (this.reportByDate = report));
+
+    this.router.navigate(['/report']);
+  }
+
+  CancelDeleteEvent() {
+    this.popup.hide();
   }
 
 }

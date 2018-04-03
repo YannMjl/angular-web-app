@@ -1,5 +1,9 @@
 <body>
 
+  <popup (confirmClick)="ConfirmDeleteEvent()" (cancelClick)="CancelDeleteEvent()">
+    <b>Are you sure you want to delete {{ orgName }} report permanently?</b>
+  </popup>
+
   <div class="container">
 
     <h2> {{ orgName | uppercase }} Report</h2>

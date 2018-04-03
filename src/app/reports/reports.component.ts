@@ -76,7 +76,7 @@ export class ReportsComponent implements OnInit {
   deleteAllReport() {
     this.popup.options = {
       header: 'Delete all reports',
-      color: 'red',
+      color: '#b30000',
       animationDuration: 1, // in seconds, 0 = no animation
       showButtons: true, // You can hide this in case you want to use custom buttons
       confirmBtnContent: 'Delete', // The text on your confirm button
