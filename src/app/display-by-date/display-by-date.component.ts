@@ -25,8 +25,8 @@ export class DisplayByDateComponent implements OnInit {
 
   // chart specs
   dataSource;
-  width = '700';
-  height = '400';
+  width = 900;
+  height = 400;
   id = 'chart1';
   type = 'column2d';
   dataFormat = 'json';
@@ -67,6 +67,9 @@ export class DisplayByDateComponent implements OnInit {
 
           this.dataSource = {
             'chart': {
+              // Background color and alpha
+              'bgColor': '#ebf6f9',
+              'bgAlpha': '50',
               'theme': 'fint',
               'canvasPadding': '15',
               // data value config

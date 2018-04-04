@@ -6,7 +6,7 @@
 
   <div class="container">
 
-    <h2> {{ date | date : "MMMM d, y" }} Report</h2>
+    <h2> {{ date | date : "MMMM d, y" }} Report</h2><br>
   
     <div id="left">
   
@@ -21,7 +21,7 @@
             [height]="height"  
             [dataFormat]="dataFormat" 
             [dataSource]="dataSource"
-          ></fusioncharts>
+          ></fusioncharts><br><br>
   
           <div>
             <button type="button" class="btnBack" (click)="goBack()">Back</button>

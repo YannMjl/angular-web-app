@@ -14,7 +14,6 @@ header {
     width: fit-content;
 }
 
-body { text-align: center; }
 /********************************************************************************************/
 /* css to display two blocks on the page                                                    */
 /********************************************************************************************/
@@ -96,7 +95,7 @@ button:hover {
 .form-style-5 fieldset{ border: none; }
 
 .form-style-5 select {
-    height:45px;
+    height:50px;
     -webkit-appearance: menulist-button; 
 }
 
@@ -113,7 +112,7 @@ button:hover {
     color: #FFF;
     margin: 0 auto;
     display: block;
-    font-size: 18px;
+    font-size: 20px;
     position: relative;
     text-align: center;
     font-style: normal;
@@ -126,12 +125,12 @@ button:hover {
 
 .form-style-5 .number 
 {
-    width: 30px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
     color: #fff;
     font-size: 0.8em;
     margin-right: 4px;
-    line-height: 30px;
+    line-height: 50px;
     text-align: center;
     display: inline-block;
     background: #1abc9c;
@@ -141,10 +140,10 @@ button:hover {
 
 .form-style-5
 {
-    padding: 30px;
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px 30px;
+    padding: 40px;
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 30px 40px;
     border-radius: 10px;
     background: url(/assets/bg.jpg);
     font-family: Georgia, "Times New Roman", Times, serif;
@@ -182,7 +181,7 @@ button:hover {
     width: 100%;
     padding: 10px;
     border: none;
-    font-size: 16px;
+    font-size: 20px;
     color:#8a97a0;
     background: white;
     border-radius: 4px;

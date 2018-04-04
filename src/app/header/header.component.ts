@@ -24,7 +24,9 @@ export class HeaderComponent implements OnInit {
 
   onLogout() {
 
-    this.authService.logout();
+    if (confirm('Are you sure you want to log out?')) {
+      this.authService.logout();
+    }
 
   }
 

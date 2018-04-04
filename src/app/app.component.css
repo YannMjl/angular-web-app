@@ -3,13 +3,6 @@
 /********************************************************************************************/
 /* main app page css                                                                        */
 /********************************************************************************************/
-body {
-  width: 100%;
-  height: auto;
-	font-family: Poppins-Regular, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  /*background: url(/assets/bg-01.jpg);*/
-}
 
 *{ 
   text-align: center; 

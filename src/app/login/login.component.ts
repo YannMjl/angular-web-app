@@ -68,15 +68,12 @@ export class LoginComponent implements OnInit {
 
       /*
       this.http
-        .post(apiUrl, this.myForm)
-        .map((res: Response) => res.json())
-        .subscribe(
-          success => {
-            alert('file uploaded succeful');
-          },
-
-          error => alert(error)
-        );
+        .post(apiUrl, this.myForm.value)
+        .subscribe(success => {
+          alert('post login succeful');
+        },
+          error => { alert(error); }
+      );
       */
     }
     this.formSubmitAttempt = true;

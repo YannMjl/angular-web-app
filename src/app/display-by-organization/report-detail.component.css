@@ -14,7 +14,6 @@ header {
     width: fit-content;
 }
 
-body { text-align: center; }
 /********************************************************************************************/
 /* css to display two blocks on the page                                                    */
 /********************************************************************************************/
@@ -38,6 +37,7 @@ body { text-align: center; }
     float: left;
     height: auto;
     text-align: center;
+    padding-right: 50px;
 }
 
 #second {

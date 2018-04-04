@@ -106,7 +106,8 @@ export class FileUploadComponent implements OnInit {
       }
 
     } else {
-      this.popup1.show(this.popup1.options);
+      // this.popup1.show(this.popup1.options);
+      alert('No date or file was selected! You must select date and file to upload');
     }
 
   }

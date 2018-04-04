@@ -5,8 +5,13 @@ mat-card {
   border-radius: 10px;
 }
 .signin-content {
-  padding: 60px 1rem;
+  width: 100%;
+  height: 100%;
+  margin: O auto;
+  position: relative;
+  padding: 80px 10%;
   color: #369;
+  font-size: 200%;
   font-style: italic;
   font-family: sans-serif;
 }
@@ -23,18 +28,16 @@ h1 {
 
 /*//////////////////////////////////////////////////////////////////
 [ login ]*/
-body {
-  height: 100%;
-  text-align: center;
-}
 .limiter {
   width: auto;
   margin: 0 auto;
 }
 
 .container-login100 {
-  width: auto;  
+  width: 100%;  
   height: 100%;
+  margin: O auto;
+  position: relative;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -51,48 +54,12 @@ body {
 }
 
 .wrap-login100 {
-  width: auto;
+  width: 100%;
   height: 100%;
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
 }
-
-/*
-button {
-  border: none;
-  color: white;
-  font-size: 16px;
-  margin: 4px 2px;
-  border-radius: 10px;
-  cursor: pointer;
-  padding: 15px 32px;
-  text-align: center;
-  display: inline-block;
-  transition-duration: 0.4s;
-  -webkit-transition-duration: 0.4s; 
-  background: #a64bf4;
-  background: -webkit-linear-gradient(#00dbde, #fc00ff, #00dbde, #fc00ff);
-}
-
-button:hover {
-  cursor: pointer;
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-}
-
-iframe {
-	border: none !important;
-}
-
-
-.container-login100 {
-  width: auto;
-  height: auto;
-  justify-content: center;
-  align-items: center;
-  background: url(/assets/bg-01.jpg) no-repeat center;
-}
-*/
 
 /*------------------------------------------------------------------
 [ Button ]*/

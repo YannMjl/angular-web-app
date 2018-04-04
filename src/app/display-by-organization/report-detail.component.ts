@@ -65,6 +65,9 @@ export class ReportDetailComponent implements OnInit {
           this.dataSource = {
 
             'chart': {
+              // Background color and alpha
+              'bgColor': '#ebf6f9',
+              'bgAlpha': '50',
               'theme': 'fint',
               'canvasPadding': '15',
               // data value config

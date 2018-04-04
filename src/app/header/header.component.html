@@ -1,25 +1,28 @@
 <body>
 
- <div *ngIf="isLoggedIn$ | async as isLoggedIn">
+  <div *ngIf="isLoggedIn$ | async as isLoggedIn">
+  
+    <mat-toolbar color="primary">
+      <span>
+        <h1>{{ title }}</h1>
+      </span>
+      <span class="fill-remaining-space"></span>
+      <button mat-button routerLink="/upload-file">
+        <b>Upload Report</b>
+      </button>
+      <button mat-button routerLink="/report">
+        <b>View Report</b>
+      </button>
+      <button mat-button color="accent" (click)="onLogout()" *ngIf="isLoggedIn">
+        <b>Log Out</b>
+      </button>
+    </mat-toolbar>
+  
+  </div>
+  
+</body>
 
-  <mat-toolbar color="primary">
-    <span>
-      <h1>{{ title }}</h1>
-    </span>
-    <span class="fill-remaining-space"></span>
-    <button mat-button routerLink="/upload-file">
-      <b>Upload Report</b>
-    </button>
-    <button mat-button routerLink="/report">
-      <b>View Report</b>
-    </button>
-    <button mat-button color="accent" (click)="onLogout()" *ngIf="isLoggedIn">
-      <b>Log Out</b>
-    </button>
-  </mat-toolbar>
-
- </div>
   
 
-</body>
+
 
