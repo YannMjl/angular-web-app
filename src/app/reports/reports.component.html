@@ -12,7 +12,10 @@
 
       <div id="first">
         <ul class="list-org">
-          <li *ngFor="let report of reports | orderBy : ['organization']" [class.selected]="report === selectedreport" (click)="onSelect(report, getreportByName(report.organization))" [routerLink]="['/detail', report.organization]">
+          <li *ngFor="let report of reports | orderBy : ['organization']" 
+            [class.selected]="report === selectedreport" 
+            (click)="onSelect(report, getreportByName(report.organization))" 
+            [routerLink]="['/detail', report.organization]">
             {{ report.organization }}
           </li>
         </ul>
@@ -20,7 +23,10 @@
 
       <div id="second" ng-controller="datCtrl">
         <ul class="list-org">
-          <li *ngFor="let report of reportDate" [class.selected]="report === selecteddate" (click)="onSelectDate(report, getreportBydate(report.date))" [routerLink]="['/detail-date', report.date]">
+          <li *ngFor="let report of reportDate" 
+            [class.selected]="report === selecteddate" 
+            (click)="onSelectDate(report, getreportBydate(report.date))" 
+            [routerLink]="['/detail-date', report.date]">
             {{ report.date | date : "MMMM d, y" }}
           </li>
         </ul>

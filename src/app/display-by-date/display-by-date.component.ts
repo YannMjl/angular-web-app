@@ -23,7 +23,7 @@ export class DisplayByDateComponent implements OnInit {
   reportByDate: Report[];
   reportByDateChart: ChartDateData[] = [];
 
-  // chart specs
+  // fusionchart specs
   dataSource;
   width = 900;
   height = 400;
@@ -131,9 +131,9 @@ export class DisplayByDateComponent implements OnInit {
     }
     this.order = value;
 
-    console.log('in setOrder' + this.reverse);
+    console.log('in setOrder, reverse value: ' + this.reverse);
 
-    console.log('in setOrder ' + this.order);
+    console.log('in setOrder, order by: ' + this.order);
   }
 
   deleteReport() {

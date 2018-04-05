@@ -1,34 +1,18 @@
 /********************************************************************************************/
-h3 {
-  color: #80bfff;
-  text-align: center;
-}
-
-header {
-  background: black;
-  text-align: center;
-}
-
 .container {
     margin: 0 auto;
     width: fit-content;
 }
+
+*{ text-align: center; }
 /********************************************************************************************/
 /* css to display two blocks on the page                                                    */
 /********************************************************************************************/
-*{ text-align: center; }
-
 #left {
   float: left;
   width: fit-content;
   height: fit-content;
   padding-right: 50px;
-}
-
-#right {
-  float: left;
-  width: fit-content;
-  height: fit-content;
 }
 
 #first {
@@ -44,19 +28,6 @@ header {
     float: left;
     height: auto;
     padding-top: 10px;
-}
-
-#third {
-    float: left;
-    height: auto;
-    width: fit-content;
-    padding-right: 50px;
-}
-
-#forth {
-  float: left;
-  height: auto;
-  width: fit-content;
 }
 /********************************************************************************************/
 /* button CSS style                                                                         */
@@ -81,6 +52,7 @@ button {
 .btnDelete { background-color: #b30000; }
 
 button:hover {
+    background-color: #660000;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
 }
 /********************************************************************************************/

@@ -1,24 +1,13 @@
 /********************************************************************************************/
-h3 {
-  color: #80bfff;
-  text-align: center;
-}
-
-header {
-  background: black;
-  text-align: center;
-}
-
 .container {
     margin: auto;
     width: fit-content;
 }
 
-/********************************************************************************************/
-/* css to display two blocks on the page                                                    */
-/********************************************************************************************/
 *{ text-align: center; }
-
+/********************************************************************************************/
+/* css to display content in separate blocks on the page                                    */
+/********************************************************************************************/
 #left {
   float: left;
   width: fit-content;
@@ -26,36 +15,19 @@ header {
   padding-right: 50px;
 }
 
-#right {
-  float: left;
-  width: fit-content;
-  height: fit-content;
-}
-
 #first {
     width: auto;
     float: left;
     height: auto;
     text-align: center;
+    padding-right: 50px;
 }
 
 #second {
     width: auto;
     float: left;
     height: auto;
-}
-
-#third {
-    float: left;
-    height: auto;
-    width: fit-content;
-    padding-right: 50px;
-}
-
-#forth {
-  float: left;
-  height: auto;
-  width: fit-content;
+    text-align: center;
 }
 /********************************************************************************************/
 /* button CSS style                                                                         */
@@ -77,6 +49,7 @@ button {
 }
 
 button:hover {
+    background-color: #660000;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
 }
 /********************************************************************************************/
@@ -104,63 +77,59 @@ button:hover {
 /********************************************************************************************/
 /* CSS style that display the list of organization in a fashiion way                        */
 /********************************************************************************************/
-.selected {
-    background-color: #CFD8DC !important;
-    color: white;
+.list-org .text {
+    top: -3px;
+    position: relative;
 }
 
 .list-org {
+    width: 15em;
+    padding: 5px;
     margin: 0 0 2em 0;
     list-style-type: none;
-    padding: 5px;
-    width: 15em;
-}
-
-.list-org li {
-    cursor: pointer;
-    position: relative;
-    left: 0;
-    background-color: #EEE;
-    margin: .5em;
-    padding: .3em;
-    height: 1.6em;
-    border-radius: 4px;
-    font-weight: bold;
-}
-
-.list-org .text {
-    position: relative;
-    top: -3px;
 }
 
 .list-org li:hover {
+    left: .1em;
     color: #607D8B;
     background-color: #DDD;
-    left: .1em;
 }
 
-.list-org li.selected:hover {
-    background-color: #BBD8DC !important;
-    color: white;
-}
-
-*{
-  text-align: center;
+.list-org li {
+    left: 0;
+    margin: .5em;
+    padding: .3em;
+    height: 1.6em;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 4px;
+    position: relative;
+    background-color: white;
 }
 
 .org-list {
-  display: inline-block;
-  font-size: small;
-  color: white;
-  padding: 0.8em 0.7em 0 0.7em;
-  background-color: #607D8B;
-  line-height: 1em;
-  position: relative;
   left: -1px;
   top: -4px;
   height: 1.8em;
+  color: white;
+  line-height: 1em;
+  font-size: small;
+  position: relative;
   margin-right: .8em;
+  display: inline-block;
   border-radius: 4px 0 0 4px;
+  background-color: #607D8B;
+  padding: 0.8em 0.7em 0 0.7em;
+}
+
+.list-org li.selected:hover {
+    color: white;
+    background-color: #BBD8DC !important;
+}
+
+.selected {
+    color: white;
+    background-color: #CFD8DC !important;
 }
 /********************************************************************************************/
 

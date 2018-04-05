@@ -1,67 +1,16 @@
 /********************************************************************************************/
-h3 {
-  color: #80bfff;
-  text-align: center;
-}
-
-header {
-  background: black;
-  text-align: center;
-}
-
 .container {
-    margin: auto;
+    margin: 0 auto;
     width: fit-content;
 }
 
-/********************************************************************************************/
-/* css to display two blocks on the page                                                    */
-/********************************************************************************************/
-#left {
-  float: left;
-  width: fit-content;
-  height: fit-content;
-  padding-right: 50px;
-}
-
-#right {
-  float: left;
-  width: fit-content;
-  height: fit-content;
-}
-
-#first {
-    width: auto;
-    float: left;
-    height: auto;
-    text-align: center;
-}
-
-#second {
-    width: auto;
-    float: left;
-    height: auto;
-}
-
-#third {
-    float: left;
-    height: auto;
-    width: fit-content;
-    padding-right: 50px;
-}
-
-#forth {
-  float: left;
-  height: auto;
-  width: fit-content;
-}
 /********************************************************************************************/
 /* button CSS style                                                                         */
 /********************************************************************************************/
 button {
     border: none;
     color: white;
-    font-size: 16px;
+    font-size: 20px;
     margin: 4px 2px;
     cursor: pointer;
     padding: 15px 32px;
@@ -69,12 +18,13 @@ button {
     border-radius: 12px;
     text-decoration: none;
     display: inline-block;
-    background-color: #2952a3;
     transition-duration: 0.4s;
     -webkit-transition-duration: 0.4s; /* Safari */
+    background: linear-gradient(to right,#fd80ff, #00bfff);
 }
 
 button:hover {
+    background: #00bfff;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
 }
 /********************************************************************************************/
@@ -84,11 +34,12 @@ button:hover {
     display: block;
     margin-bottom: 10px;
     color: white;
+    font-style: italic;
 }
 
 .form-style-5 legend {
     color: #1abc9c;
-    font-size: 1.4em;
+    font-size: 2.0em;
     margin-bottom: 10px;
 }
 
@@ -140,12 +91,12 @@ button:hover {
 
 .form-style-5
 {
-    padding: 40px;
-    max-width: 700px;
-    margin: 30px auto;
-    padding: 30px 40px;
+    padding: 50px;
+    max-width: 100%;
+    margin: 40px auto;
+    padding: 40px 50px;
     border-radius: 10px;
-    background: url(/assets/bg.jpg);
+    background: url(/assets/bg-01.jpg);
     font-family: Georgia, "Times New Roman", Times, serif;
 }
 

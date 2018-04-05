@@ -16,7 +16,7 @@ export class AuthService {
   ) { }
 
   login(user: User) {
-    if (user.userName === 'yann' && user.password === 'pass') { // {3}
+    if (user.userName === 'admin' && user.password === 'pass') { // {3}
       this.loggedIn.next(true);
       this.router.navigate(['/report']);
       console.log('login successfully ' + this.loggedIn);
