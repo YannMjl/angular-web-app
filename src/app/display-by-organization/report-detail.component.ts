@@ -26,8 +26,8 @@ export class ReportDetailComponent implements OnInit {
 
   // chart specs
   dataSource;
-  width = 700;
-  height = 400;
+  width = '1000';
+  height = 500;
   id = 'chart1';
   type = 'column2d';
   dataFormat = 'json';
@@ -65,16 +65,14 @@ export class ReportDetailComponent implements OnInit {
           this.dataSource = {
 
             'chart': {
+              'showAlternateHGridColor': '1',
               // Background color and alpha
               'bgColor': '#ebf6f9',
               'bgAlpha': '50',
               'theme': 'fint',
               'canvasPadding': '15',
               // data value config
-              'rotateValues': '0',
-              'valueFontBold': '1',
-              'placeValuesInside': '0',
-              'valueFontColor': '#000099',
+              'showValues': '0',
               // data labels config
               'slantLabel': '1',
               'labelFont': 'Arial',

@@ -25,8 +25,8 @@ export class DisplayByDateComponent implements OnInit {
 
   // fusionchart specs
   dataSource;
-  width = 900;
-  height = 400;
+  width = 1000;
+  height = 500;
   id = 'chart1';
   type = 'column2d';
   dataFormat = 'json';
@@ -67,6 +67,7 @@ export class DisplayByDateComponent implements OnInit {
 
           this.dataSource = {
             'chart': {
+              'showAlternateHGridColor': '1',
               // Background color and alpha
               'bgColor': '#ebf6f9',
               'bgAlpha': '50',

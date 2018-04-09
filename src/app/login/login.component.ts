@@ -59,7 +59,6 @@ export class LoginComponent implements OnInit {
     if (this.authService.isLoggedIn) {
       this.popupLogin.show(this.popupLogin.options);
     }
-    console.log('display successful or unsuccessful log in');
   }
 
   onSubmit() {
@@ -77,7 +76,6 @@ export class LoginComponent implements OnInit {
       */
     }
     this.formSubmitAttempt = true;
-    console.log('on submit action' );
 
   }
 

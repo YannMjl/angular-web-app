@@ -1,7 +1,12 @@
 import { User } from './user';
 import { Router } from '@angular/router';
+import { FormGroup } from '@angular/forms';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+
+// define the constant url we would be post user creds details
+const apiUrl = 'https://web-server-reports.herokuapp.com/login';
 
 @Injectable()
 export class AuthService {
@@ -12,17 +17,37 @@ export class AuthService {
   }
 
   constructor(
-    private router: Router
+    private router: Router,
+    private http: HttpClient,
   ) { }
 
   login(user: User) {
     if (user.userName === 'admin' && user.password === 'pass') { // {3}
       this.loggedIn.next(true);
       this.router.navigate(['/report']);
-      console.log('login successfully ' + this.loggedIn);
+
+      const formData = new FormData();
+      formData.append('username', user.userName);
+      formData.append('password', user.password);
+
+      this.http
+        .post(apiUrl, {username: user.userName, password: user.password})
+        .map((res: Response) => console.log('see res in post api: ' + res.json()))
+        .subscribe(
+          success => {
+            alert('file uploaded succeful');
+          console.log('see res in post api: ' + success);
+
+          },
+
+          error => alert(error)
+        );
+
+        console.log('hi');
+
     }else {
       this.loggedIn.next(false);
-      console.log('worng password or username ' + this.loggedIn);
+      console.log('worng password or username');
     }
   }
 
