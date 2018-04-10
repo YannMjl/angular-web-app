@@ -1,10 +1,15 @@
-// import services and pipe
+import './shared/rxjs-operators';
+
+// import services and pipes
+import { AuthGuard } from './auth/auth.guard';
+import { AuthService } from './auth/auth.service';
 import { OrderByPipe } from './shared/order-by.pipe';
 import { FileSizePipe } from './shared/file-size.pipe';
 import { ReportService } from './shared/report.service';
 
 // import modules
 import { NgModule } from '@angular/core';
+import { PopupModule } from 'ng2-opd-popup';
 import { OrderModule } from 'ngx-order-pipe';
 import { CommonModule } from '@angular/common';
 import { RoutingModule } from './routing.module';
@@ -25,7 +30,10 @@ import {
 // import app components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import { HeaderComponent } from './header/header.component';
 import { ReportsComponent } from './reports/reports.component';
+import { HomeLayoutComponent } from './layouts/home-layout.component';
+import { LoginLayoutComponent } from './layouts/login-layout.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { DisplayByDateComponent } from './display-by-date/display-by-date.component';
 import { ReportDetailComponent } from './display-by-organization/report-detail.component';
@@ -35,16 +43,6 @@ import * as FusionCharts from 'fusioncharts';
 import * as Charts from 'fusioncharts/fusioncharts.charts';
 import { FusionChartsModule } from 'angular4-fusioncharts';
 import * as FintTheme from 'fusioncharts/themes/fusioncharts.theme.fint';
-import { AuthService } from './auth/auth.service';
-import { AuthGuard } from './auth/auth.guard';
-import { HeaderComponent } from './header/header.component';
-
-import { HomeLayoutComponent } from './layouts/home-layout.component';
-import { LoginLayoutComponent } from './layouts/login-layout.component';
-
-import { PopupModule } from 'ng2-opd-popup';
-
-import './shared/rxjs-operators';
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FintTheme);
 

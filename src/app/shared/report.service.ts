@@ -2,78 +2,95 @@ import { Report } from './report';
 import 'rxjs/add/observable/throw';
 import { of } from 'rxjs/observable/of';
 import { Observable } from 'rxjs/Observable';
+import { AuthService } from '../auth/auth.service';
 import { Injectable, Inject } from '@angular/core';
 import { catchError, retry } from 'rxjs/operators';
 import { ChartDateData } from './chart-data-by-date';
 import { ReportChartData } from './chart-data-by-org';
+import { environment } from '../../environments/environment';
 import { ReportsComponent } from '../reports/reports.component';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
-import { HttpClient, HttpErrorResponse} from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 
 @Injectable()
 export class ReportService {
-  constructor(private http: HttpClient) {}
+
+  private readonly getReportEndpoint: string;
+  private readonly deleteAllReportEndpoint: string;
+  private readonly getReportByNameEndpoint: string;
+  private readonly getDateInReportEndpoint: string;
+  private readonly getReportByDateEndpoint: string;
+  private readonly getChartDataByOrgEndpoint: string;
+  private readonly getChartDataByDateEndpoint: string;
+  private readonly deleteReportByNameEndpoint: string;
+  private readonly deleteReportByDateEndpoint: string;
+
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService
+  ) {
+    const endpoint = environment.apiUrl;
+    this.getReportEndpoint = endpoint + '/report';
+    this.getReportByDateEndpoint = endpoint + '/date';
+    this.getDateInReportEndpoint = endpoint + '/date';
+    this.getReportByNameEndpoint = endpoint + '/name';
+    this.getChartDataByOrgEndpoint = endpoint + '/org';
+    this.getChartDataByDateEndpoint = endpoint + '/date-chart';
+    this.deleteReportByNameEndpoint = endpoint + '/delete-name';
+    this.deleteReportByDateEndpoint = endpoint + '/delete-date';
+    this.deleteAllReportEndpoint = endpoint + '/delete-all-record';
+  }
+
+  // add authorization header with token
+  authHeader = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Token' + this.authService.loginToken
+    })
+  };
 
   getReports(): Observable<Report[]> {
-    const apiUrl = 'https://web-server-reports.herokuapp.com/report';
-
-    return this.http.get<Report[]>(apiUrl)
+    return this.http.get<Report[]>(this.getReportEndpoint)
                     .pipe( catchError(this.handleError));
   }
 
-  getDateInReport(): Observable<Report[]> {
-    const apiUrl = 'https://web-server-reports.herokuapp.com/date';
-
-    return this.http.get<Report[]>(apiUrl)
-                    .pipe(catchError(this.handleError));
+  deleteReport(): Observable<Report[]> {
+    return this.http.get<Report[]>(this.deleteAllReportEndpoint)
+      .pipe(catchError(this.handleError));
   }
 
-  getReportByNameChart(name: string): Observable<ReportChartData[]> {
-    const apiUrl = 'https://web-server-reports.herokuapp.com/org';
-
-    return this.http.get<ReportChartData[]>(`${apiUrl}/${name}`)
+  getDateInReport(): Observable<Report[]> {
+    return this.http.get<Report[]>(this.getDateInReportEndpoint)
                     .pipe(catchError(this.handleError));
   }
 
   getReportByName(name: string): Observable<Report[]> {
-    const apiUrl = 'https://web-server-reports.herokuapp.com/name';
-
-    return this.http.get<Report[]>(`${apiUrl}/${name}`)
-                    .pipe(catchError(this.handleError));
-  }
-
-  getReportByDateChart(date: Date): Observable<ChartDateData[]> {
-    const apiUrl = 'https://web-server-reports.herokuapp.com/date-chart';
-
-    return this.http.get<CharacterData[]>(`${apiUrl}/${date}`)
+    return this.http.get<Report[]>(`${this.getReportByNameEndpoint}/${name}`)
                     .pipe(catchError(this.handleError));
   }
 
   getReportByDate(date: Date): Observable<Report[]> {
-    const apiUrl = 'https://web-server-reports.herokuapp.com/date';
-
-    return this.http.get<Report[]>(`${apiUrl}/${date}`)
+    return this.http.get<Report[]>(`${this.getReportByDateEndpoint}/${date}`)
                     .pipe(catchError(this.handleError));
   }
 
   deleteReportByName(name: string): Observable<Report[]> {
-    const apiUrl = 'https://web-server-reports.herokuapp.com/delete-name';
-
-    return this.http.get<Report[]>(`${apiUrl}/${name}`)
+    return this.http.get<Report[]>(`${this.deleteReportByNameEndpoint}/${name}`)
                     .pipe(catchError(this.handleError));
   }
 
   deleteReportByDate(date: Date): Observable<Report[]> {
-    const apiUrl = 'https://web-server-reports.herokuapp.com/delete-date';
-
-    return this.http.get<Report[]>(`${apiUrl}/${date}`)
+    return this.http.get<Report[]>(`${this.deleteReportByDateEndpoint}/${date}`)
                     .pipe(catchError(this.handleError));
   }
 
-  deleteReport(): Observable<Report[]> {
-    const apiUrl = 'https://web-server-reports.herokuapp.com/delete-all-record';
+  getReportByDateChart(date: Date): Observable<ChartDateData[]> {
+    return this.http.get<CharacterData[]>(`${this.getChartDataByDateEndpoint}/${date}`)
+                    .pipe(catchError(this.handleError));
+  }
 
-    return this.http.get<Report[]>(apiUrl)
+  getReportByNameChart(name: string): Observable<ReportChartData[]> {
+    return this.http.get<ReportChartData[]>(`${this.getChartDataByOrgEndpoint}/${name}`)
                     .pipe(catchError(this.handleError));
   }
 

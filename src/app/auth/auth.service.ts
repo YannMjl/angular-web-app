@@ -2,18 +2,22 @@ import { User } from './user';
 import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams , HttpHeaders} from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+
+import { map } from 'rxjs/operators/map';
 
 // define the constant url we would be post user creds details
 const apiUrl = 'https://web-server-reports.herokuapp.com/login';
+// const apiUrl = 'http://localhost:5000/login';
 
 @Injectable()
 export class AuthService {
-  private loggedIn = new BehaviorSubject<boolean>(false); // {1}
+  loginToken;
+  private loggedIn = new BehaviorSubject<boolean>(false);
 
   get isLoggedIn() {
-    return this.loggedIn.asObservable(); // {2}
+    return this.loggedIn.asObservable();
   }
 
   constructor(
@@ -22,33 +26,40 @@ export class AuthService {
   ) { }
 
   login(user: User) {
-    if (user.userName === 'admin' && user.password === 'pass') { // {3}
+    if (user.userName === 'admin' && user.password === 'pass') {
       this.loggedIn.next(true);
       this.router.navigate(['/report']);
 
-      const formData = new FormData();
-      formData.append('username', user.userName);
-      formData.append('password', user.password);
+      const userCreds = new HttpParams()
+                        .set('username', user.userName)
+                        .set('password', user.password);
 
+      const loginHeader = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+        })
+      };
+
+      /*
       this.http
-        .post(apiUrl, {username: user.userName, password: user.password})
-        .map((res: Response) => console.log('see res in post api: ' + res.json()))
+        .post(apiUrl, { headers: { username: user.userName, password: user.password}})
         .subscribe(
-          success => {
-            alert('file uploaded succeful');
-          console.log('see res in post api: ' + success);
+          data => {
+            console.log('data after login ' + data);
+            this.router.navigate(['/home']);
+          }
+        );*/
 
-          },
-
-          error => alert(error)
-        );
-
-        console.log('hi');
+        console.log('login token value is: ' + this.loginToken);
 
     }else {
       this.loggedIn.next(false);
       console.log('worng password or username');
     }
+  }
+
+  public isAuthenticated() {
+    const token = localStorage.getItem(this.loginToken);
   }
 
   logout() {                            // {4}

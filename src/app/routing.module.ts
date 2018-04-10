@@ -14,6 +14,7 @@ import { LoginLayoutComponent } from './layouts/login-layout.component';
 const routes: Routes = [
   { path: '', component: ReportsComponent, canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent },
+  { path: 'home', component: HomeLayoutComponent, canActivate: [AuthGuard] },
   { path: 'report', component: ReportsComponent, canActivate: [AuthGuard] },
   { path: 'upload-file', component: FileUploadComponent, canActivate: [AuthGuard] },
   { path: 'detail/:id', component: ReportDetailComponent, data: [{ isProd: true }], canActivate: [AuthGuard] },

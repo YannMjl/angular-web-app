@@ -11,6 +11,8 @@ import { ReportService } from '../shared/report.service';
 import { Component, OnInit, ElementRef, Input, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 
+import { environment } from '../../environments/environment';
+
 // define the constant url we would be uploading to
 const apiUrl = 'https://web-server-reports.herokuapp.com/file';
 
