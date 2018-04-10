@@ -60,7 +60,6 @@ export class ReportDetailComponent implements OnInit {
         .getReportByNameChart(this.orgName)
         .subscribe(report => {
           this.ReportByNamesChart = report;
-          console.log('In report by Names chart data' + this.ReportByNamesChart);
 
           this.dataSource = {
 

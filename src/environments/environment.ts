@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://web-server-reports.herokuapp.com'
-  // apiUrl: 'http://localhost:5000';
+  // apiUrl: 'https://web-server-reports.herokuapp.com'
+  apiUrl: 'http://localhost:5000'
 };

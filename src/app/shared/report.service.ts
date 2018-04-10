@@ -42,12 +42,7 @@ export class ReportService {
   }
 
   // add authorization header with token
-  authHeader = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'Token' + this.authService.loginToken
-    })
-  };
+  headers = new HttpHeaders({'Authorization': 'Token' + this.authService.getToken()});
 
   getReports(): Observable<Report[]> {
     return this.http.get<Report[]>(this.getReportEndpoint)

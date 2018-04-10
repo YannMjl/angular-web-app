@@ -8,13 +8,9 @@ import { IMyDpOptions } from 'mydatepicker';
 import { FileUploader } from 'ng2-file-upload';
 import { HttpClient } from '@angular/common/http';
 import { ReportService } from '../shared/report.service';
+import { environment } from '../../environments/environment';
 import { Component, OnInit, ElementRef, Input, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-
-import { environment } from '../../environments/environment';
-
-// define the constant url we would be uploading to
-const apiUrl = 'https://web-server-reports.herokuapp.com/file';
 
 @Component({
   selector: 'app-file-upload',
@@ -26,6 +22,7 @@ export class FileUploadComponent implements OnInit {
   reportBydate: Report[];
   public reportDate: Date;
   public myform: FormGroup;
+  private readonly uploadEndpoint: string;
 
   public myDatePickerOptions: IMyDpOptions = {
     inline: false,
@@ -47,14 +44,20 @@ export class FileUploadComponent implements OnInit {
     private FB: FormBuilder,
     private http: HttpClient,
     private repoService: ReportService
-  ) { }
+  ) {
+    // set uploading endpoint
+    const endpoint = environment.apiUrl;
+    this.uploadEndpoint = endpoint + '/file';
+  }
 
   ngOnInit() { this.getReportByDate(this.reportDate); }
 
   getReportByDate(date: Date): void {
     console.log('get report after upload');
     this.repoService.getReportByDate(date)
-      .subscribe(report => this.reportBydate = report);
+                    .subscribe(report => {
+                      this.reportBydate = report;
+                    });
   }
 
   upload() {
@@ -97,16 +100,12 @@ export class FileUploadComponent implements OnInit {
         formData.append('file', inputEl.files.item(0));
         formData.append('date', this.model.jsdate.toISOString());
 
-        this.http
-          .post(apiUrl, formData)
-          .subscribe(success => {
-            this.popup2.show(this.popup2.options);
-          },
-            error => { alert(error); }
-          );
-
+        this.http.post(this.uploadEndpoint, formData)
+                 .subscribe(
+                   success => { this.popup2.show(this.popup2.options); },
+                   error => { alert(error); }
+                 );
       }
-
     } else {
       // this.popup1.show(this.popup1.options);
       alert('No date or file was selected! You must select date and file to upload');

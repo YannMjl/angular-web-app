@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     if (this.myForm.valid) {
-      this.authService.login(this.myForm.value);
+      this.authService.loginBackend(this.myForm.value);
 
       /*
       this.http
