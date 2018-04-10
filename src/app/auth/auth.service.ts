@@ -7,10 +7,6 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 
-// define the constant url we would be post user creds details
-const apiUrl = 'https://web-server-reports.herokuapp.com/login';
-// const apiUrl = 'http://localhost:5000/login';
-
 @Injectable()
 export class AuthService {
 
@@ -61,10 +57,10 @@ export class AuthService {
 
     this.http/*.post(this.loginEndpoint, JSON.stringify({
                         username: user.userName, password: user.password}))*/
-             .post(this.loginEndpoint, formData)
-             .map(data => {
-               console.log('data value on post: ' + data);
-               this.loginToken = data.valueOf().toString();
+             .post<{token: string}>(this.loginEndpoint, formData)
+             /*.map(data => {
+               console.log('data value on post: ' + data.token);
+               this.loginToken = data.token;
                console.log('value of token is: ' + this.loginToken);
 
                if (this.loginToken === 'false') {
@@ -83,12 +79,39 @@ export class AuthService {
                }
 
               }
-            )
-            .subscribe(succes => console.log(succes));
+            )*/
+            .subscribe(
+              data => {
+                console.log('data value on post: ' + data.token);
+                this.loginToken = data.token;
+                console.log('value of token is: ' + this.loginToken);
+
+                if (this.loginToken === 'false') {
+                  // set loogedIn to false to indicate failed login
+                  this.loggedIn.next(false);
+                  console.log('worng password or username');
+                } else {
+                  // set loggedIn to true to indicate successful login
+                  this.loggedIn.next(true);
+                  this.router.navigate(['/report']);
+
+                  // store token in local storage to keep user logged in between page refreshes
+                  localStorage.setItem(this.storeKey, JSON.stringify({
+                    token: this.loginToken
+                  }));
+                }
+
+              },
+              succes => {console.log(succes); }
+            );
   }
 
   getToken(): string {
     return this.loginToken;
+  }
+
+  isLoggedIn$(): boolean {
+    return this.loginToken !== null;
   }
 
   public isAuthenticated() {
@@ -100,6 +123,7 @@ export class AuthService {
     this.loggedIn.next(false);
     localStorage.removeItem(this.storeKey);
     this.router.navigate(['/login']);
+    console.log('in logout, token value is : ' + this.loginToken);
   }
 
   get isLoggedIn() { return this.loggedIn.asObservable(); }
