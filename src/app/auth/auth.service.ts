@@ -29,16 +29,6 @@ export class AuthService {
 
     console.log('in login post');
 
-    /*const userCreds = new HttpParams()
-      .set('username', user.userName)
-      .set('password', user.password);
-
-    const loginHeader = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      })
-    };*/
-
     const formData = new FormData();
     formData.append('username', user.userName);
     formData.append('password', user.password);
@@ -47,12 +37,12 @@ export class AuthService {
             .subscribe(
               data => {
                 const token = data.token;
-                console.log('data value on post: ' + token);
+                console.log('data retrun after post is: ' + token);
 
                 // login successful if there's a jwt token in the response
                 if (token) {
                   this.loginToken = data.token;
-                  console.log('value of token is: ' + this.loginToken);
+                  console.log('value of logintoken is: ' + this.loginToken);
 
                   // set loogedIn to true to indicate successful login
                   this.loggedIn.next(true);
@@ -62,14 +52,18 @@ export class AuthService {
                     token: this.loginToken
                   }));
 
+                  // go to reports list
                   this.router.navigate(['/report']);
                 } else {
+                  // set logintoken to null
+                  this.loginToken = null;
                   // set loggedIn to false to indicate failed login
                   this.loggedIn.next(false);
                 }
-
               },
-              succes => {console.log(succes); }
+              succes => {
+                console.log(succes);
+              }
             );
   }
 
@@ -90,6 +84,6 @@ export class AuthService {
     this.loggedIn.next(false);
     localStorage.removeItem(this.storeKey);
     this.router.navigate(['/login']);
-    console.log('in logout, token value is : ' + this.loginToken);
+    console.log('in logout, logintoken value is : ' + this.loginToken);
   }
 }
