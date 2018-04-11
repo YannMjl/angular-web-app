@@ -23,7 +23,7 @@ export class AuthGuard implements CanActivate {
   ): Observable<boolean> | Promise<boolean> | boolean {
 
     /*
-    if (this.authService.isLoggedIn()) {
+    if (this.authService.isLoggedIn$$()) {
       // logged in so return true
       return true;
     }
@@ -31,6 +31,7 @@ export class AuthGuard implements CanActivate {
     // not logged in so redirect to login page
     this.router.navigate(['/login']);
     return false;*/
+
     return this.authService.isLoggedIn
       .take(1)
       .map((isLoggedIn: boolean) => {

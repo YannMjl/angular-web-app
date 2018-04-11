@@ -4,9 +4,6 @@ import { AuthService } from '../auth/auth.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-// define the constant url we would be post user creds details
-const apiUrl = 'https://web-server-reports.herokuapp.com/login';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -42,19 +39,20 @@ export class LoginComponent implements OnInit {
   }
 
   isAuthenticated() {
+    console.log('inside isauthenticated');
+
     this.popupLogin.options = {
       header: 'Access Denied',
       color: '#9f80ff', // red, blue....
-      // widthProsentage: 30, // The with of the popou measured by browser width
       animationDuration: 1, // in seconds, 0 = no animation
-      showButtons: true, // You can hide this in case you want to use custom buttons
-      confirmBtnContent: 'Try Agin', // The text on your confirm button
       cancleBtnContent: 'close', // the text on your cancel button
-      // confirmBtnClass: 'btn btn-default', // your class for styling the confirm button
+      confirmBtnContent: 'Try Agin', // The text on your confirm button
+      // widthProsentage: 30, // The with of the popou measured by browser width
+      showButtons: true, // You can hide this in case you want to use custom buttons
       // cancleBtnClass: 'btn btn-default', // you class for styling the cancel button
-      animation: 'fadeInDown' // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'bounceIn','bounceInDown'
+      // confirmBtnClass: 'btn btn-default', // your class for styling the confirm button
+      animation: 'bounceInDown' // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'fadeInDown', 'bounceIn'
     };
-
 
     if (this.authService.isLoggedIn) {
       this.popupLogin.show(this.popupLogin.options);
@@ -64,19 +62,9 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     if (this.myForm.valid) {
       this.authService.loginBackend(this.myForm.value);
-
-      /*
-      this.http
-        .post(apiUrl, this.myForm.value)
-        .subscribe(success => {
-          alert('post login succeful');
-        },
-          error => { alert(error); }
-      );
-      */
+      this.isAuthenticated();
     }
     this.formSubmitAttempt = true;
-
   }
 
   logInEvent() {

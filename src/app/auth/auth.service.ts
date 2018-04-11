@@ -14,8 +14,7 @@ export class AuthService {
   private readonly loginEndpoint: string;
   private readonly storeKey = 'currentUser';
   private loggedIn = new BehaviorSubject<boolean>(false);
-
-  formData = new FormData();
+  get isLoggedIn() { return this.loggedIn.asObservable(); }
 
   constructor(
     private router: Router,
@@ -24,17 +23,6 @@ export class AuthService {
     // set login api url post
     const endpoint = environment.apiUrl;
     this.loginEndpoint = endpoint + '/login';
-  }
-
-  login(user: User) {
-    if (user.userName === 'admin' && user.password === 'pass') {
-      this.loggedIn.next(true);
-      this.router.navigate(['/report']);
-    } else {
-      this.loggedIn.next(false);
-    }
-
-    this.loginBackend(user);
   }
 
   loginBackend(user: User) {
@@ -55,50 +43,29 @@ export class AuthService {
     formData.append('username', user.userName);
     formData.append('password', user.password);
 
-    this.http/*.post(this.loginEndpoint, JSON.stringify({
-                        username: user.userName, password: user.password}))*/
-             .post<{token: string}>(this.loginEndpoint, formData)
-             /*.map(data => {
-               console.log('data value on post: ' + data.token);
-               this.loginToken = data.token;
-               console.log('value of token is: ' + this.loginToken);
-
-               if (this.loginToken === 'false') {
-                 // set loogedIn to false to indicate failed login
-                 this.loggedIn.next(false);
-                 console.log('worng password or username');
-               } else {
-                 // set loggedIn to true to indicate successful login
-                 this.loggedIn.next(true);
-                 this.router.navigate(['/report']);
-
-                 // store token in local storage to keep user logged in between page refreshes
-                 localStorage.setItem(this.storeKey, JSON.stringify({
-                   token: this.loginToken
-                 }));
-               }
-
-              }
-            )*/
+    this.http.post<{token: string}>(this.loginEndpoint, formData)
             .subscribe(
               data => {
-                console.log('data value on post: ' + data.token);
-                this.loginToken = data.token;
-                console.log('value of token is: ' + this.loginToken);
+                const token = data.token;
+                console.log('data value on post: ' + token);
 
-                if (this.loginToken === 'false') {
-                  // set loogedIn to false to indicate failed login
-                  this.loggedIn.next(false);
-                  console.log('worng password or username');
-                } else {
-                  // set loggedIn to true to indicate successful login
+                // login successful if there's a jwt token in the response
+                if (token) {
+                  this.loginToken = data.token;
+                  console.log('value of token is: ' + this.loginToken);
+
+                  // set loogedIn to true to indicate successful login
                   this.loggedIn.next(true);
-                  this.router.navigate(['/report']);
 
                   // store token in local storage to keep user logged in between page refreshes
                   localStorage.setItem(this.storeKey, JSON.stringify({
                     token: this.loginToken
                   }));
+
+                  this.router.navigate(['/report']);
+                } else {
+                  // set loggedIn to false to indicate failed login
+                  this.loggedIn.next(false);
                 }
 
               },
@@ -110,7 +77,7 @@ export class AuthService {
     return this.loginToken;
   }
 
-  isLoggedIn$(): boolean {
+  isLoggedIn$$(): boolean {
     return this.loginToken !== null;
   }
 
@@ -125,6 +92,4 @@ export class AuthService {
     this.router.navigate(['/login']);
     console.log('in logout, token value is : ' + this.loginToken);
   }
-
-  get isLoggedIn() { return this.loggedIn.asObservable(); }
 }
