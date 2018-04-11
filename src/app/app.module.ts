@@ -46,6 +46,8 @@ import * as FintTheme from 'fusioncharts/themes/fusioncharts.theme.fint';
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FintTheme);
 
+import { TokenInterceptor } from './auth/auth.interceptor';
+
 @NgModule({
   imports: [CommonModule],
   exports: [
@@ -94,7 +96,17 @@ export class AppMaterialModule { }
     ReportService,
     AuthService,
     AuthGuard,
-    { provide: HTTP_INTERCEPTORS, useClass: NgProgressInterceptor, multi: true }
+    { // when any request is made, the progress bar will track its loading process automatically.
+      provide: HTTP_INTERCEPTORS,
+      useClass: NgProgressInterceptor,
+      multi: true
+    },
+    /*
+    { // when any request is made, the token will be present automatically in the headers.
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }*/
   ],
   bootstrap: [AppComponent]
 })
