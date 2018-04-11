@@ -6,6 +6,7 @@ import { AuthService } from './auth/auth.service';
 import { OrderByPipe } from './shared/order-by.pipe';
 import { FileSizePipe } from './shared/file-size.pipe';
 import { ReportService } from './shared/report.service';
+import { TokenInterceptor } from './auth/auth.interceptor';
 
 // import modules
 import { NgModule } from '@angular/core';
@@ -45,8 +46,6 @@ import { FusionChartsModule } from 'angular4-fusioncharts';
 import * as FintTheme from 'fusioncharts/themes/fusioncharts.theme.fint';
 
 FusionChartsModule.fcRoot(FusionCharts, Charts, FintTheme);
-
-import { TokenInterceptor } from './auth/auth.interceptor';
 
 @NgModule({
   imports: [CommonModule],
@@ -101,12 +100,11 @@ export class AppMaterialModule { }
       useClass: NgProgressInterceptor,
       multi: true
     },
-    /*
     { // when any request is made, the token will be present automatically in the headers.
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }*/
+    }
   ],
   bootstrap: [AppComponent]
 })

@@ -11,7 +11,6 @@ import { environment } from '../../environments/environment';
 import { ReportsComponent } from '../reports/reports.component';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
 import { HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
-import { FormGroup } from '@angular/forms';
 
 @Injectable()
 export class ReportService {
@@ -44,11 +43,11 @@ export class ReportService {
 
   // add authorization header with token
   token$ = this.authService.getToken();
-  headers = new HttpHeaders({'Authorization': 'Token' + this.token$});
+  headers = new HttpHeaders({'Authorization': this.token$});
   options = {headers: this.headers};
 
   getReports(): Observable<Report[]> {
-    return this.http.get<Report[]>(this.getReportEndpoint, this.options)
+    return this.http.get<Report[]>(this.getReportEndpoint)
                     .pipe( catchError(this.handleError));
   }
 
