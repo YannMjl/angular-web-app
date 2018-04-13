@@ -7,15 +7,23 @@
         <h1>{{ title }}</h1>
       </span>
       <span class="fill-remaining-space"></span>
-      <button mat-button routerLink="/upload-file">
-        <b>Upload Report</b>
+      <!-- Home button on the header -->
+      <button mat-button routerLink="/home">
+        <b>Home</b>
       </button>
+      <!-- View button on the header -->
       <button mat-button routerLink="/report">
         <b>View Report</b>
       </button>
+      <!-- Upload button on the header -->
+      <button mat-button routerLink="/upload-file">
+        <b>Upload Report</b>
+      </button>
+      <!-- Log Out button on the header -->
       <button mat-button color="accent" (click)="onLogout()" *ngIf="isLoggedIn">
         <b>Log Out</b>
       </button>
+
     </mat-toolbar>
   
   </div>

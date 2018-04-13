@@ -110,7 +110,7 @@ export class ReportDetailComponent implements OnInit {
 
               // number of visible plots
               // for a yearly report : 365 days
-              'numVisiblePlot': '365',
+              'numVisiblePlot': '250',
 
               // customized scroll bar
               'scrollheight': '20',

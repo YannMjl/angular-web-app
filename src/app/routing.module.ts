@@ -1,15 +1,15 @@
-import { ReportDetailComponent } from './display-by-organization/report-detail.component';
+import { AuthGuard } from './auth/auth.guard';
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from './auth/auth.guard';
 
+// import components
+import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ReportsComponent } from './reports/reports.component';
-import { DisplayByDateComponent } from './display-by-date/display-by-date.component';
-import { FileUploadComponent } from './file-upload/file-upload.component';
-
 import { HomeLayoutComponent } from './layouts/home-layout.component';
-import { LoginLayoutComponent } from './layouts/login-layout.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
+import { DisplayByDateComponent } from './display-by-date/display-by-date.component';
+import { ReportDetailComponent } from './display-by-organization/report-detail.component';
 
 const routes: Routes = [
   { path: '',
@@ -17,6 +17,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: '', component: ReportsComponent},
+      { path: 'home', component: HomeComponent },
       { path: 'report', component: ReportsComponent },
       { path: 'upload-file', component: FileUploadComponent },
       { path: 'detail/:id', component: ReportDetailComponent, data: [{ isProd: true }] },

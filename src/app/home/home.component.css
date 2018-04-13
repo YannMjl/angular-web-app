@@ -1,0 +1,173 @@
+/********************************************************************************************/
+.container {
+    margin: 0 auto;
+    width: fit-content;
+}
+
+*{ text-align: center; }
+/********************************************************************************************/
+/* css to display content in separate blocks on the page                                    */
+/********************************************************************************************/
+#left {
+  float: left;
+  width: fit-content;
+  height: fit-content;
+}
+
+#first {
+    width: fit-content;
+    float: left;
+    height: auto;
+    text-align: center;
+    padding-right: 50px;
+}
+
+#second {
+    width: fit-content;
+    float: left;
+    height: auto;
+    text-align: center;
+}
+
+/********************************************************************************************/
+/* button CSS style                                                                         */
+/********************************************************************************************/
+button {
+    border: none;
+    color: white;
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+    padding: 15px 32px;
+    text-align: center;
+    border-radius: 12px;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: 0.4s;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    background: linear-gradient(to right,#fd80ff, #00bfff);
+}
+
+button:hover {
+    background: #00bfff;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+/********************************************************************************************/
+/* Upload Form CSS style                                                                    */
+/********************************************************************************************/
+.form-style-5 label {
+    display: block;
+    margin-bottom: 10px;
+    color: white;
+    font-style: italic;
+}
+
+.form-style-5 legend {
+    color: #1abc9c;
+    font-size: 2.0em;
+    margin-bottom: 10px;
+}
+
+.form-style-5 fieldset{ border: none; }
+
+.form-style-5 select {
+    height:50px;
+    -webkit-appearance: menulist-button; 
+}
+
+.form-style-5 input[type="submit"]:hover,
+.form-style-5 input[type="button"]:hover
+{
+    background: #109177;
+}
+
+.form-style-5 input[type="submit"],
+.form-style-5 input[type="button"]
+{
+    width: 100%;
+    color: #FFF;
+    margin: 0 auto;
+    display: block;
+    font-size: 20px;
+    position: relative;
+    text-align: center;
+    font-style: normal;
+    margin-bottom: 10px;
+    background: #1abc9c;
+    border-width: 1px 1px 3px;
+     border: 1px solid #16a085;
+    padding: 19px 39px 18px 39px;  
+}
+
+.form-style-5 .number 
+{
+    width: 50px;
+    height: 50px;
+    color: #fff;
+    font-size: 0.8em;
+    margin-right: 4px;
+    line-height: 50px;
+    text-align: center;
+    display: inline-block;
+    background: #1abc9c;
+    border-radius: 15px 15px 15px 0px;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.2);
+}
+
+.form-style-5
+{
+    padding: 50px;
+    max-width: 300px;
+    margin: 40px auto;
+    padding: 40px 50px;
+    border-radius: 10px;
+    background: url(/assets/bg.jpg);
+    font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.form-style-5 select:focus,
+.form-style-5 textarea:focus,
+.form-style-5 input[type="url"]:focus,
+.form-style-5 input[type="text"]:focus,
+.form-style-5 input[type="date"]:focus,
+.form-style-5 input[type="time"]:focus,
+.form-style-5 input[type="file"]:focus,
+.form-style-5 input[type="email"]:focus,
+.form-style-5 input[type="number"]:focus,
+.form-style-5 input[type="search"]:focus,
+.form-style-5 input[type="datetime"]:focus 
+{
+    background: #d2d9dd;
+}
+
+.form-style-5 select,
+.form-style-5 textarea,
+.form-style-5 input[type="url"],
+.form-style-5 input[type="text"],
+.form-style-5 input[type="date"],
+.form-style-5 input[type="time"],
+.form-style-5 input[type="file"],
+.form-style-5 input[type="email"],
+.form-style-5 input[type="number"],
+.form-style-5 input[type="search"],
+.form-style-5 input[type="datetime"] 
+{
+    margin: 0;
+    outline: 0;
+    width: 100%;
+    padding: 10px;
+    border: none;
+    font-size: 20px;
+    color:#8a97a0;
+    background: white;
+    border-radius: 4px;
+    margin-bottom: 30px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    background-color: #e8eeef;
+    -webkit-box-sizing: border-box;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+    -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+    font-family: Georgia, "Times New Roman", Times, serif;
+}
+/********************************************************************************************/

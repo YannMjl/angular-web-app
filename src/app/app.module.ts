@@ -30,11 +30,11 @@ import {
 
 // import app components
 import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { ReportsComponent } from './reports/reports.component';
 import { HomeLayoutComponent } from './layouts/home-layout.component';
-import { LoginLayoutComponent } from './layouts/login-layout.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { DisplayByDateComponent } from './display-by-date/display-by-date.component';
 import { ReportDetailComponent } from './display-by-organization/report-detail.component';
@@ -54,7 +54,8 @@ FusionChartsModule.fcRoot(FusionCharts, Charts, FintTheme);
     MatCardModule,
     MatInputModule,
     MatButtonModule
-  ]
+  ],
+  declarations: []
 })
 export class AppMaterialModule { }
 
@@ -63,12 +64,12 @@ export class AppMaterialModule { }
     OrderByPipe,
     FileSizePipe,
     AppComponent,
+    HomeComponent,
     LoginComponent,
     HeaderComponent,
     ReportsComponent,
     HomeLayoutComponent,
     FileUploadComponent,
-    LoginLayoutComponent,
     ReportDetailComponent,
     DisplayByDateComponent,
 
