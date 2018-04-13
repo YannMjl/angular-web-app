@@ -26,11 +26,13 @@ export class ReportDetailComponent implements OnInit {
 
   // chart specs
   dataSource;
-  width = '1000';
-  height = 500;
+  height = 550;
+  width = 1000;
   id = 'chart1';
-  type = 'scrollColumn2d';
+  paletteColors;
+  plotGradientColor;
   dataFormat = 'json';
+  type = 'scrollarea2d';
 
   @ViewChild('popupViewByOrg') popupOrg: Popup;
 
@@ -61,38 +63,20 @@ export class ReportDetailComponent implements OnInit {
         .subscribe(report => {
           this.ReportByNamesChart = report;
 
+          this.paletteColors = Math.floor(Math.random() * 16777215).toString(16);
+          this.plotGradientColor = Math.floor(Math.random() * 16777215).toString(16);
+
           this.dataSource = {
 
             'chart': {
-              /*
-              'paletteColors': '#0075c2',
-              // 'bgColor': '#ebf6f9',
-              'showBorder': '0',
-              'showCanvasBorder': '0',
-              'plotBorderAlpha': '10',
-              'usePlotGradientColor': '0',
-              'plotFillAlpha': '50',
-              'showXAxisLine': '1',
-              'axisLineAlpha': '25',
-              // 'divLineAlpha': '10',
-              // 'showValues': '1',
-              // 'showAlternateHGridColor': '0',
-              'captionFontSize': '14',
-              'subcaptionFontSize': '14',
-              'subcaptionFontBold': '0',
-              'toolTipColor': '#ebf6f9',
-              'toolTipBorderThickness': '0',
-              'toolTipBgColor': '#000000',
-              'toolTipBgAlpha': '80',
-              'toolTipBorderRadius': '2',
-              'toolTipPadding': '5',
-
-              'showAlternateHGridColor': '1',
               // Background color and alpha
-              'bgColor': '#ebf6f9',
               'bgAlpha': '50',
               'theme': 'fint',
-              'canvasPadding': '15',
+              'bgColor': '#ebf6f9',
+              'canvasPadding': '16',
+              'showcanvasborder': '0',
+              'showAlternateHGridColor': '1',
+
               // data value config
               'showValues': '0',
               // data labels config
@@ -101,65 +85,65 @@ export class ReportDetailComponent implements OnInit {
               'labelFontBold': '1',
               'lableFontItalic': '1',
               'labelFontAlpha': '70',
-              'labelDisplay': 'rotate',
+              'labelDisplay': 'AUTO',
+
               // y Axis name config
-              'yAxisNameFont': 'Arial',
+              'yAxisNameFont': 'Times',
               'yAxisNameFontBold': '1',
-              'yAxisNameFontSize': '15',
+              'yAxisNameFontSize': '20',
               'yAxisNameFontItalic': '1',
               'yAxisNameFontColor': '#993300',
               'yAxisName': 'Size (memory used)',
+
               // x Axis config
-              'xAxisName': 'Date',
-              'xAxisNameFont': 'Arial',
+              'xAxisName': 'Dates',
+              'showAxisLines': '0',
+              'xAxisNameFont': 'Times',
               'xAxisNameFontBold': '1',
-              'xAxisNameFontSize': '15',
+              'xAxisNameFontSize': '20',
               'xAxisNameFontItalic': '1',
               'xAxisNameFontColor': '#993300',
-              // add gradient effect to data plots
-              // 'usePlotGradientColor': '1',
-              // 'plotGradientColor': '#ffffff',
-              */
+
               // number format
               'numberScaleUnit': ' KB, MB, GB',
               'numberScaleValue': '1024,1024,1024',
 
-              'caption': 'Sales Trends',
-              'subcaption': '2017 - 2018',
-              'xaxisname': 'Month',
-              'yaxisname': 'Revenue',
-              'showvalues': '1',
-              'placeValuesInside': '1',
-              'rotateValues': '1',
-              'valueFontColor': '#ffffff',
-              'baseFontColor': '#333333',
-              'baseFont': 'Helvetica Neue,Arial',
-              'captionFontSize': '14',
-              'subcaptionFontSize': '14',
-              'subcaptionFontBold': '0',
-              'showborder': '0',
-              'paletteColors': '#0075c2',
-              'bgcolor': '#FFFFFF',
-              'showalternatehgridcolor': '0',
-              'showplotborder': '0',
-              'labeldisplay': 'WRAP',
-              'divlinecolor': '#CCCCCC',
-              'showcanvasborder': '0',
-              'linethickness': '3',
-              'plotfillalpha': '100',
-              'plotgradientcolor': '',
-              'numVisiblePlot': '12',
-              'divlineAlpha': '100',
-              'divlineColor': '#999999',
-              'divlineThickness': '1',
-              'divLineIsDashed': '1',
-              'divLineDashLen': '1',
-              'divLineGapLen': '1',
-              'scrollheight': '10',
+              // number of visible plots
+              // for a yearly report : 365 days
+              'numVisiblePlot': '365',
+
+              // customized scroll bar
+              'scrollheight': '20',
               'flatScrollBars': '1',
-              'scrollShowButtons': '0',
-              'scrollColor': '#cccccc',
-              'showHoverEffect': '1'
+              'scrollPadding': '20',
+              'scrollShowButtons': '1',
+              'scrollColor': '#336699',
+
+              // subcaption and caption style
+              'captionFontSize': '16',
+              'subcaptionFontBold': '0',
+              'subcaptionFontSize': '14',
+              'subcaption': '2017 - 2019',
+              'caption': 'Data Storage Trends Over Time',
+
+              // cosmetics
+              'showBorder': '0',
+              'showShadow': '0',
+              'baseFont': 'Times',
+              'baseFontSize': '12',
+              'divLineGapLen': '1',
+              'lineThickness': '3',
+              'divlineAlpha': '100',
+              'divLineDashLen': '1',
+              'showplotborder': '1',
+              'divLineIsDashed': '1',
+              'showHoverEffect': '1',
+              'divlineThickness': '1',
+              'showCanvasBorder': '0',
+              'plotBorderAlpha': '80',
+              'usePlotGradientColor': '1',
+              'paletteColors': this.paletteColors,
+              'plotGradientColor': this.plotGradientColor,
             },
             'categories': [
               {
@@ -175,7 +159,7 @@ export class ReportDetailComponent implements OnInit {
                 this.ReportByNamesChart.map(item => {
                   return {
                     'value': item.size,
-                    'color': '#336699' + Math.floor(Math.random() * 16777215).toString(16)
+                    // 'color': '#336699' + Math.floor(Math.random() * 16777215).toString(16)
                   };
                 })
 
