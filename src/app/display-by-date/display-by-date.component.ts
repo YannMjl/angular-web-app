@@ -28,7 +28,7 @@ export class DisplayByDateComponent implements OnInit {
   width = 1000;
   height = 500;
   id = 'chart1';
-  type = 'column2d';
+  type = 'scrollColumn2d';
   dataFormat = 'json';
 
   @ViewChild('popupViewByDate') popupByDate: Popup;
@@ -67,6 +67,30 @@ export class DisplayByDateComponent implements OnInit {
 
           this.dataSource = {
             'chart': {
+              /*
+              'paletteColors': '#0075c2',
+              // 'bgColor': '#ebf6f9',
+              'showBorder': '0',
+              'showCanvasBorder': '0',
+              'plotBorderAlpha': '10',
+              'usePlotGradientColor': '0',
+              'plotFillAlpha': '50',
+              'showXAxisLine': '1',
+              'axisLineAlpha': '25',
+              'divLineAlpha': '10',
+              // 'showValues': '1',
+              // 'showAlternateHGridColor': '0',
+              'captionFontSize': '14',
+              'subcaptionFontSize': '14',
+              'subcaptionFontBold': '0',
+              'toolTipColor': '#ebf6f9',
+              'toolTipBorderThickness': '0',
+              'toolTipBgColor': '#000000',
+              'toolTipBgAlpha': '80',
+              'toolTipBorderRadius': '2',
+              'toolTipPadding': '5',
+
+
               'showAlternateHGridColor': '1',
               // Background color and alpha
               'bgColor': '#ebf6f9',
@@ -97,22 +121,71 @@ export class DisplayByDateComponent implements OnInit {
               'xAxisNameFontItalic': '1',
               'xAxisNameFontColor': '#993300',
               // add gradient effect to data plots
-              'usePlotGradientColor': '1',
-              'plotGradientColor': '#ffffff',
+              // 'usePlotGradientColor': '1',
+              // 'plotGradientColor': '#ffffff',
+              */
               // number format
               'numberScaleUnit': ' KB, MB, GB',
-              'numberScaleValue': '1024,1024,1024'
+              'numberScaleValue': '1024,1024,1024',
+
+              'caption': 'Sales Trends',
+              'subcaption': '2017 - 2018',
+              'xaxisname': 'Month',
+              'yaxisname': 'Revenue',
+              'showvalues': '1',
+              'placeValuesInside': '1',
+              'rotateValues': '1',
+              'valueFontColor': '#ffffff',
+              'baseFontColor': '#333333',
+              'baseFont': 'Helvetica Neue,Arial',
+              'captionFontSize': '14',
+              'subcaptionFontSize': '14',
+              'subcaptionFontBold': '0',
+              'showborder': '0',
+              'paletteColors': '#0075c2',
+              'bgcolor': '#FFFFFF',
+              'showalternatehgridcolor': '0',
+              'showplotborder': '0',
+              'labeldisplay': 'WRAP',
+              'divlinecolor': '#CCCCCC',
+              'showcanvasborder': '0',
+              'linethickness': '3',
+              'plotfillalpha': '100',
+              'plotgradientcolor': '',
+              'numVisiblePlot': '12',
+              'divlineAlpha': '100',
+              'divlineColor': '#999999',
+              'divlineThickness': '1',
+              'divLineIsDashed': '1',
+              'divLineDashLen': '1',
+              'divLineGapLen': '1',
+              'scrollheight': '10',
+              'flatScrollBars': '1',
+              'scrollShowButtons': '0',
+              'scrollColor': '#cccccc',
+              'showHoverEffect': '1'
+
             },
-            'data': this.reportByDateChart.map(item => {
-              return {
-                'label': item.organization,
-                'value': item.size,
-                // generate new color for each data display
-                'color': '#336699' + Math.floor(Math.random() * 16777215).toString(16)
-              };
 
-            })
+            'categories': [
+              {
+                'category': this.reportByDateChart.map(item => {
+                  return {
+                    'label': item.organization
+                  };
+                })
+              }],
+              'dataset': [
+                {
+                  'data':
+                    this.reportByDateChart.map(item => {
+                      return {
+                        'value': item.size,
+                        'color': '#336699' + Math.floor(Math.random() * 16777215).toString(16)
+                      };
+                    })
 
+                }]
           };
           console.log(this.dataSource);
         });

@@ -54,14 +54,18 @@ export class LoginComponent implements OnInit {
       animation: 'bounceInDown' // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'fadeInDown', 'bounceIn'
     };
 
-    if (this.authService.isLoggedIn) {
-      this.popupLogin.show(this.popupLogin.options);
+    if (this.authService.isLoginPostLoadign) {
+      if (this.authService.isLoggedIn$$) {
+        this.popupLogin.show(this.popupLogin.options);
+      } else {
+        this.popupLogin.hide();
+      }
     }
   }
 
   onSubmit() {
     if (this.myForm.valid) {
-      this.authService.loginBackend(this.myForm.value);
+      this.authService.getLoginPostData(this.myForm.value);
       this.isAuthenticated();
     }
     this.formSubmitAttempt = true;

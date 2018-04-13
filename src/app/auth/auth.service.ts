@@ -7,6 +7,8 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { environment } from '../../environments/environment';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 
+import { Observable } from 'rxjs/Observable';
+
 @Injectable()
 export class AuthService {
 
@@ -15,6 +17,9 @@ export class AuthService {
   private readonly storeKey = 'currentUser';
   private loggedIn = new BehaviorSubject<boolean>(false);
   get isLoggedIn() { return this.loggedIn.asObservable(); }
+
+  private loginPostLoadingComplete = false;
+  isLoginPostLoadign() { return this.loginPostLoadingComplete; }
 
   constructor(
     private router: Router,
@@ -25,46 +30,51 @@ export class AuthService {
     this.loginEndpoint = endpoint + '/login';
   }
 
-  loginBackend(user: User) {
+  loginAuthBackend(user: User) {
 
-    console.log('in login post');
+    console.log('in login post credetntials to backend');
 
     const formData = new FormData();
     formData.append('username', user.userName);
     formData.append('password', user.password);
 
-    this.http.post<{token: string}>(this.loginEndpoint, formData)
-            .subscribe(
-              data => {
-                const token = data.token;
-                console.log('data retrun after post is: ' + token);
+    return this.http.post<{token: string}>(this.loginEndpoint, formData);
+  }
 
-                // login successful if there's a jwt token in the response
-                if (token) {
-                  this.loginToken = data.token;
-                  console.log('value of logintoken is: ' + this.loginToken);
+  getLoginPostData(user: User) {
+    this.loginAuthBackend(user)
+        .finally(() => this.loginPostLoadingComplete = true)
+        .subscribe(
+          data => {
+            const token = data.token;
+            console.log('data retrun after post is: ' + token);
 
-                  // set loogedIn to true to indicate successful login
-                  this.loggedIn.next(true);
+            // login successful if there's a jwt token in the response
+            if (token) {
+              this.loginToken = data.token;
+              console.log('value of logintoken is: ' + this.loginToken);
 
-                  // store token in local storage to keep user logged in between page refreshes
-                  localStorage.setItem(this.storeKey, JSON.stringify({
-                    token: this.loginToken
-                  }));
+              // set loogedIn to true to indicate successful login
+              this.loggedIn.next(true);
 
-                  // go to reports list
-                  this.router.navigate(['/report']);
-                } else {
-                  // set logintoken to null
-                  this.loginToken = null;
-                  // set loggedIn to false to indicate failed login
-                  this.loggedIn.next(false);
-                }
-              },
-              succes => {
-                console.log(succes);
-              }
-            );
+              // store token in local storage to keep user logged in between page refreshes
+              localStorage.setItem(this.storeKey, JSON.stringify({
+                token: this.loginToken
+              }));
+
+              // go to reports list
+              this.router.navigate(['/report']);
+            } else {
+              // set logintoken to null
+              this.loginToken = null;
+              // set loggedIn to false to indicate failed login
+              this.loggedIn.next(false);
+            }
+          },
+          error => {
+            console.log('in lodin post error' + error);
+          }
+        );
   }
 
   getToken(): string {
