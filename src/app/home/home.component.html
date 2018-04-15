@@ -18,16 +18,16 @@
           <form #myform="ngForm" novalidate>
             <fieldset>
               <legend>
-                <span class="number">1</span>Select Report Date
+                <span class="number">!</span>Select Report Date
               </legend>
-              <label for="date">'Date must be selected from the calender'</label>
+              <label for="date">'Report dates are marked and must be selected from the calender'</label><br>
               <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model" required></my-date-picker>
             </fieldset>
             <br>
             <br>
         
             <!-- button to trigger the file upload when submitted -->
-            <button type="button" class="btn btn-success btn-s" (click)="upload()">View Report</button>
+            <button type="button" class="btn btn-success btn-s" (click)="viewReport()">View Report</button>
           </form>
         </div>
         

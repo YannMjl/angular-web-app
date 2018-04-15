@@ -27,8 +27,8 @@ export class FileUploadComponent implements OnInit {
   public myDatePickerOptions: IMyDpOptions = {
     inline: false,
     height: '40px',
-    width: '210px',
-    dateFormat: 'yyyy-mm-dd'
+    width: '250px',
+    dateFormat: 'd mmm yyyy'
   };
 
   public model: any = { date: { year: 2018, month: 1, day: 1 } };
@@ -50,7 +50,9 @@ export class FileUploadComponent implements OnInit {
     this.uploadEndpoint = endpoint + '/file';
   }
 
-  ngOnInit() { this.getReportByDate(this.reportDate); }
+  ngOnInit() {
+    this.getReportByDate(this.reportDate);
+  }
 
   getReportByDate(date: Date): void {
     console.log('get report after upload');
