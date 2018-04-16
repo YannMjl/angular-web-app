@@ -15,19 +15,20 @@
         <h2>View Report By Date</h2>
 
         <div class="form-style-5">
-          <form #myform="ngForm" novalidate>
+          <form #myform="ngForm" (ngSubmit)="viewReport()" novalidate>
             <fieldset>
               <legend>
                 <span class="number">!</span>Select Report Date
               </legend>
-              <label for="date">'Report dates are marked and must be selected from the calender'</label><br>
+              <label for="date">'Report dates are marked with a red dot on the calender'</label><br>
               <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model" required></my-date-picker>
+              <p class="error" *ngIf="!myform.valid">Date is required!</p>
             </fieldset>
             <br>
-            <br>
-        
-            <!-- button to trigger the file upload when submitted -->
-            <button type="button" class="btn btn-success btn-s" (click)="viewReport()">View Report</button>
+            <div>
+              <!-- button to trigger the file upload when submitted -->
+              <button type="button" class="btn btn-success btn-s" type="submit">View Report</button>
+            </div>
           </form>
         </div>
         
