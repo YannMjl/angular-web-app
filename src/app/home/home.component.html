@@ -7,6 +7,29 @@
       <div id="first">
 
         <h2>View Report By Organization</h2>
+
+        <form>
+          <fieldset>
+            <legend>
+              <span class="number"></span>Search By Name
+            </legend>
+            <!-- <label for="date">'Search an organization by name'</label> -->
+            <br>
+            <input type="text" name="search" placeholder="Search.." [(ngModel)]="filter">
+          </fieldset>
+        </form>
+
+        <div class="orglist">
+          
+          <ul class="list-org">
+            <li *ngFor="let report of ListOfOrganizationInReport | filter:filter | orderBy : ['organization'] | paginate: { itemsPerPage: 7, currentPage: p }"
+              [class.selected]="report === selectedreport" (click)="onSelect(report, getreportByName(report.organization))" [routerLink]="['/detail', report.organization]">
+              {{ report.organization }}
+            </li>
+          </ul>
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          
+        </div>
         
       </div>
 

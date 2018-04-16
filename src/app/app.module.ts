@@ -15,7 +15,9 @@ import { OrderModule } from 'ngx-order-pipe';
 import { CommonModule } from '@angular/common';
 import { RoutingModule } from './routing.module';
 import { MyDatePickerModule } from 'mydatepicker';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
 import { NgProgressModule, NgProgressInterceptor } from 'ngx-progressbar';
@@ -87,6 +89,8 @@ export class AppMaterialModule { }
     AppMaterialModule,
     MyDatePickerModule,
     FusionChartsModule,
+    NgxPaginationModule,
+    Ng2SearchPipeModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     PopupModule.forRoot()

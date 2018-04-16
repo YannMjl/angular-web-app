@@ -15,7 +15,7 @@
 }
 
 #first {
-    width: fit-content;
+    width: 0 auto;
     float: left;
     height: auto;
     text-align: center;
@@ -26,6 +26,11 @@
     width: fit-content;
     float: left;
     height: auto;
+    text-align: center;
+}
+
+.orglist {
+    width: 0 auto;
     text-align: center;
 }
 
@@ -59,6 +64,64 @@ button {
 button:hover {
     background: #00bfff;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+/********************************************************************************************/
+/* CSS style that display the list of organization in a fashiion way                        */
+/********************************************************************************************/
+.list-org .text {
+    top: -3px;
+    position: relative;
+}
+
+.list-org {
+    width: 15em;
+    padding: 5px;
+    margin: 0 0 2em 0;
+    text-align: center;
+    list-style-type: none;
+}
+
+.list-org li:hover {
+    left: .1em;
+    color: #607D8B;
+    background-color: #DDD;
+}
+
+.list-org li {
+    left: 0;
+    margin: .5em;
+    padding: .3em;
+    height: 1.6em;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 4px;
+    position: relative;
+    background-color: white;
+}
+
+.org-list {
+  left: -1px;
+  top: -4px;
+  height: 1.8em;
+  color: white;
+  line-height: 1em;
+  font-size: small;
+  position: relative;
+  margin-right: .8em;
+  display: inline-block;
+  border-radius: 4px 0 0 4px;
+  background-color: #607D8B;
+  padding: 0.8em 0.7em 0 0.7em;
+}
+
+.list-org li.selected:hover {
+    color: white;
+    background-color: #BBD8DC !important;
+}
+
+.selected {
+    color: white;
+    background-color: #CFD8DC !important;
 }
 /********************************************************************************************/
 /* Upload Form CSS style                                                                    */
@@ -179,3 +242,21 @@ button:hover {
     font-family: Georgia, "Times New Roman", Times, serif;
 }
 /********************************************************************************************/
+input[type=text] {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url(/assets/searchicon.png);
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+    width: 100%;
+}
