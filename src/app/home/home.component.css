@@ -37,9 +37,7 @@
 .error {
         width: 0 auto;
         padding: 4px;
-        border: 1px solid #ebccd2;
         color: #ff0000;
-        border-radius: 2px;
     }
 
 /********************************************************************************************/
