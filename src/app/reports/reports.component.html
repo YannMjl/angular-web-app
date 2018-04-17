@@ -8,28 +8,35 @@
 
     <div id="left">
 
-      <h2>Get report by organizarion or date</h2>
+      <h2>List of all Organizations and Dates in report</h2>
 
       <div id="first">
+
+        <form>
+          <input type="text" name="search" placeholder="Search..." [(ngModel)]="filter">
+        </form>
+
         <ul class="list-org">
-          <li *ngFor="let report of reports | orderBy : ['organization']" 
+          <li *ngFor="let report of reports | filter:filter | orderBy : ['organization'] | paginate: { id: 'first', itemsPerPage: 9, currentPage: currentpage, totalItems: total }"
             [class.selected]="report === selectedreport" 
             (click)="onSelect(report, getreportByName(report.organization))" 
             [routerLink]="['/detail', report.organization]">
             {{ report.organization }}
           </li>
         </ul>
+        <pagination-controls class="my-pagination" (pageChange)="currentpage = $event" id="first"></pagination-controls>
       </div>
 
       <div id="second" ng-controller="datCtrl">
         <ul class="list-org">
-          <li *ngFor="let report of reportDate" 
+          <li *ngFor="let report of reportDate | paginate: { id: 'second', itemsPerPage: 10, currentPage: currentPage, totalItems: total }" 
             [class.selected]="report === selecteddate" 
             (click)="onSelectDate(report, getreportBydate(report.date))" 
             [routerLink]="['/detail-date', report.date]">
             {{ report.date | date : "MMMM d, y" }}
           </li>
         </ul>
+        <pagination-controls (pageChange)="currentPage = $event" id="second"></pagination-controls>
       </div>
 
     </div>

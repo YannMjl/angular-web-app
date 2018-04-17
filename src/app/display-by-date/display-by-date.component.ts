@@ -25,7 +25,7 @@ export class DisplayByDateComponent implements OnInit {
 
   // fusionchart specs
   dataSource;
-  width = 1000;
+  width = 1200;
   height = 550;
   id = 'chart1';
   dataFormat = 'json';
@@ -116,7 +116,7 @@ export class DisplayByDateComponent implements OnInit {
 
               // number of visible plots
               // show report of 20 organization at once
-              'numVisiblePlot': '15',
+              'numVisiblePlot': '20',
 
               // customized scroll bar
               'scrollheight': '20',
@@ -212,7 +212,7 @@ export class DisplayByDateComponent implements OnInit {
         .deleteReportByDate(this.date)
         .subscribe(report => (this.reportByDate = report));
 
-    this.router.navigate(['/report']);
+    this.router.navigate(['/home']);
   }
 
   CancelDeleteEvent() {

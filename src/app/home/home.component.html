@@ -11,7 +11,7 @@
           <form>
             <fieldset>
               <legend>
-                <span class="number"></span>View Report By Name 
+                <span class="number">1</span>View Report By Name 
               </legend>
               <br>
               <input type="text" name="search" placeholder="Search..." [(ngModel)]="filter">
@@ -38,7 +38,7 @@
           <form #myform="ngForm" (ngSubmit)="viewReport()" novalidate>
             <fieldset>
               <legend>
-                <span class="number">!</span>View By Date
+                <span class="number">2</span>View By Date
               </legend>
               <label for="date">'Report dates are marked with a red dot on the calender'</label><br>
               <my-date-picker name="mydate" [options]="myDatePickerOptions" placeholder="Select date.." [(ngModel)]="model" required></my-date-picker>

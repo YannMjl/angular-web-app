@@ -12,7 +12,6 @@
   float: left;
   width: fit-content;
   height: fit-content;
-  padding-right: 50px;
 }
 
 #first {
@@ -20,7 +19,7 @@
     float: left;
     height: auto;
     text-align: center;
-    padding-right: 50px;
+    margin: 30px auto;
 }
 
 #second {

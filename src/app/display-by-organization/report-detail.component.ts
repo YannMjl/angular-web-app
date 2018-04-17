@@ -27,7 +27,7 @@ export class ReportDetailComponent implements OnInit {
   // chart specs
   dataSource;
   height = 550;
-  width = 1000;
+  width = 1200;
   id = 'chart1';
   paletteColors;
   plotGradientColor;
@@ -110,7 +110,7 @@ export class ReportDetailComponent implements OnInit {
 
               // number of visible plots
               // for a yearly report : 365 days
-              'numVisiblePlot': '250',
+              'numVisiblePlot': '280',
 
               // customized scroll bar
               'scrollheight': '20',

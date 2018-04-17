@@ -10,24 +10,24 @@
 /********************************************************************************************/
 #left {
   float: left;
-  width: fit-content;
+  width: 0 auto;
   height: fit-content;
-  padding-right: 50px;
 }
 
 #first {
-    width: auto;
+    width: 0 auto;
     float: left;
     height: auto;
     text-align: center;
-    padding-right: 50px;
+    margin: 20px auto;
 }
 
 #second {
-    width: auto;
+    width: 0 auto;
     float: left;
     height: auto;
     text-align: center;
+    margin: 20px auto;
 }
 /********************************************************************************************/
 /* button CSS style                                                                         */
@@ -83,16 +83,17 @@ button:hover {
 }
 
 .list-org {
-    width: 15em;
+    width: 0 auto;
     padding: 5px;
-    margin: 0 0 2em 0;
+    margin: 10px auto;
     list-style-type: none;
 }
 
 .list-org li:hover {
     left: .1em;
-    color: #607D8B;
-    background-color: #DDD;
+    color: white;
+    font-weight: lighter;
+    background-color:#66b5ff;
 }
 
 .list-org li {
@@ -101,10 +102,10 @@ button:hover {
     padding: .3em;
     height: 1.6em;
     cursor: pointer;
-    font-weight: bold;
+    font-size: 15px;
     border-radius: 4px;
     position: relative;
-    background-color: white;
+    font-family: Georgia;
 }
 
 .org-list {
@@ -116,10 +117,11 @@ button:hover {
   font-size: small;
   position: relative;
   margin-right: .8em;
-  display: inline-block;
+  display: inline-flex;
   border-radius: 4px 0 0 4px;
   background-color: #607D8B;
   padding: 0.8em 0.7em 0 0.7em;
+  align-content: center;
 }
 
 .list-org li.selected:hover {
@@ -132,4 +134,26 @@ button:hover {
     background-color: #CFD8DC !important;
 }
 /********************************************************************************************/
+.my-pagination /deep/ .ngx-pagination .current {
+    width: 0 auto;
+    align-self: auto;
+}
 
+input[type=text] {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url(/assets/searchicon_.png);
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+    width: 100%;
+}

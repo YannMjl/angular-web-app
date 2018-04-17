@@ -74,17 +74,16 @@ button:hover {
 }
 
 .list-org {
-    width: 15em;
+    width: 15em auto;
     padding: 5px;
-    margin: 0 0 2em 0;
-    text-align: center;
+    margin: 40px auto;
     list-style-type: none;
 }
 
 .list-org li:hover {
     left: .1em;
-    color: #607D8B;
-    background-color: #DDD;
+    color: black;
+    background-color: #66b5ff;
 }
 
 .list-org li {
@@ -93,7 +92,7 @@ button:hover {
     padding: .3em;
     height: 1.6em;
     cursor: pointer;
-    font-weight: bold;
+    font-weight: normal;
     border-radius: 4px;
     position: relative;
     color: wheat;
@@ -124,7 +123,7 @@ button:hover {
     background-color: #CFD8DC !important;
 }
 /********************************************************************************************/
-/* Upload Form CSS style                                                                    */
+/* View by date Form CSS style                                                              */
 /********************************************************************************************/
 .form-style-5 label {
     display: block;
@@ -135,7 +134,7 @@ button:hover {
 
 .form-style-5 legend {
     color: #1abc9c;
-    font-size: 2.0em;
+    font-size: 1.5em;
     margin-bottom: 10px;
 }
 
@@ -188,7 +187,7 @@ button:hover {
 .form-style-5
 {
     padding: 50px;
-    max-width: 300px;
+    max-width: 400px;
     margin: 40px auto;
     padding: 40px 50px;
     border-radius: 10px;
@@ -242,19 +241,21 @@ button:hover {
     font-family: Georgia, "Times New Roman", Times, serif;
 }
 /********************************************************************************************/
+/* View by name Form CSS style                                                              */
+/********************************************************************************************/
 input[type=text] {
     width: 130px;
+    font-size: 16px;
+    border-radius: 4px;
     box-sizing: border-box;
     border: 2px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
     background-color: white;
-    background-image: url(/assets/searchicon_.png);
-    background-position: 10px 10px; 
     background-repeat: no-repeat;
     padding: 12px 20px 12px 40px;
-    -webkit-transition: width 0.4s ease-in-out;
+    background-position: 10px 10px; 
     transition: width 0.4s ease-in-out;
+    -webkit-transition: width 0.4s ease-in-out;
+    background-image: url(/assets/searchicon_.png);    
 }
 
 input[type=text]:focus {
@@ -275,8 +276,9 @@ input[type=text]:focus {
     color: #1abc9c;
     font-size: 1.5em;
     margin-bottom: 10px;
-    border-radius: 10px;
 }
+.form-org fieldset{ border: none; }
+
 .form-org .number 
 {
     width: 50px;
@@ -291,3 +293,4 @@ input[type=text]:focus {
     border-radius: 15px 15px 15px 0px;
     text-shadow: 0 1px 0 rgba(255,255,255,0.2);
 }
+/********************************************************************************************/

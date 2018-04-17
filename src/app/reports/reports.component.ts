@@ -12,6 +12,8 @@ import { ReportChartData } from '../shared/chart-data-by-org';
 })
 export class ReportsComponent implements OnInit {
 
+  Currentpae = 1;
+  currentPage = 1;
   reports: Report[];
   reportDate: Report[];
   selecteddate: Report;

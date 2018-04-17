@@ -63,7 +63,7 @@ export class AuthService {
               }));
 
               // go to reports list
-              this.router.navigate(['/report']);
+              this.router.navigate(['/home']);
             } else {
               // set logintoken to null
               this.loginToken = null;
