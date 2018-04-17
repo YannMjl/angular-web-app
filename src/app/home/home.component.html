@@ -6,45 +6,42 @@
 
       <div id="first">
 
-        <h2>View Report By Organization</h2>
+        <div class="form-org">
 
-        <form>
-          <fieldset>
-            <legend>
-              <span class="number"></span>Search By Name
-            </legend>
-            <!-- <label for="date">'Search an organization by name'</label> -->
-            <br>
-            <input type="text" name="search" placeholder="Search.." [(ngModel)]="filter">
-          </fieldset>
-        </form>
+          <form>
+            <fieldset>
+              <legend>
+                <span class="number"></span>View Report By Name 
+              </legend>
+              <br>
+              <input type="text" name="search" placeholder="Search..." [(ngModel)]="filter">
+            </fieldset>
 
-        <div class="orglist">
-          
-          <ul class="list-org">
-            <li *ngFor="let report of ListOfOrganizationInReport | filter:filter | orderBy : ['organization'] | paginate: { itemsPerPage: 7, currentPage: p }"
-              [class.selected]="report === selectedreport" (click)="onSelect(report, getreportByName(report.organization))" [routerLink]="['/detail', report.organization]">
-              {{ report.organization }}
-            </li>
-          </ul>
-          <pagination-controls (pageChange)="p = $event"></pagination-controls>
-          
+            <ul class="list-org">
+              <li *ngFor="let report of ListOfOrganizationInReport | filter:filter | orderBy : ['organization'] | paginate: { itemsPerPage: 5, currentPage: p }"
+                [class.selected]="report === selectedreport" (click)="onSelect(report, getreportByName(report.organization))" [routerLink]="['/detail', report.organization]">
+                {{ report.organization }}
+              </li>
+            </ul>
+
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+            
+          </form>
+
         </div>
         
       </div>
 
       <div id="second">
 
-        <h2>View Report By Date</h2>
-
         <div class="form-style-5">
           <form #myform="ngForm" (ngSubmit)="viewReport()" novalidate>
             <fieldset>
               <legend>
-                <span class="number">!</span>Select Report Date
+                <span class="number">!</span>View By Date
               </legend>
               <label for="date">'Report dates are marked with a red dot on the calender'</label><br>
-              <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model" required></my-date-picker>
+              <my-date-picker name="mydate" [options]="myDatePickerOptions" placeholder="Select date.." [(ngModel)]="model" required></my-date-picker>
               <p class="error" *ngIf="!myform.valid">Date is required!</p>
             </fieldset>
             <br>
