@@ -1,8 +1,12 @@
 import { Popup } from 'ng2-opd-popup';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
+import { ReportService } from '../shared/report.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
+import 'rxjs/add/operator/take';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +25,8 @@ export class LoginComponent implements OnInit {
     private popup: Popup,
     private fb: FormBuilder,
     private http: HttpClient,
-    private authService: AuthService
+    private authService: AuthService,
+    private repoService: ReportService,
   ) { }
 
   ngOnInit() {
@@ -29,6 +34,8 @@ export class LoginComponent implements OnInit {
       userName: ['', Validators.required],
       password: ['', Validators.required]
     });
+
+    this.repoService.welcomePage();
   }
 
   isFieldInvalid(field: string) {
@@ -54,21 +61,32 @@ export class LoginComponent implements OnInit {
       animation: 'bounceInDown' // 'fadeInLeft', 'fadeInRight', 'fadeInUp', 'fadeInDown', 'bounceIn'
     };
 
-    if (this.authService.isLoginPostLoadign) {
-      if (this.authService.isLoggedIn$$) {
-        this.popupLogin.show(this.popupLogin.options);
-      } else {
-        this.popupLogin.hide();
-      }
+
+    if (this.authService.isLoggedIn) {
+      this.myForm = this.fb.group({
+        userName: ['', Validators.required],
+        password: ['', Validators.required]
+      });
     }
+      /*
+      this.authService.isLoggedIn
+        .take(1)
+        .map((isLoggedIn: boolean) => {
+          if (!isLoggedIn) {
+            this.popupLogin.show(this.popupLogin.options);
+          }
+          this.popupLogin.hide();
+        });
+    */
+
   }
 
   onSubmit() {
     if (this.myForm.valid) {
       this.authService.getLoginPostData(this.myForm.value);
-      this.isAuthenticated();
     }
     this.formSubmitAttempt = true;
+    this.isAuthenticated();
   }
 
   logInEvent() {

@@ -15,6 +15,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http'
 @Injectable()
 export class ReportService {
 
+  private readonly welcomeEndpoint: string;
   private readonly getReportEndpoint: string;
   private readonly deleteAllReportEndpoint: string;
   private readonly getReportByNameEndpoint: string;
@@ -30,6 +31,7 @@ export class ReportService {
     private authService: AuthService
   ) {
     const endpoint = environment.apiUrl;
+    this.welcomeEndpoint = endpoint;
     this.getReportEndpoint = endpoint + '/report';
     this.getReportByDateEndpoint = endpoint + '/date';
     this.getDateInReportEndpoint = endpoint + '/date';
@@ -45,6 +47,11 @@ export class ReportService {
   token$ = this.authService.getToken();
   headers = new HttpHeaders({'Authorization': this.token$});
   options = {headers: this.headers};
+
+  welcomePage() {
+    return this.http.get(this.welcomeEndpoint)
+                    .pipe( catchError(this.handleError));
+  }
 
   getReports(): Observable<Report[]> {
     return this.http.get<Report[]>(this.getReportEndpoint)

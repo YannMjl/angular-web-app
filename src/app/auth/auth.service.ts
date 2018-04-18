@@ -18,8 +18,7 @@ export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false);
   get isLoggedIn() { return this.loggedIn.asObservable(); }
 
-  private loginPostLoadingComplete = false;
-  isLoginPostLoadign() { return this.loginPostLoadingComplete; }
+  public loginPostLoadingComplete = false;
 
   constructor(
     private router: Router,
@@ -42,6 +41,7 @@ export class AuthService {
   }
 
   getLoginPostData(user: User) {
+    this.loginPostLoadingComplete = true;
     this.loginAuthBackend(user)
         .finally(() => this.loginPostLoadingComplete = true)
         .subscribe(
@@ -56,6 +56,7 @@ export class AuthService {
 
               // set loogedIn to true to indicate successful login
               this.loggedIn.next(true);
+              this.loginPostLoadingComplete = true;
 
               // store token in local storage to keep user logged in between page refreshes
               localStorage.setItem(this.storeKey, JSON.stringify({
@@ -69,6 +70,8 @@ export class AuthService {
               this.loginToken = null;
               // set loggedIn to false to indicate failed login
               this.loggedIn.next(false);
+              this.loginPostLoadingComplete = false;
+              alert('Wrong password or username. Please try again!');
             }
           },
           error => {
@@ -83,6 +86,10 @@ export class AuthService {
 
   isLoggedIn$$(): boolean {
     return this.loginToken !== null;
+  }
+
+  isLoginPostLoadign() {
+    return this.loginPostLoadingComplete;
   }
 
   public isAuthenticated() {

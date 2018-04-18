@@ -31,7 +31,7 @@ export class FileUploadComponent implements OnInit {
     dateFormat: 'd mmm yyyy'
   };
 
-  public model: any = { date: { year: 2018, month: 1, day: 1 } };
+  private model: any = null;   // not initial date set (use null or empty string)
 
   @ViewChild('popup1') popup1: Popup;
   @ViewChild('popup2') popup2: Popup;
@@ -52,6 +52,10 @@ export class FileUploadComponent implements OnInit {
 
   ngOnInit() {
     this.getReportByDate(this.reportDate);
+
+    this.myform = this.FB.group({
+      myDate: [{ jsdate: new Date() }, Validators.required]
+    });
   }
 
   getReportByDate(date: Date): void {

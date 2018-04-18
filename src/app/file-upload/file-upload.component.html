@@ -17,7 +17,8 @@
             <span class="number">1</span>Select Report Date
           </legend>
           <label for="date">'Date must be selected from the calender'</label>
-          <my-date-picker name="mydate" [options]="myDatePickerOptions" [(ngModel)]="model" required></my-date-picker>
+          <my-date-picker name="mydate" [options]="myDatePickerOptions" placeholder="Select date..." [(ngModel)]="model" required></my-date-picker>
+          <p class="error" *ngIf="!myform.valid">Date is required!</p>
         </fieldset><br><br>
         
         <fieldset>

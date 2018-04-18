@@ -146,10 +146,10 @@ export class HomeComponent implements OnInit {
           sunHighlight: false,
           selectorWidth: '400px',
           selectorHeight: '300px',
-          markDates: this.myDates,
+          // markDates: this.myDates,
           dateFormat: 'd mmm yyyy',
           selectionTxtFontSize: '14px',
-          /*
+
           highlightDates:
             this.report.map(item => {
               this.date = new Date(item.date);
@@ -161,7 +161,7 @@ export class HomeComponent implements OnInit {
               console.log('Month in date ' + this.month);
               console.log('year in date ' + this.year);
               return { year: this.year, month: this.month, day: this.day };
-            }),*/
+            }),
         };
 
       });
