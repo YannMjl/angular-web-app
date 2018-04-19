@@ -4,11 +4,13 @@ let win;
 
 function createWindow() {
   // Create the browser window.
-  win = new BrowserWindow({
-    width: 600,
+  let win = new BrowserWindow({
+    width: 800,
     height: 600,
-    backgroundColor: "#ffffff",
-    icon: `file://${__dirname}/dist/assets/logo.png`
+    center: true,
+    opacity: 0.9,
+    title: 'CloudRepo Report',
+    icon: `file://${__dirname}/dist/assets/electron_icon.png`
   });
 
   win.loadURL(`file://${__dirname}/dist/index.html`);

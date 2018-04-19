@@ -79,8 +79,7 @@ export class HomeComponent implements OnInit {
     this.order = value;
 
     console.log('in setOrder, reverse value: ' + this.reverse);
-
-    console.log('in setOrder, order by: ' + this.order);
+    console.log('in setOrder, order by : ' + this.order);
   }
 
   getListOfOrganization(): void {

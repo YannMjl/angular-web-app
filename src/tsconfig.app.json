@@ -9,5 +9,10 @@
   "exclude": [
     "test.ts",
     "**/*.spec.ts"
-  ]
+  ],
+  "paths": {
+    "@angular/*": [
+      "../node_modules/@angular/*"
+    ]
+  }
 }
