@@ -5,10 +5,9 @@ let win;
 function createWindow() {
   // Create the browser window.
   let win = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1200,
+    height: 800,
     center: true,
-    opacity: 0.9,
     title: 'CloudRepo Report',
     icon: `file://${__dirname}/dist/assets/electron_icon.png`
   });
